@@ -29,7 +29,7 @@ public class Variables {
         double lengthLine = Math.sqrt(Math.pow((pointXTwo - pointXOne), 2) + Math.pow((pointYTwo - pointYOne), 2));
 
         System.out.println("Длина отрезка с координатами х1: " + pointXOne + ", х2: " + pointXTwo + ", у1: "
-                + pointYOne + ", у2: " + pointYTwo + " равна: " + String.format("%.2f", lengthLine));
+                            + pointYOne + ", у2: " + pointYTwo + " равна: " + String.format("%.2f", lengthLine));
 
         //task #5
         double widthRectangle = 6;
@@ -40,7 +40,7 @@ public class Variables {
 
         String resultTaskFive = diagonal <= (circleRadius * 2) ? " закрывает" : " не закрывает";
         System.out.println("Окружность с радиусом: " + circleRadius + resultTaskFive + " прямоугольное отверстие размером: "
-                + widthRectangle + " x " + lengthRectangle);
+                            + widthRectangle + " x " + lengthRectangle);
 
         //task #6 (y = kx + b)
         double pointAX = 3;
