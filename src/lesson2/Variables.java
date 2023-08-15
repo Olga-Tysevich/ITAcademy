@@ -9,13 +9,13 @@ public class Variables {
         System.out.println("Последняя цифра целого числа: " + variableTaskOne + " равна: " + Math.abs(lastDigit));
 
         //task #2
-        int variableAbCd = 1223;
+        int variableAbCd = 5223;
         int sumAbCd = (variableAbCd / 100) + (variableAbCd % 100);
 
         System.out.println("Сумма ab и cd из числа abcd: " + variableAbCd + " равна: " + sumAbCd);
 
         //task #3
-        int variableTaskThree = 25698;
+        int variableTaskThree = -25698;
         int thirdDigit = (variableTaskThree / 100) % 10;
 
         System.out.println("Третья цифра пятизначного числа: " + variableTaskThree + " равна: " + Math.abs(thirdDigit));
@@ -28,8 +28,8 @@ public class Variables {
 
         double lengthLine = Math.sqrt(Math.pow((pointXTwo - pointXOne), 2) + Math.pow((pointYTwo - pointYOne), 2));
 
-        System.out.println("Длина отрезка с координатами х1: " + pointXOne + ", х2: " + pointXTwo + ", у1: "
-                            + pointYOne + ", у2: " + pointYTwo + " равна: " + String.format("%.2f", lengthLine));
+        System.out.println("Длина отрезка AB с координатами A(х1: " + pointXOne + ", у1: " + pointYOne + "), B(х2: "
+                            + pointXTwo + ", у2: " + pointYTwo + ") равна: " + String.format("%.2f", lengthLine));
 
         //task #5
         double widthRectangle = 6;
