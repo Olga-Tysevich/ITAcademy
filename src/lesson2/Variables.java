@@ -17,19 +17,19 @@ public class Variables {
         //task #3
         int variableTaskThree = 25698;
         int thirdDigit = (variableTaskThree / 100) % 10;
-        
+
         System.out.println("Третья цифра пятизначного числа: " + variableTaskThree + " равна: " + Math.abs(thirdDigit));
 
         //task #4
-        double pointXOne = 2;
+        double pointXOne = -2;
         double pointXTwo = 4;
         double pointYOne = 4;
         double pointYTwo = 1;
 
         double lengthLine = Math.sqrt(Math.pow((pointXTwo - pointXOne), 2) + Math.pow((pointYTwo - pointYOne), 2));
-        
-        System.out.println("Длина отрезка с координатами х1: " + pointXOne + ", х2: " + pointXTwo + ", у1: " 
-                           + pointYOne + ", у2: " + pointYTwo + " равна: " + lengthLine);
+
+        System.out.println("Длина отрезка с координатами х1: " + pointXOne + ", х2: " + pointXTwo + ", у1: "
+                + pointYOne + ", у2: " + pointYTwo + " равна: " + String.format("%.2f", lengthLine));
 
         //task #5
         double widthRectangle = 6;
@@ -37,10 +37,10 @@ public class Variables {
         double circleRadius = 5;
 
         double diagonal = Math.sqrt(Math.pow(widthRectangle, 2) + Math.pow(lengthRectangle, 2));
-        
+
         String resultTaskFive = diagonal <= (circleRadius * 2) ? " закрывает" : " не закрывает";
         System.out.println("Окружность с радиусом: " + circleRadius + resultTaskFive + " прямоугольное отверстие размером: "
-                            + widthRectangle + " x " + lengthRectangle);
+                + widthRectangle + " x " + lengthRectangle);
 
         //task #6 (y = kx + b)
         double pointAX = 3;
@@ -52,9 +52,9 @@ public class Variables {
         double b = pointBY - k * pointBX;
 
         //Следующая строка нужна просто чтобы выводилось симпатичнее
-        String resultB = (b < 0) ? (" " + b) : (" + " + b);
+        String characterBeforeB = (b < 0) ? (" ") : (" + ");
 
-        System.out.println("y = " + k + "x" + resultB);
+        System.out.println("y = " + String.format("%.2f", k) + "x" + characterBeforeB + String.format("%.2f", b));
 
     }
 }
