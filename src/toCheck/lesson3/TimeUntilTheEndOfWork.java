@@ -11,9 +11,11 @@ public class TimeUntilTheEndOfWork {
         int hoursUntilTheEndOfWork = secondsOnTheScoreboard / 3600;
 
         System.out.println("Секунд до конца работы: " + secondsOnTheScoreboard);
+
         if (secondsOnTheScoreboard == 0) {
             System.out.println("Рабочий день окончен");
         } else {
+
             switch (hoursUntilTheEndOfWork) {
                 case 1:
                     System.out.println("Остался 1 час");
@@ -27,6 +29,7 @@ public class TimeUntilTheEndOfWork {
                 default:
                     System.out.println("Осталось менее часа");
             }
+
         }
 
     }

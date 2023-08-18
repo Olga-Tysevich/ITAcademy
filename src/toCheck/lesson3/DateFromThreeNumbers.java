@@ -41,6 +41,7 @@ public class DateFromThreeNumbers {
         }
 
         System.out.println("Введенная дата: " + String.format("%02d", numberOfDay) + "." + String.format("%02d", numberOfMonth) + "." + numberOfYear);
+
         if (numberOfMonth == 2) {
             System.out.println(numberOfYear + " год - " + yearName + ". В феврале " + lastDayOfFebruary + " дней");
         }
