@@ -1,13 +1,8 @@
-package lesson3;
+package toCheck.lesson3;
 
 public class NumberToClock {
     public static void main(String[] args) {
-        //task #1
-        /* Не знаю правильно ли поняла задачу:
-        Если прошло 7 дней, то сейчас идет вторая неделя.
-        Так же если прошли одни сутки, то сейчас идут вторые.
-        Так нужно было выводить? Или в формате 1 неделя 1 день и т.д.?
-        */
+
         int timeAsANumber = (int) (Math.random() * Math.pow(10, 7));
         System.out.println("Случайно заданное время в секундах: " + timeAsANumber);
 
