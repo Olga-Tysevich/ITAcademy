@@ -1,4 +1,4 @@
-package checked.lesson1.lesson2;
+package checked;
 
 public class Variables {
     public static void main(String[] args) {
