@@ -77,7 +77,7 @@ public class KeyboardInputValidation {
         return integerResult;
     }
 
-    public int getInteger() {
+    private int getInteger() {
         do {
             Scanner scanner = new Scanner(System.in);
 
