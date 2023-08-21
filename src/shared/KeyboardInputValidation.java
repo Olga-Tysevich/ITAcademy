@@ -61,6 +61,10 @@ public class KeyboardInputValidation {
         }
         return negativeNumber;
     }
+    public int getAnyInteger(){
+        System.out.print("Введите целое число: ");
+        return getInteger();
+    }
 
     public int getInteger(String numberSign) {
         if (numberSign.equals("positive")) {

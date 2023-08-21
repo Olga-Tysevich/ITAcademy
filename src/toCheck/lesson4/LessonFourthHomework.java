@@ -42,7 +42,7 @@ public class LessonFourthHomework {
 
         //task #3
         System.out.println("Задание #3");
-        int variableOfThirdTask = keyboardInputValidation.getInteger();
+        int variableOfThirdTask = keyboardInputValidation.getAnyInteger();
 
 
         int maxDigit = 0, positionOfMaxDigit = 1;
@@ -64,7 +64,7 @@ public class LessonFourthHomework {
 
         //task #4
         System.out.println("Задание #4");
-        int variableOfFourthTask = keyboardInputValidation.getInteger();
+        int variableOfFourthTask = keyboardInputValidation.getAnyInteger();
 
         if (variableOfFourthTask < 0) {
             System.out.println("Отрицательное число не является натуральным! Оно будет преобразовано в положительное!");
