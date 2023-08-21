@@ -6,11 +6,11 @@ public class KeyboardInputValidation {
     private int integerResult;
     private boolean checkForNumber = false;
 
-    public int getIntegerWithSizeAndSign(int size, boolean exactMatch, String... numberSign) {
-        int counterOfDigit = 0;
-        int integer = 0;
-        int integerTemp;
+    private int counterOfDigit = 0;
+    private int integer = 0;
 
+
+    public int getIntegerWithSizeAndSign(int size, boolean exactMatch, String... numberSign) {
         try {
             if (numberSign[0].equals("positive")) {
                 System.out.println("Необходимо ввести целое положительное число, в котором не менее " + size + " цифр:");
@@ -24,7 +24,7 @@ public class KeyboardInputValidation {
             integer = getInteger();
         }
         while (true) {
-            integerTemp = integer;
+            int integerTemp = integer;
             while (integerTemp != 0) {
                 integerTemp = integerTemp / 10;
                 counterOfDigit++;
