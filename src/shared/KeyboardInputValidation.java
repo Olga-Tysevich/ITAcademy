@@ -9,17 +9,28 @@ public class KeyboardInputValidation {
 
     public int getIntegerWithSizeAndSign(int size, boolean exactMatch, String numberSign) {
         int integer = 0;
+        String message = "не менее ", messageTwo = ":";
+        if (exactMatch) {
+            message = "";
+        }
+        if (size % 10 == 1 && exactMatch) {
+            messageTwo = "а:";
+        } else if (size % 10 >= 2 && size % 10 < 5 && exactMatch) {
+            messageTwo = "ы:";
+        } else if (!exactMatch && size % 10 == 1) {
+            messageTwo = "ы:";
+        }
         switch (numberSign) {
             case "positive" -> {
-                System.out.println("Необходимо ввести целое положительное число, в котором не менее " + size + " цифр:");
+                System.out.println("Необходимо ввести целое положительное число, в котором " + message + size + " цифр" + messageTwo);
                 integer = getPositiveInteger();
             }
             case "negative" -> {
-                System.out.println("Необходимо ввести целое отрицательное число, в котором не менее " + size + " цифр:");
+                System.out.println("Необходимо ввести целое отрицательное число, в котором " + message + size + " цифр" + messageTwo);
                 integer = getNegativeInteger();
             }
             case "any" -> {
-                System.out.println("Необходимо ввести целое число, в котором не менее " + size + " цифр:");
+                System.out.println("Необходимо ввести целое число, в котором " + message + size + " цифр" + messageTwo);
                 integer = getInteger();
             }
         }
@@ -61,7 +72,8 @@ public class KeyboardInputValidation {
         }
         return negativeNumber;
     }
-    public int getAnyInteger(){
+
+    public int getAnyInteger() {
         System.out.print("Введите целое число: ");
         return getInteger();
     }
@@ -122,7 +134,7 @@ public class KeyboardInputValidation {
 
     private boolean checkForIntegerSize(double number) {
         if (number < -Math.pow(2, 31) || number > Math.pow(2, 31) - 1) {
-            System.out.println("Ваше число слишком длинное! Число должно быть не меньше (-2³¹) и не больше (2³¹ -1)");
+            System.out.println("Ваше число слишком длинное! Число должно быть не меньше (-2³¹) и не больше (2³¹ -1)! Введите число: ");
             checkForNumber = false;
         } else {
             checkForNumber = true;
