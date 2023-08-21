@@ -185,7 +185,7 @@ public class LessonFourthHomework {
             }
         }
 
-        System.out.print("Число " + variableOfNinthTask + message);
+        System.out.println("Число " + variableOfNinthTask + message);
 
         //task #10
         System.out.println("Задание #10");
