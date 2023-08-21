@@ -5,24 +5,27 @@ import java.util.Scanner;
 public class KeyboardInputValidation {
     private int integerResult;
     private boolean checkForNumber = false;
-    private int counterOfDigit = 0;
-    private int integer = 0;
 
 
-    public int getIntegerWithSizeAndSign(int size, boolean exactMatch, String... numberSign) {
-        try {
-            if (numberSign[0].equals("positive")) {
+    public int getIntegerWithSizeAndSign(int size, boolean exactMatch, String numberSign) {
+        int integer = 0;
+        switch (numberSign) {
+            case "positive" -> {
                 System.out.println("Необходимо ввести целое положительное число, в котором не менее " + size + " цифр:");
                 integer = getPositiveInteger();
-            } else if (numberSign[0].equals("negative")) {
-                System.out.println("Необходимо ввести целое отрицательное число, в котором не менее " + size + " цифр:");
-                integer = getInteger("negative");
             }
-        } catch (ArrayIndexOutOfBoundsException arrayIndexOutOfBoundsException) {
-            System.out.println("Необходимо ввести целое число, в котором не менее " + size + " цифр:");
-            integer = getInteger();
+            case "negative" -> {
+                System.out.println("Необходимо ввести целое отрицательное число, в котором не менее " + size + " цифр:");
+                integer = getNegativeInteger();
+            }
+            case "any" -> {
+                System.out.println("Необходимо ввести целое число, в котором не менее " + size + " цифр:");
+                integer = getInteger();
+            }
         }
+
         while (true) {
+            int counterOfDigit = 0;
             int integerTemp = integer;
             while (integerTemp != 0) {
                 integerTemp = integerTemp / 10;
@@ -43,25 +46,36 @@ public class KeyboardInputValidation {
     public int getPositiveInteger() {
 
         int positiveNumber = getInteger("positive");
-        if (positiveNumber < 0) {
+        while (positiveNumber < 0) {
             System.out.println("Вы ввели отрицательное число!");
             positiveNumber = getInteger("positive");
         }
         return positiveNumber;
     }
 
-    public int getInteger(String... numberSign) {
+    public int getNegativeInteger() {
+        int negativeNumber = getInteger("negative");
+        while (negativeNumber > 0) {
+            System.out.println("Вы ввели положительное число!");
+            negativeNumber = getInteger("negative");
+        }
+        return negativeNumber;
+    }
+
+    public int getInteger(String numberSign) {
+        if (numberSign.equals("positive")) {
+            System.out.print("Введите целое положительное число: ");
+            getInteger();
+        } else if (numberSign.equals("negative")) {
+            System.out.print("Введите целое отрицательное число: ");
+            getInteger();
+        }
+        return integerResult;
+    }
+
+    public int getInteger() {
         do {
             Scanner scanner = new Scanner(System.in);
-            try {
-                if (numberSign[0].equals("positive")) {
-                    System.out.print("Введите целое положительное число: ");
-                } else if (numberSign[0].equals("negative")) {
-                    System.out.print("Введите целое отрицательное число: ");
-                }
-            } catch (ArrayIndexOutOfBoundsException arrayIndexOutOfBoundsException) {
-                System.out.print("Введите целое число: ");
-            }
 
             checkForNumber = scanner.hasNextInt();
             if (checkForNumber) {
@@ -91,7 +105,7 @@ public class KeyboardInputValidation {
                         }
 
                     } catch (NumberFormatException exceptionNotANumber) {
-                        System.out.println("Введено не число! Введите число!");
+                        System.out.print("Введено не число! Введите число: ");
                     }
                 }
             }
