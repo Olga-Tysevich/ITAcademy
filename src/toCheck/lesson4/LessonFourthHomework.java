@@ -6,7 +6,7 @@ import java.math.*;
 import java.text.*;
 
 
-public class Main {
+public class LessonFourthHomework {
     public static void main(String[] args) {
         KeyboardInputValidation keyboardInputValidation = new KeyboardInputValidation();
         NumberFormat numberFormat = NumberFormat.getInstance();
