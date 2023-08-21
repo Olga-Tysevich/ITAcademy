@@ -24,7 +24,7 @@ public class LessonFourthHomework {
 
         //task #2
         System.out.println("Задание #2");
-        int variableOfSecondTask = keyboardInputValidation.getIntegerWithSize(2, false,"positive");
+        int variableOfSecondTask = keyboardInputValidation.getIntegerWithSizeAndSign(2, false,"positive");
         int variableOfSecondTaskToPrint = variableOfSecondTask;
         int currentDigitOfSecondTask;
         int sumOfDigits = 0;

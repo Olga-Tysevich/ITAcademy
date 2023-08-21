@@ -6,7 +6,7 @@ public class KeyboardInputValidation {
     private int integerResult;
     private boolean checkForNumber = false;
 
-    public int getIntegerWithSize(int size, boolean exactMatch, String... numberSign) {
+    public int getIntegerWithSizeAndSign(int size, boolean exactMatch, String... numberSign) {
         int counterOfDigit = 0;
         int integer = 0;
         int integerTemp;
@@ -36,7 +36,7 @@ public class KeyboardInputValidation {
                 return integer;
             } else {
                 System.out.println("Вы ввели число в неверном формате! Введите корректное число!");
-                integer = getIntegerWithSize(size, exactMatch, numberSign);
+                integer = getIntegerWithSizeAndSign(size, exactMatch, numberSign);
             }
         }
     }
