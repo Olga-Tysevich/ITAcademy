@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class KeyboardInputValidation {
     private int integerResult;
     private boolean checkForNumber = false;
-
     private int counterOfDigit = 0;
     private int integer = 0;
 
