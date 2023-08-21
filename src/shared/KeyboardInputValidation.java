@@ -66,7 +66,7 @@ public class KeyboardInputValidation {
         return getInteger();
     }
 
-    public int getInteger(String numberSign) {
+    private int getInteger(String numberSign) {
         if (numberSign.equals("positive")) {
             System.out.print("Введите целое положительное число: ");
             getInteger();
