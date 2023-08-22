@@ -38,11 +38,11 @@ public class LessonFourthHomework {
         }
         System.out.println("Сумма цифр числа: " + variableOfSecondTaskToPrint + " равна: " + Math.abs(sumOfDigits));
         System.out.println("Произведение цифр числа: " + variableOfSecondTaskToPrint + " равно: "
-                            + numberFormat.format(Math.abs(multiplicationOfDigits)) + "\n");
+                + numberFormat.format(Math.abs(multiplicationOfDigits)) + "\n");
 
         //task #3
         System.out.println("Задание #3");
-        int variableOfThirdTask = keyboardInputValidation.getAnyInteger();
+        int variableOfThirdTask = keyboardInputValidation.getInteger("any");
 
 
         int maxDigit = 0, positionOfMaxDigit = 1;
@@ -64,7 +64,7 @@ public class LessonFourthHomework {
 
         //task #4
         System.out.println("Задание #4");
-        int variableOfFourthTask = keyboardInputValidation.getAnyInteger();
+        int variableOfFourthTask = keyboardInputValidation.getInteger("any");
 
         if (variableOfFourthTask < 0) {
             System.out.println("Отрицательное число не является натуральным! Оно будет преобразовано в положительное!");
@@ -152,20 +152,20 @@ public class LessonFourthHomework {
         System.out.println("Задание #8");
         int numberOfShelves = 50000;
         int numberOfShelvesTemp;
-        int counterOfDefectiveProducts =0;
+        int counterOfDefectiveProducts = 0;
 
-        while (numberOfShelves != 0){
+        while (numberOfShelves != 0) {
 
             numberOfShelvesTemp = numberOfShelves;
 
-            while (numberOfShelvesTemp !=0){
+            while (numberOfShelvesTemp != 0) {
 
-                if (numberOfShelvesTemp % 10 == 2){
+                if (numberOfShelvesTemp % 10 == 2) {
                     counterOfDefectiveProducts++;
                     break;
                 }
 
-                numberOfShelvesTemp = numberOfShelvesTemp /10;
+                numberOfShelvesTemp = numberOfShelvesTemp / 10;
             }
 
             numberOfShelves--;
@@ -175,7 +175,7 @@ public class LessonFourthHomework {
 
         //task #9
         System.out.println("Задание #9");
-        int variableOfNinthTask = keyboardInputValidation.getPositiveInteger();
+        int variableOfNinthTask = keyboardInputValidation.getInteger("positive");
         String message = " является простым\n";
 
         for (int j = 2; j < variableOfNinthTask; j++) {

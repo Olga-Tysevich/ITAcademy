@@ -8,34 +8,19 @@ public class KeyboardInputValidation {
 
 
     public int getIntegerWithSizeAndSign(int size, boolean exactMatch, String numberSign) {
-        int integer = 0;
-        String message = "не менее ", messageTwo = ":";
+        int integer;
+        String message;
+
         if (exactMatch) {
-            message = "";
-        }
-        if (size % 10 == 1 && exactMatch) {
-            messageTwo = "а:";
-        } else if (size % 10 >= 2 && size % 10 < 5 && exactMatch) {
-            messageTwo = "ы:";
-        } else if (!exactMatch && size % 10 == 1) {
-            messageTwo = "ы:";
-        }
-        switch (numberSign) {
-            case "positive" -> {
-                System.out.println("Необходимо ввести целое положительное число, в котором " + message + size + " цифр" + messageTwo);
-                integer = getPositiveInteger();
-            }
-            case "negative" -> {
-                System.out.println("Необходимо ввести целое отрицательное число, в котором " + message + size + " цифр" + messageTwo);
-                integer = getNegativeInteger();
-            }
-            case "any" -> {
-                System.out.println("Необходимо ввести целое число, в котором " + message + size + " цифр" + messageTwo);
-                integer = getInteger();
-            }
+            message = "Необходимо ввести число, количество цифр в котором равно ";
+        } else {
+            message = "Необходимо ввести число, количество цифр в котором не менее ";
         }
 
-        while (true) {
+        System.out.println(message + size + "!");
+        integer = getInteger(numberSign);
+
+        while (true){
             int counterOfDigit = 0;
             int integerTemp = integer;
             while (integerTemp != 0) {
@@ -49,51 +34,46 @@ public class KeyboardInputValidation {
                 return integer;
             } else {
                 System.out.println("Вы ввели число в неверном формате! Введите корректное число!");
-                integer = getIntegerWithSizeAndSign(size, exactMatch, numberSign);
+                System.out.println(message + size + "!");
+                integer = getInteger(numberSign);
             }
         }
     }
 
-    public int getPositiveInteger() {
-
-        int positiveNumber = getInteger("positive");
-        while (positiveNumber < 0) {
-            System.out.println("Вы ввели отрицательное число!");
-            positiveNumber = getInteger("positive");
+    public int getInteger(String numberSign) {
+        int integer;
+        switch (numberSign) {
+            case "positive" -> {
+                System.out.print("Введите целое положительное число: ");
+                integer = getInteger();
+                while (integer < 0) {
+                    System.out.println("Вы ввели отрицательное число!");
+                    integer = getInteger("positive");
+                }
+                return integer;
+            }
+            case "negative" -> {
+                System.out.print("Введите целое отрицательное число: ");
+                integer = getInteger();
+                while (integer > 0) {
+                    System.out.println("Вы ввели положительное число!");
+                    integer = getInteger("negative");
+                }
+                return integer;
+            }
+            case "any" -> {
+                System.out.print("Введите целое число: ");
+                return getInteger();
+            }
         }
-        return positiveNumber;
-    }
-
-    public int getNegativeInteger() {
-        int negativeNumber = getInteger("negative");
-        while (negativeNumber > 0) {
-            System.out.println("Вы ввели положительное число!");
-            negativeNumber = getInteger("negative");
-        }
-        return negativeNumber;
-    }
-
-    public int getAnyInteger() {
-        System.out.print("Введите целое число: ");
-        return getInteger();
-    }
-
-    private int getInteger(String numberSign) {
-        if (numberSign.equals("positive")) {
-            System.out.print("Введите целое положительное число: ");
-            getInteger();
-        } else if (numberSign.equals("negative")) {
-            System.out.print("Введите целое отрицательное число: ");
-            getInteger();
-        }
-        return integerResult;
+        return -1;
     }
 
     private int getInteger() {
         do {
             Scanner scanner = new Scanner(System.in);
-
             checkForNumber = scanner.hasNextInt();
+
             if (checkForNumber) {
                 integerResult = scanner.nextInt();
             } else {
@@ -121,7 +101,7 @@ public class KeyboardInputValidation {
                         }
 
                     } catch (NumberFormatException exceptionNotANumber) {
-                        System.out.print("Введено не число! Введите число: ");
+                        System.out.println("Введено не число! Введите число!");
                     }
                 }
             }
@@ -141,4 +121,7 @@ public class KeyboardInputValidation {
         }
         return checkForNumber;
     }
+
 }
+
+
