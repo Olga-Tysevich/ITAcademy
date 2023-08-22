@@ -1,4 +1,4 @@
-package toCheck.lesson3;
+package forCheck.lesson3;
 
 import java.util.Random;
 

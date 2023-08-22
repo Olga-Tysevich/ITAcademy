@@ -1,6 +1,6 @@
-package toCheck.lesson4;
+package inProgress.lesson4;
 
-import shared.KeyboardInputValidation;
+import inProgress.lesson4.shared.KeyboardInputValidation;
 
 import java.math.*;
 import java.text.*;

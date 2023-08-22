@@ -1,4 +1,4 @@
-package toCheck.lesson3;
+package forCheck.lesson3;
 
 public class NumberToClock {
     public static void main(String[] args) {
