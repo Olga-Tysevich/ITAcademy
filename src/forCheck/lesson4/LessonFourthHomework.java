@@ -1,14 +1,13 @@
-package inProgress.lesson4;
-
-import inProgress.lesson4.shared.KeyboardInputValidation;
+package forCheck.lesson4;
 
 import java.math.*;
 import java.text.*;
+import java.util.Scanner;
 
 
 public class LessonFourthHomework {
     public static void main(String[] args) {
-        KeyboardInputValidation keyboardInputValidation = new KeyboardInputValidation();
+        Scanner scanner = new Scanner(System.in);
         NumberFormat numberFormat = NumberFormat.getInstance();
 
         //task #1
@@ -24,25 +23,30 @@ public class LessonFourthHomework {
 
         //task #2
         System.out.println("Задание #2");
-        int variableOfSecondTask = keyboardInputValidation.getIntegerWithSizeAndSign(2, false,"positive");
+        System.out.print("Для определения суммы и произведения цифр числа необходимо ввести число: ");
+        int variableOfSecondTask = scanner.nextInt();
         int variableOfSecondTaskToPrint = variableOfSecondTask;
         int currentDigitOfSecondTask;
         int sumOfDigits = 0;
-        int multiplicationOfDigits = 1;
+        int productOfDigits;
+
+        productOfDigits = variableOfSecondTask == 0 ? 0 : 1;
 
         while (variableOfSecondTask != 0) {
             currentDigitOfSecondTask = variableOfSecondTask % 10;
             sumOfDigits = sumOfDigits + currentDigitOfSecondTask;
-            multiplicationOfDigits = multiplicationOfDigits * currentDigitOfSecondTask;
+            productOfDigits = productOfDigits * currentDigitOfSecondTask;
             variableOfSecondTask = variableOfSecondTask / 10;
         }
+
         System.out.println("Сумма цифр числа: " + variableOfSecondTaskToPrint + " равна: " + Math.abs(sumOfDigits));
         System.out.println("Произведение цифр числа: " + variableOfSecondTaskToPrint + " равно: "
-                + numberFormat.format(Math.abs(multiplicationOfDigits)) + "\n");
+                + numberFormat.format(Math.abs(productOfDigits)) + "\n");
 
         //task #3
         System.out.println("Задание #3");
-        int variableOfThirdTask = keyboardInputValidation.getInteger("any");
+        System.out.print("Для определения значения и позиции максимальной цифры введите число: ");
+        int variableOfThirdTask = scanner.nextInt();
 
 
         int maxDigit = 0, positionOfMaxDigit = 1;
@@ -64,7 +68,8 @@ public class LessonFourthHomework {
 
         //task #4
         System.out.println("Задание #4");
-        int variableOfFourthTask = keyboardInputValidation.getInteger("any");
+        System.out.print("Для вычисления факториала введите число: ");
+        int variableOfFourthTask = scanner.nextInt();
 
         if (variableOfFourthTask < 0) {
             System.out.println("Отрицательное число не является натуральным! Оно будет преобразовано в положительное!");
@@ -152,7 +157,7 @@ public class LessonFourthHomework {
         System.out.println("Задание #8");
         int numberOfShelves = 50000;
         int numberOfShelvesTemp;
-        int counterOfDefectiveProducts = 0;
+        int counterOfDefectiveSigns = 0;
 
         while (numberOfShelves != 0) {
 
@@ -161,7 +166,7 @@ public class LessonFourthHomework {
             while (numberOfShelvesTemp != 0) {
 
                 if (numberOfShelvesTemp % 10 == 2) {
-                    counterOfDefectiveProducts++;
+                    counterOfDefectiveSigns++;
                     break;
                 }
 
@@ -171,11 +176,18 @@ public class LessonFourthHomework {
             numberOfShelves--;
         }
 
-        System.out.println("В бракованной партии " + numberFormat.format(counterOfDefectiveProducts) + " ошибочных табличек" + "\n");
+        System.out.println("В бракованной партии " + numberFormat.format(counterOfDefectiveSigns) + " ошибочных табличек" + "\n");
 
         //task #9
         System.out.println("Задание #9");
-        int variableOfNinthTask = keyboardInputValidation.getInteger("positive");
+        System.out.print("Чтобы определить является ли число простым введите число: ");
+        int variableOfNinthTask = scanner.nextInt();
+
+        if (variableOfNinthTask < 0) {
+            System.out.println("Отрицательное число не является натуральным! Оно будет преобразовано в положительное!");
+            variableOfNinthTask = Math.abs(variableOfNinthTask);
+        }
+
         String message = " является простым\n";
 
         for (int j = 2; j < variableOfNinthTask; j++) {

@@ -1,4 +1,4 @@
-package inProgress.lesson4.shared;
+package inProgress.shared;
 
 import java.util.Scanner;
 
