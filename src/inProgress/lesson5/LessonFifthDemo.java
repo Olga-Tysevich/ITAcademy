@@ -7,50 +7,50 @@ public class LessonFifthDemo {
 
 
         //task #1
-        System.out.println("Задание #1");
-        int[] array = new int[10];
-        int numberOfPositiveElements = 0;
-        int numberOfNegativeElements = 0;
-
-        setArrayValues(array);
-        printArray("Случайно заданный массив: ", array);
-
-        for (int k : array) {
-            if (k > 0) {
-                numberOfPositiveElements++;
-            }
-            if (k < 0) {
-                numberOfNegativeElements++;
-            }
-        }
-
-        System.out.println();
-
-        int[] arrayOfPositiveElements = new int[numberOfPositiveElements];
-        int[] arrayOfNegativeElements = new int[numberOfNegativeElements];
-
-        int positionPositiveArray = 0;
-        int positionNegativeArray = 0;
-
-        for (int j : array) {
-            if (j > 0) {
-                arrayOfPositiveElements[positionPositiveArray] = j;
-                positionPositiveArray++;
-            } else if (j < 0) {
-                arrayOfNegativeElements[positionNegativeArray] = j;
-                positionNegativeArray++;
-            }
-        }
-
-        printArray("Массив с положительными элементами: ", arrayOfPositiveElements);
-        printArray("Массив с отрицательными элементами: ", arrayOfNegativeElements);
-
-        System.out.println("\n");
+//        System.out.println("Задание #1");
+//        int[] array = new int[10];
+//        int numberOfPositiveElements = 0;
+//        int numberOfNegativeElements = 0;
+//
+//        setArrayValues(array);
+//        printArray("Случайно заданный массив: ", array);
+//
+//        for (int k : array) {
+//            if (k > 0) {
+//                numberOfPositiveElements++;
+//            }
+//            if (k < 0) {
+//                numberOfNegativeElements++;
+//            }
+//        }
+//
+//        System.out.println();
+//
+//        int[] arrayOfPositiveElements = new int[numberOfPositiveElements];
+//        int[] arrayOfNegativeElements = new int[numberOfNegativeElements];
+//
+//        int positionPositiveArray = 0;
+//        int positionNegativeArray = 0;
+//
+//        for (int j : array) {
+//            if (j > 0) {
+//                arrayOfPositiveElements[positionPositiveArray] = j;
+//                positionPositiveArray++;
+//            } else if (j < 0) {
+//                arrayOfNegativeElements[positionNegativeArray] = j;
+//                positionNegativeArray++;
+//            }
+//        }
+//
+//        printArray("Массив с положительными элементами: ", arrayOfPositiveElements);
+//        printArray("Массив с отрицательными элементами: ", arrayOfNegativeElements);
+//
+//        System.out.println("\n");
 
         //task #2
         System.out.println("Задание #2");
         int[] arrayTaskTwo = new int[15];
-        int elementMatchCounter = 0;
+        int counterOfIdenticalElements = 0;
         int[] arrayOfUniqueElements;
 
         setArrayValues(arrayTaskTwo);
@@ -59,21 +59,23 @@ public class LessonFifthDemo {
         for (int i = 0; i < arrayTaskTwo.length - 1; i++) {
             for (int j = i + 1; j < arrayTaskTwo.length; j++) {
                 if (arrayTaskTwo[i] == arrayTaskTwo[j]) {
-                    elementMatchCounter++;
+                    counterOfIdenticalElements++;
                     break;
                 }
             }
         }
 
-        System.out.println("Количество повторяющихся элементов: " + elementMatchCounter);
+        System.out.println("Количество повторяющихся элементов: " + counterOfIdenticalElements);
 
-        arrayOfUniqueElements = new int[arrayTaskTwo.length - elementMatchCounter];
+        arrayOfUniqueElements = new int[arrayTaskTwo.length - counterOfIdenticalElements];
         int positionArrayOfUniqueElements = 0;
 
-        for (int i = 0; i < arrayTaskTwo.length - 1; i++) {
+        for (int element : arrayTaskTwo) {
             for (int j = 0; j < positionArrayOfUniqueElements || j == 0; j++) {
-                if (arrayOfUniqueElements[j] != arrayTaskTwo[i]) {
-                    arrayOfUniqueElements[positionArrayOfUniqueElements] = arrayTaskTwo[i];
+                if (arrayOfUniqueElements[j] != element) {
+                    arrayOfUniqueElements[positionArrayOfUniqueElements] = element;
+                } else if (positionArrayOfUniqueElements == 0) {
+                    break;
                 } else {
                     arrayOfUniqueElements[positionArrayOfUniqueElements] = 0;
                     positionArrayOfUniqueElements--;
@@ -81,10 +83,12 @@ public class LessonFifthDemo {
                 }
             }
             positionArrayOfUniqueElements++;
+            if (positionArrayOfUniqueElements == arrayOfUniqueElements.length) {
+                break;
+            }
         }
 
         printArray("Массив с уникальными элементами: ", arrayOfUniqueElements);
-
 
 
     }
