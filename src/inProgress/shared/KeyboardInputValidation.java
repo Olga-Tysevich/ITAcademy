@@ -19,7 +19,9 @@ public class KeyboardInputValidation {
 
         System.out.println(message + size + "!");
         integer = getInteger(numberSign);
-
+        if (integer == 0){
+            return 0;
+        }
         while (true){
             int counterOfDigit = 0;
             int integerTemp = integer;
@@ -65,8 +67,11 @@ public class KeyboardInputValidation {
                 System.out.print("Введите целое число: ");
                 return getInteger();
             }
+            default -> {
+                System.out.println("Знак числа может быть только: positive, negative, any! ");
+                return 0;
+            }
         }
-        return -1;
     }
 
     private int getInteger() {
