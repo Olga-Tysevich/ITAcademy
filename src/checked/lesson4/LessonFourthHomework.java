@@ -1,4 +1,4 @@
-package forCheck.lesson4;
+package checked.lesson4;
 
 import java.math.*;
 import java.text.*;
