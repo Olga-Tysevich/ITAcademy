@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class SortingArrays {
     public static void main(String[] args) {
-        int[] array = new int[1000];
+        int[] array = new int[100000];
         setArrayValues(array);
         int temp = 0;
 
@@ -19,7 +19,6 @@ public class SortingArrays {
 //                }
 //            }
 //        }
-
 
 
 //        шейкерная - 1000 -2.32
@@ -133,15 +132,56 @@ public class SortingArrays {
 //        }
 //
 //        printArrayTwoD("Результат: ", transposedArray);
+
+//        Arrays.sort(array);
+
+//        int[] arraySecond = {-18, -22, -4, 16, -23, -11, -19, 17};
+
+        sortArray(array, 0, array.length - 1);
+//        printArray("Массив: ", array);
+
+//        sortArraySecondWay(array, 0, array.length - 1);
+        printArray("Массив: ", array);
+
     }
+
+    private static void sortArraySecondWay(int[] array, int lowerBoundValue, int upperBoundValue) {
+        if (lowerBoundValue >= upperBoundValue) {
+            return;
+        }
+        int pivot = getPIndex(array, lowerBoundValue, upperBoundValue);
+
+        sortArraySecondWay(array, lowerBoundValue, pivot - 1);
+        sortArraySecondWay(array, pivot + 1, upperBoundValue);
+    }
+
+    private static int getPIndex(int[] array, int lowerBoundValue, int upperBoundValue) {
+        int pivot = array[upperBoundValue];
+        int pIndex = lowerBoundValue;
+        for (int i = lowerBoundValue; i < upperBoundValue; i++) {
+            if (array[i] <= pivot) {
+                swap(array, i, pIndex);
+                pIndex++;
+            }
+        }
+        swap(array, upperBoundValue, pIndex);
+        return pIndex;
+    }
+
+    private static void swap(int[] array, int i, int pIndex) {
+        int temp = array[i];
+        array[i] = array[pIndex];
+        array[pIndex] = temp;
+    }
+
     private static void sortArray(int[] array, int lowerBoundValue, int upperBoundValue) {
-        if (array.length == 0 || lowerBoundValue >= upperBoundValue) {
+        if (lowerBoundValue >= upperBoundValue) {
             return;
         }
 
         int lowIndex = lowerBoundValue;
         int highIndex = upperBoundValue;
-        int borderIndex = lowIndex + (highIndex - lowIndex) / 2;
+        int borderIndex = lowerBoundValue + (upperBoundValue - lowerBoundValue) / 2;
         int borderElement = array[borderIndex];
         int temp;
 
@@ -168,6 +208,7 @@ public class SortingArrays {
             sortArray(array, lowIndex, upperBoundValue);
         }
     }
+
     private static int getArraySize(int[] array) {
         int arraySize = 0;
         for (int element : array) {

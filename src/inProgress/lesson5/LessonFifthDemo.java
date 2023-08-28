@@ -4,8 +4,6 @@ import java.util.Random;
 
 public class LessonFifthDemo {
     public static void main(String[] args) {
-
-
         //task #1
         System.out.println("Задание #1");
         int[] array = new int[10];
@@ -15,11 +13,11 @@ public class LessonFifthDemo {
         setArrayValues(array);
         printArray("Случайно заданный массив: ", array);
 
-        for (int k : array) {
-            if (k > 0) {
+        for (int element : array) {
+            if (element > 0) {
                 numberOfPositiveElements++;
             }
-            if (k < 0) {
+            if (element < 0) {
                 numberOfNegativeElements++;
             }
         }
@@ -32,12 +30,12 @@ public class LessonFifthDemo {
         int positionPositiveArray = 0;
         int positionNegativeArray = 0;
 
-        for (int j : array) {
-            if (j > 0) {
-                arrayOfPositiveElements[positionPositiveArray] = j;
+        for (int element : array) {
+            if (element > 0) {
+                arrayOfPositiveElements[positionPositiveArray] = element;
                 positionPositiveArray++;
-            } else if (j < 0) {
-                arrayOfNegativeElements[positionNegativeArray] = j;
+            } else if (element < 0) {
+                arrayOfNegativeElements[positionNegativeArray] = element;
                 positionNegativeArray++;
             }
         }
@@ -58,10 +56,12 @@ public class LessonFifthDemo {
 
         for (int i = 0; i < arrayTaskTwo.length - 1; i++) {
             for (int j = i + 1; j < arrayTaskTwo.length; j++) {
+
                 if (arrayTaskTwo[i] == arrayTaskTwo[j]) {
                     counterOfIdenticalElements++;
                     break;
                 }
+
             }
         }
 
@@ -71,21 +71,25 @@ public class LessonFifthDemo {
         int positionArrayOfUniqueElements = 0;
 
         for (int element : arrayTaskTwo) {
-            for (int j = 0; j < positionArrayOfUniqueElements || j == 0; j++) {
-                if (arrayOfUniqueElements[j] != element) {
+
+            for (int i = 0; i < positionArrayOfUniqueElements || i == 0; i++) {
+
+                if (arrayOfUniqueElements[i] != element) {
                     arrayOfUniqueElements[positionArrayOfUniqueElements] = element;
                 } else if (positionArrayOfUniqueElements == 0) {
                     break;
                 } else {
-                    arrayOfUniqueElements[positionArrayOfUniqueElements] = 0;
                     positionArrayOfUniqueElements--;
                     break;
                 }
+
             }
+
             positionArrayOfUniqueElements++;
             if (positionArrayOfUniqueElements == arrayOfUniqueElements.length) {
                 break;
             }
+
         }
 
         printArray("Массив с уникальными элементами: ", arrayOfUniqueElements);
@@ -94,14 +98,11 @@ public class LessonFifthDemo {
         //task #3
         System.out.println("Задание #3");
         int[] firstArrayTaskThree = new int[10];
-        int[] secondArrayTaskThree = new int[15];
+        int[] secondArrayTaskThree = new int[8];
         int[] concatenatedArray;
 
-        setArrayValues(firstArrayTaskThree);
-        setArrayValues(secondArrayTaskThree);
-
-        sortArray(firstArrayTaskThree, 0, firstArrayTaskThree.length - 1);
-        sortArray(secondArrayTaskThree, 0, secondArrayTaskThree.length - 1);
+        setSortedArrayValues(firstArrayTaskThree);
+        setSortedArrayValues(secondArrayTaskThree);
 
         printArray("Первый сортированный массив: ", firstArrayTaskThree);
         printArray("Второй сортированный массив: ", secondArrayTaskThree);
@@ -137,36 +138,45 @@ public class LessonFifthDemo {
 
         //task #4
         System.out.println("Задание #4");
-        int[][] arrayTaskFour = setArrayTwoDValues(5, 10);
-        printArrayTwoD("Случайно заданная матрица: ", arrayTaskFour);
+        int[][] arrayTaskFour = setTwoDArrayValues(6, 10);
+
+        printTwoDArray("Случайно заданная матрица: ", arrayTaskFour);
+        System.out.println();
 
         int maxSumOfElements = 0;
         int numberOfRow = 0;
 
         for (int i = 0; i < arrayTaskFour.length; i++) {
+
             int sumOfElements = 0;
+
             for (int j = 0; j < arrayTaskFour[i].length; j++) {
                 sumOfElements += arrayTaskFour[i][j];
             }
+
             System.out.println("Сумма элементов в строке номер: " + (i + 1) + " равна: " + sumOfElements);
+
             if (maxSumOfElements < sumOfElements) {
                 maxSumOfElements = sumOfElements;
                 numberOfRow = i + 1;
             }
+
         }
+
         System.out.println("Максимальная сумма элементов равна: " + maxSumOfElements + " и находится в строке: " + numberOfRow);
         System.out.println("\n");
 
         //task #5
         System.out.println("Задание #5");
-        int[][] arrayTaskFive = setArrayTwoDValues(5, 5);
-        printArrayTwoD("Случайно заданная матрица: ", arrayTaskFive);
+        int[][] arrayTaskFive = setTwoDArrayValues(5, 7);
+
+        printTwoDArray("Случайно заданная матрица: ", arrayTaskFive);
 
         int amountOfElements = 0;
         int amountOfRows = 0;
 
-        for (int[] arrayOneD : arrayTaskFive) {
-            for (int element : arrayOneD) {
+        for (int[] oneDArray : arrayTaskFive) {
+            for (int element : oneDArray) {
                 amountOfElements++;
             }
             amountOfRows++;
@@ -174,7 +184,7 @@ public class LessonFifthDemo {
 
         int amountOfColumns = amountOfElements / amountOfRows;
 
-        System.out.println("В исходной матрице строк: " + amountOfRows + ", столбцов: " + amountOfColumns);
+        System.out.println("\nВ исходной матрице строк: " + amountOfRows + ", столбцов: " + amountOfColumns);
 
         int[][] transposedArray = new int[amountOfColumns][amountOfRows];
 
@@ -184,15 +194,16 @@ public class LessonFifthDemo {
             }
         }
 
-        System.out.println("В конечной матрице строк: " + amountOfColumns + ", столбцов: " + amountOfRows);
-
-        printArrayTwoD("Транспонированная матрица: ", transposedArray);
+        System.out.println("В конечной матрице строк: " + amountOfColumns + ", столбцов: " + amountOfRows + "\n");
+        printTwoDArray("Транспонированная матрица: ", transposedArray);
         System.out.println("\n");
 
         //task #6
         System.out.println("Задание #6");
         int[] arrayTaskSix = new int[10];
+
         setArrayValues(arrayTaskSix);
+
         printArray("Исходный массив: ", arrayTaskSix);
 
         int temp;
@@ -204,6 +215,7 @@ public class LessonFifthDemo {
         }
 
         printArray("Перевернутый массив: ", arrayTaskSix);
+
     }
 
 
@@ -222,73 +234,48 @@ public class LessonFifthDemo {
         }
     }
 
-    private static int[][] setArrayTwoDValues(int numberOfRows, int numberOfColumns) {
+    private static void setSortedArrayValues(int[] array) {
         Random random = new Random();
-        numberOfRows = random.nextInt(numberOfRows) + numberOfColumns;
-        numberOfColumns = random.nextInt(numberOfColumns) + numberOfRows;
-        int[][] arrayTwoD = new int[numberOfRows][];
+        int initialValue = random.nextInt(50) - 25;
+        for (int i = 0; i < array.length; i++) {
+            array[i] = initialValue + i;
+        }
+    }
+
+    private static int[][] setTwoDArrayValues(int numberOfRows, int numberOfColumns) {
+        Random random = new Random();
+
+        int[][] arrayTwoD = new int[numberOfRows][numberOfColumns];
 
         for (int i = 0; i < numberOfRows; i++) {
-            arrayTwoD[i] = new int[numberOfColumns];
             for (int j = 0; j < numberOfColumns; j++) {
                 arrayTwoD[i][j] = random.nextInt(50) - 25;
             }
         }
+
         return arrayTwoD;
     }
 
-    private static void printArray(String message, int[] array) {
-        System.out.println(message);
+    private static void printArray(String anyMessageBeforeArray, int[] array) {
+        System.out.println(anyMessageBeforeArray);
+
         for (int element : array) {
             System.out.printf("%4d ", element);
         }
+
         System.out.println();
     }
 
-    private static void printArrayTwoD(String message, int[][] arrayTwoD) {
-        System.out.println(message);
+    private static void printTwoDArray(String anyMessageBeforeArray, int[][] arrayTwoD) {
+        System.out.println(anyMessageBeforeArray);
+
         for (int[] arrayOneD : arrayTwoD) {
             for (int element : arrayOneD) {
                 System.out.printf("%4d ", element);
             }
             System.out.println();
         }
-    }
-
-    private static void sortArray(int[] array, int valueOfLowerBound, int valueOfUpperBound) {
-        if (array.length == 0 || valueOfLowerBound >= valueOfUpperBound) {
-            return;
-        }
-
-        int minIndex = valueOfLowerBound;
-        int maxIndex = valueOfUpperBound;
-        int borderIndex = valueOfLowerBound + (valueOfUpperBound - valueOfLowerBound) / 2;
-        int borderElement = array[borderIndex];
-        int temp;
-
-        while (minIndex <= maxIndex) {
-            while (array[minIndex] < borderElement) {
-                minIndex++;
-            }
-            while (array[maxIndex] > borderElement) {
-                maxIndex--;
-            }
-
-            if (minIndex <= maxIndex) {
-                temp = array[minIndex];
-                array[minIndex] = array[maxIndex];
-                array[maxIndex] = temp;
-                minIndex++;
-                maxIndex--;
-            }
-        }
-
-        if (valueOfLowerBound < maxIndex) {
-            sortArray(array, valueOfLowerBound, maxIndex);
-        }
-        if (valueOfUpperBound > minIndex) {
-            sortArray(array, minIndex, valueOfUpperBound);
-        }
 
     }
+
 }
