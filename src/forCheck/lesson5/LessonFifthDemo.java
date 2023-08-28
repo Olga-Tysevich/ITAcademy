@@ -1,4 +1,4 @@
-package inProgress.lesson5;
+package forCheck.lesson5;
 
 import java.util.Random;
 
@@ -200,7 +200,7 @@ public class LessonFifthDemo {
 
         //task #6
         System.out.println("Задание #6");
-        int[] arrayTaskSix = new int[10];
+        int[] arrayTaskSix = new int[11];
 
         setArrayValues(arrayTaskSix);
 
