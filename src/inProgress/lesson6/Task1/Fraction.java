@@ -3,35 +3,28 @@ package inProgress.lesson6.Task1;
 public class Fraction {
     private final int numerator;
     private final int denominator;
-    private final double fraction;
+    private final double decimalFraction;
 
     public Fraction(int numerator, int denominator) {
         this.numerator = numerator;
         this.denominator = denominator;
-        fraction = (double) numerator / denominator;
+        decimalFraction = (double) numerator / denominator;
     }
 
     public Fraction addFractions(double summand) {
-        double fraction = this.fraction + summand;
-        int numerator = (int) (Math.round(fraction * 100 * this.denominator));
-        int denominator = this.denominator * 100;
-        int[] arrayOfNumAndDen = reduceFraction(numerator, denominator);
-        numerator = arrayOfNumAndDen[0];
-        denominator = arrayOfNumAndDen[1];
+        double sum = this.decimalFraction + summand;
+        int numerator = (int) (Math.round(sum * this.denominator * 1000));
+        int denominator = this.denominator * 1000;
+        int[] arrayReducedFraction = reduceFraction(numerator, denominator);
+        numerator = arrayReducedFraction[0];
+        denominator = arrayReducedFraction[1];
 
         return new Fraction(numerator, denominator);
     }
 
     public Fraction addFractions(int numeratorOfSecondSummand, int denominatorOfSecondSummand) {
-//        double fraction = (double) numeratorOfSecondSummand / denominatorOfSecondSummand + this.fraction;
-        int divisor = denominatorOfSecondSummand;
-
-        numeratorOfSecondSummand = numeratorOfSecondSummand * this.denominator;
-        denominatorOfSecondSummand = denominatorOfSecondSummand * this.denominator;
-
-        int numeratorAddFractions = this.numerator * divisor;
-        int numerator = (numeratorOfSecondSummand + numeratorAddFractions);
-        int denominator = (denominatorOfSecondSummand);
+        int numerator = (numeratorOfSecondSummand * this.denominator + this.numerator * denominatorOfSecondSummand);
+        int denominator = (denominatorOfSecondSummand * this.denominator);
         int[] arrayOfNumAndDen = reduceFraction(numerator, denominator);
         numerator = arrayOfNumAndDen[0];
         denominator = arrayOfNumAndDen[1];
@@ -40,9 +33,8 @@ public class Fraction {
     }
 
     public Fraction multiplyFractions(double multiplier) {
-//        double fraction = this.fraction * multiplier;
-        int numerator = this.numerator * (int) Math.round(multiplier * 1000);
-        int denominator = this.denominator * 1000;
+        int numerator = this.numerator * (int) Math.round(multiplier * 100);
+        int denominator = this.denominator * 100;
         int[] arrayOfNumAndDen = reduceFraction(numerator, denominator);
         numerator = arrayOfNumAndDen[0];
         denominator = arrayOfNumAndDen[1];
@@ -50,10 +42,9 @@ public class Fraction {
         return new Fraction(numerator, denominator);
     }
 
-    public Fraction divideFraction(double divisor) {
-//        double fraction = this.fraction / divisor;
-        int numerator = this.numerator * 1000;
-        int denominator = this.denominator * (int) Math.round(divisor * 1000);
+    public Fraction divideFractions(double divisor) {
+        int numerator = this.numerator * (int) Math.round(1 / divisor * 100);
+        int denominator = this.denominator * 100;
         int[] arrayOfNumAndDen = reduceFraction(numerator, denominator);
         numerator = arrayOfNumAndDen[0];
         denominator = arrayOfNumAndDen[1];
@@ -62,7 +53,7 @@ public class Fraction {
     }
 
     private int[] reduceFraction(int numerator, int denominator) {
-        for (int i = 100; i > 0; i--) {
+        for (int i = 1000; i > 0; i--) {
             if (numerator % i == 0 && denominator % i == 0) {
                 numerator /= i;
                 denominator /= i;
@@ -76,6 +67,6 @@ public class Fraction {
     }
 
     public void printDecimalFraction(String message) {
-        System.out.println(message + String.format("%.2f", fraction));
+        System.out.println(message + String.format("%.2f", decimalFraction));
     }
 }

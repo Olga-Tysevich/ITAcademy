@@ -26,7 +26,7 @@ public class FractionDemo {
         thirdFraction.printDecimalFraction("Произведение дробей в десятичном виде: ");
         System.out.println();
 
-        Fraction fourthFraction = thirdFraction.divideFraction(5);
+        Fraction fourthFraction = thirdFraction.divideFractions(0.5);
 
         fourthFraction.printFraction("Частное дробей в обыкновенном виде: ");
         fourthFraction.printDecimalFraction("Частное дробей в десятичном виде: ");
