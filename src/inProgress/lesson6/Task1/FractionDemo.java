@@ -1,6 +1,7 @@
-package inProgress.lesson6;
+package inProgress.lesson6.Task1;
 
-public class LessonFifthDemo {
+
+public class FractionDemo {
     public static void main(String[] args) {
         //task #1
         Fraction firtsFraction = new Fraction(5, 8);
@@ -30,5 +31,6 @@ public class LessonFifthDemo {
         fourthFraction.printFraction("Частное дробей в обыкновенном виде: ");
         fourthFraction.printDecimalFraction("Частное дробей в десятичном виде: ");
         System.out.println();
+
     }
 }

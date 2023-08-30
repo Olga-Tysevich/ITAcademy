@@ -1,4 +1,4 @@
-package inProgress.lesson6;
+package inProgress.lesson6.Task1;
 
 public class Fraction {
     private final int numerator;
