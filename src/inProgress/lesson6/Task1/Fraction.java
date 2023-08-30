@@ -3,16 +3,14 @@ package inProgress.lesson6.Task1;
 public class Fraction {
     private final int numerator;
     private final int denominator;
-    private final double decimalFraction;
 
     public Fraction(int numerator, int denominator) {
         this.numerator = numerator;
         this.denominator = denominator;
-        decimalFraction = (double) numerator / denominator;
     }
 
     public Fraction addFractions(double summand) {
-        double sum = this.decimalFraction + summand;
+        double sum = (double) numerator / denominator + summand;
         int numerator = (int) (Math.round(sum * this.denominator * 1000));
         int denominator = this.denominator * 1000;
         int[] arrayReducedFraction = reduceFraction(numerator, denominator);
@@ -25,9 +23,9 @@ public class Fraction {
     public Fraction addFractions(int numeratorOfSecondSummand, int denominatorOfSecondSummand) {
         int numerator = (numeratorOfSecondSummand * this.denominator + this.numerator * denominatorOfSecondSummand);
         int denominator = (denominatorOfSecondSummand * this.denominator);
-        int[] arrayOfNumAndDen = reduceFraction(numerator, denominator);
-        numerator = arrayOfNumAndDen[0];
-        denominator = arrayOfNumAndDen[1];
+        int[] arrayReducedFraction = reduceFraction(numerator, denominator);
+        numerator = arrayReducedFraction[0];
+        denominator = arrayReducedFraction[1];
 
         return new Fraction(numerator, denominator);
     }
@@ -35,9 +33,9 @@ public class Fraction {
     public Fraction multiplyFractions(double multiplier) {
         int numerator = this.numerator * (int) Math.round(multiplier * 100);
         int denominator = this.denominator * 100;
-        int[] arrayOfNumAndDen = reduceFraction(numerator, denominator);
-        numerator = arrayOfNumAndDen[0];
-        denominator = arrayOfNumAndDen[1];
+        int[] arrayReducedFraction = reduceFraction(numerator, denominator);
+        numerator = arrayReducedFraction[0];
+        denominator = arrayReducedFraction[1];
 
         return new Fraction(numerator, denominator);
     }
@@ -45,9 +43,9 @@ public class Fraction {
     public Fraction divideFractions(double divisor) {
         int numerator = this.numerator * (int) Math.round(1 / divisor * 100);
         int denominator = this.denominator * 100;
-        int[] arrayOfNumAndDen = reduceFraction(numerator, denominator);
-        numerator = arrayOfNumAndDen[0];
-        denominator = arrayOfNumAndDen[1];
+        int[] arrayReducedFraction = reduceFraction(numerator, denominator);
+        numerator = arrayReducedFraction[0];
+        denominator = arrayReducedFraction[1];
 
         return new Fraction(numerator, denominator);
     }
@@ -67,6 +65,6 @@ public class Fraction {
     }
 
     public void printDecimalFraction(String message) {
-        System.out.println(message + String.format("%.2f", decimalFraction));
+        System.out.println(message + String.format("%.2f", (double) numerator / denominator));
     }
 }

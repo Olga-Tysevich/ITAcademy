@@ -7,7 +7,7 @@ public class PhoneDemo {
         Phone philips = new Phone("+375 (33) 123-12-13", "Philips", 185);
         philips.changeNumber("+375 (33) 223-12-13");
         Phone xiaomi = new Phone("+375 (44) 321-21-31", "Xiaomi");
-        xiaomi.setWeight(375.12);
+        xiaomi.changeWeight(375.12);
 
         System.out.println("Телефон " + teXet.getModel() + " с номером " + teXet.getNumber() + " и весом " + teXet.getWeight());
         System.out.println("Телефон " + philips.getModel() + " с номером " + philips.getNumber() + " и весом " + philips.getWeight());

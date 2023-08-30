@@ -33,7 +33,7 @@ public class Phone {
         this.number = number;
     }
 
-    public void setWeight(double weight) {
+    public void changeWeight(double weight) {
         this.weight = weight;
     }
 
