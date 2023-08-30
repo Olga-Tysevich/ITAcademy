@@ -3,18 +3,17 @@ package inProgress.lesson6;
 public class LessonFifthDemo {
     public static void main(String[] args) {
         //task #1
-        Fraction firtsFraction = new Fraction(5,8);
+        Fraction firtsFraction = new Fraction(5, 8);
 
         firtsFraction.printFraction("Введена обыкновенная дробь: ");
         firtsFraction.printDecimalFraction("Введенная дробь в десятичном виде: ");
-        System.out.println();
 
-        firtsFraction.addFractions(0.5);
+        firtsFraction = firtsFraction.addFractions(0.5);
         firtsFraction.printFraction("Сумма дробей в обыкновенном виде: ");
         firtsFraction.printDecimalFraction("Сумма дробей в десятичном виде: ");
         System.out.println();
 
-        Fraction secondFraction = firtsFraction.addFractions(5,8);
+        Fraction secondFraction = firtsFraction.addFractions(5, 8);
 
         secondFraction.printFraction("Сумма дробей в обыкновенном виде: ");
         secondFraction.printDecimalFraction("Сумма дробей в десятичном виде: ");
