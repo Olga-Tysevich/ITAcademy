@@ -11,20 +11,21 @@ public class Phone {
     }
 
     public Phone(String number, String model, double weight) {
-        this(number,model);
+        this(number, model);
         this.weight = weight;
     }
 
     public void receiveCall(String callerName) {
-        System.out.println("На телефон " + model +" с номером " + number + " звонит " + callerName);
-    }
-    public void receiveCall(String callerName, String callerPhone){
-        System.out.println("На телефон " + model +" с номером " + number + " звонит " + callerName + " с номера " + callerPhone);
+        System.out.println("На телефон " + model + " с номером " + number + " звонит " + callerName);
     }
 
-    public void sendMessage(String ... recipientPhoneNumbers) {
-        for (String recipientPhoneNumber: recipientPhoneNumbers){
-            System.out.println("Сообщение с номера " + number +" отправлено на номер " + recipientPhoneNumber);
+    public void receiveCall(String callerName, String callerPhone) {
+        System.out.println("На телефон " + model + " с номером " + number + " звонит " + callerName + " с номера " + callerPhone);
+    }
+
+    public void sendMessage(String... recipientPhoneNumbers) {
+        for (String recipientPhoneNumber : recipientPhoneNumbers) {
+            System.out.println("Сообщение с номера " + number + " отправлено на номер " + recipientPhoneNumber);
         }
     }
 
