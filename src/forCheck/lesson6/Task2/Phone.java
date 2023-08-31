@@ -1,4 +1,4 @@
-package inProgress.lesson6.Task2;
+package forCheck.lesson6.Task2;
 
 public class Phone {
     private String number;

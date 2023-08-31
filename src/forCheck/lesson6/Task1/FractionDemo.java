@@ -1,4 +1,4 @@
-package inProgress.lesson6.Task1;
+package forCheck.lesson6.Task1;
 
 
 public class FractionDemo {
@@ -14,7 +14,7 @@ public class FractionDemo {
         firtsFraction.printFraction(true, "Сумма дробей в десятичном виде: ");
         System.out.println();
 
-        Fraction secondFraction = firtsFraction.addFractions(5, 8);
+        Fraction secondFraction = firtsFraction.addFractions(5, 3);
 
         secondFraction.printFraction(false, "Сумма дробей в обыкновенном виде: ");
         secondFraction.printFraction(true, "Сумма дробей в десятичном виде: ");
