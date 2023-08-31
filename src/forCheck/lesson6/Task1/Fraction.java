@@ -45,11 +45,11 @@ public class Fraction {
                 denominator /= i;
             }
         }
-        return new Fraction(numerator,denominator);
+        return new Fraction(numerator, denominator);
     }
 
     public void printFraction(boolean printDecimal, String messageBeforeFraction) {
-        if (printDecimal){
+        if (printDecimal) {
             System.out.println(messageBeforeFraction + String.format("%.2f", (double) numerator / denominator));
         } else {
             System.out.println(messageBeforeFraction + numerator + "/" + denominator);
