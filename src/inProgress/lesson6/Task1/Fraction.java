@@ -48,11 +48,11 @@ public class Fraction {
         return new Fraction(numerator,denominator);
     }
 
-    public void printFraction(String message) {
-        System.out.println(message + numerator + "/" + denominator);
-    }
-
-    public void printDecimalFraction(String message) {
-        System.out.println(message + String.format("%.2f", (double) numerator / denominator));
+    public void printFraction(boolean printDecimal, String messageBeforeFraction) {
+        if (printDecimal){
+            System.out.println(messageBeforeFraction + String.format("%.2f", (double) numerator / denominator));
+        } else {
+            System.out.println(messageBeforeFraction + numerator + "/" + denominator);
+        }
     }
 }

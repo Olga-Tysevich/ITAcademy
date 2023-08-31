@@ -6,30 +6,30 @@ public class FractionDemo {
         //task #1
         Fraction firtsFraction = new Fraction(1, 3);
 
-        firtsFraction.printFraction("Введена обыкновенная дробь: ");
-        firtsFraction.printDecimalFraction("Введенная дробь в десятичном виде: ");
+        firtsFraction.printFraction(false, "Введена обыкновенная дробь: ");
+        firtsFraction.printFraction(true, "Введенная дробь в десятичном виде: ");
 
         firtsFraction = firtsFraction.addFractions(1.6);
-        firtsFraction.printFraction("Сумма дробей в обыкновенном виде: ");
-        firtsFraction.printDecimalFraction("Сумма дробей в десятичном виде: ");
+        firtsFraction.printFraction(false, "Сумма дробей в обыкновенном виде: ");
+        firtsFraction.printFraction(true, "Сумма дробей в десятичном виде: ");
         System.out.println();
 
         Fraction secondFraction = firtsFraction.addFractions(5, 8);
 
-        secondFraction.printFraction("Сумма дробей в обыкновенном виде: ");
-        secondFraction.printDecimalFraction("Сумма дробей в десятичном виде: ");
+        secondFraction.printFraction(false, "Сумма дробей в обыкновенном виде: ");
+        secondFraction.printFraction(true, "Сумма дробей в десятичном виде: ");
         System.out.println();
 
         Fraction thirdFraction = secondFraction.multiplyFractions(0.5);
 
-        thirdFraction.printFraction("Произведение дробей в обыкновенном виде: ");
-        thirdFraction.printDecimalFraction("Произведение дробей в десятичном виде: ");
+        thirdFraction.printFraction(false, "Произведение дробей в обыкновенном виде: ");
+        thirdFraction.printFraction(true, "Произведение дробей в десятичном виде: ");
         System.out.println();
 
         Fraction fourthFraction = thirdFraction.divideFractions(0.2);
 
-        fourthFraction.printFraction("Частное дробей в обыкновенном виде: ");
-        fourthFraction.printDecimalFraction("Частное дробей в десятичном виде: ");
+        fourthFraction.printFraction(false, "Частное дробей в обыкновенном виде: ");
+        fourthFraction.printFraction(true, "Частное дробей в десятичном виде: ");
         System.out.println();
 
     }
