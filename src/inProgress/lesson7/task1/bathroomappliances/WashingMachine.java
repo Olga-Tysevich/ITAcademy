@@ -10,8 +10,8 @@ public class WashingMachine extends BathroomAppliances {
         this.laundryLoadWeight = laundryLoadWeight;
     }
 
-    public WashingMachine(String brand, double amperage, boolean isOff, double laundryLoadWeight) {
-        super("Washing machine", brand, amperage, true, isOff);
+    public WashingMachine(String brand, double amperage, double laundryLoadWeight, boolean isOn) {
+        super("Washing machine", brand, amperage, true, isOn);
         this.laundryLoadWeight = laundryLoadWeight;
     }
 
@@ -35,7 +35,7 @@ public class WashingMachine extends BathroomAppliances {
         if (linenWashed) {
             System.out.println("Linen washed");
         } else {
-            System.out.println("Washing machine did not turn on");
+            System.out.println("Washing machine didn't work");
         }
     }
 

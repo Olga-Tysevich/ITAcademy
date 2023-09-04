@@ -8,29 +8,30 @@ public abstract class Appliances {
     private final String type;
     private final String brand;
     private final double amperage;
-    private boolean isOff = true;
+    private boolean isOn = false;
     private final boolean hasEngine;
     private double power = 0;
 
-    public Appliances(String type, String brand, double amperage, boolean hasEngine) {
+    public Appliances(String location, String type, String brand, double amperage, boolean hasEngine) {
+        this.location = location;
         this.type = type;
         this.brand = brand;
         this.amperage = amperage;
         this.hasEngine = hasEngine;
         numberOfAppliances++;
-        appliancesArray = getAppliancesArray(this);
-        if (!isOff) {
+        getAppliancesArray(this);
+    }
+
+    public Appliances(String location, String type, String brand, double amperage, boolean hasEngine, boolean isOn) {
+        this(location, type, brand, amperage, hasEngine);
+        this.isOn = isOn;
+        if (isOn) {
             calculatePower();
         }
     }
 
-    public Appliances(String type, String brand, double amperage, boolean hasEngine, boolean isOff) {
-        this(type, brand, amperage, hasEngine);
-        this.isOff = isOff;
-    }
 
-
-    private static Appliances[] getAppliancesArray(Appliances appliance) {
+    private static void getAppliancesArray(Appliances appliance) {
         Appliances[] appliancesArrayNew = new Appliances[numberOfAppliances];
         int currentIndexInAppliancesArray = 0;
         if (numberOfAppliances - 1 != 0) {
@@ -41,18 +42,16 @@ public abstract class Appliances {
         }
         appliancesArrayNew[currentIndexInAppliancesArray] = appliance;
         appliancesArray = appliancesArrayNew;
-
-        return appliancesArrayNew;
     }
 
     public void calculatePower() {
         //P = I * U / PowerFactor (При отсутствии данных допустимо принять cos(φ) в пределах 0,7-0,8);
         //Холодильники, стиральные машины, дрели и прочее оборудование с электродвигателями;
         int MAINS_VOLTAGE = 220;
-        if (hasEngine && !isOff) {
+        if (hasEngine && isOn) {
             double POWER_FACTOR = 0.7;
             power = amperage * MAINS_VOLTAGE / POWER_FACTOR;
-        } else if (!isOff) {
+        } else if (isOn) {
             power = amperage * MAINS_VOLTAGE;
         } else {
             power = 0;
@@ -63,6 +62,7 @@ public abstract class Appliances {
         if (lowerBound >= upperBound) {
             return;
         }
+
         int rotation;
 
         if (sortByAmperage && !sortByPower) {
@@ -114,6 +114,7 @@ public abstract class Appliances {
         appliancesArray[i] = appliancesArray[rIndex];
         appliancesArray[rIndex] = temp;
     }
+
 
     public static Appliances[] findAppliancesByLocation(String location, Appliances[] appliancesArray) {
         int counterOfAppliances = 0;
@@ -290,7 +291,7 @@ public abstract class Appliances {
         System.out.println("Type: " + type);
         System.out.println("Brand: " + brand);
         System.out.println("Amperage: " + amperage);
-        System.out.println("State: " + isOff);
+        System.out.println("State: " + isOn);
         System.out.println("Power: " + String.format("%.2f", power));
     }
 
@@ -310,8 +311,8 @@ public abstract class Appliances {
         return amperage;
     }
 
-    public boolean isOff() {
-        return isOff;
+    public boolean isOn() {
+        return isOn;
     }
 
     public double getPower() {
@@ -319,7 +320,7 @@ public abstract class Appliances {
     }
 
     public boolean getState() {
-        return isOff;
+        return isOn;
     }
 
     public static int getNumberOfAppliances() {
@@ -330,8 +331,11 @@ public abstract class Appliances {
         return appliancesArray;
     }
 
-    public void changeState(boolean isOff) {
-        this.isOff = isOff;
+    public void changeState(boolean isOn) {
+        this.isOn = isOn;
+        if (isOn) {
+            calculatePower();
+        }
     }
 
     public void changeLocation(String location) {

@@ -6,15 +6,17 @@ import inProgress.lesson7.task1.kitchenappliances.Fridge;
 import inProgress.lesson7.task1.kitchenappliances.Kettle;
 import inProgress.lesson7.task1.kitchenappliances.Microwave;
 import inProgress.lesson7.task1.otherappliances.TV;
+import inProgress.lesson7.task1.otherappliances.VacuumCleaner;
 
 import static inProgress.lesson7.task1.Appliances.*;
 
 public class AppliancesDemo {
     public static void main(String[] args) {
-        Fridge fridgeSamsung = new Fridge("Samsung", 1.3, false, "left");
+        Fridge fridgeSamsung = new Fridge("Samsung", 1.3, "left");
         fridgeSamsung.changeDoorOpeningDirection();
         fridgeSamsung.printDescription();
         System.out.println();
+        fridgeSamsung.changeState(true);
 
         Microwave microwaveSamsung = new Microwave("Samsung", 3, 6, 250, false);
 
@@ -43,7 +45,7 @@ public class AppliancesDemo {
         boilerElectrolux.printDescription();
         System.out.println();
 
-        WashingMachine washingMachine = new WashingMachine("LG", 5.6, 6.5);
+        WashingMachine washingMachine = new WashingMachine("LG", 5.6, 6.5, true);
 
         washingMachine.changeState(false);
         washingMachine.printDescription();
@@ -51,12 +53,16 @@ public class AppliancesDemo {
         washingMachine.washLinen();
         System.out.println();
 
-        TV tv = new TV("Living room", "Samsung", 1.2, 10);
+        TV tv = new TV("Living room", "Samsung", 1.2, 10, true);
 
         tv.printDescription();
         tv.changeNumberOfChannels(8);
         tv.enableChannel(2);
         System.out.println();
+
+        VacuumCleaner vacuumCleaner = new VacuumCleaner("Hallway","LG", 1.5,6.5, true);
+        VacuumCleaner vacuumCleaner2 = new VacuumCleaner("Hallway","LG", 1.5,6.5, true);
+
 
         printNumberOfAppliances();
         System.out.println();
@@ -64,35 +70,17 @@ public class AppliancesDemo {
         printAppliancesArray(getAppliancesArray());
         System.out.println();
 
-        Appliances[] appliancesByParametersSet = findAppliancesByLocation("Kitchen", getAppliancesArray());
-        appliancesByParametersSet = findAppliancesByAmperage(3, 5, appliancesByParametersSet);
-        printAppliancesArray(appliancesByParametersSet);
-        System.out.println();
-
-        Appliances[] appliancesByParametersSetTwo = findAppliancesByType("Fridge", getAppliancesArray());
-        printAppliancesArray(appliancesByParametersSetTwo);
-        System.out.println();
-        Appliances[] appliancesByParametersSetThree = findAppliancesByBrand("LG", getAppliancesArray());
-        printAppliancesArray(appliancesByParametersSetThree);
-        System.out.println();
-        Appliances[] appliancesByParametersSetFour = findAppliancesByAmperage(2, 4.5, getAppliancesArray());
-        printAppliancesArray(appliancesByParametersSetFour);
-        System.out.println();
-        Appliances[] appliancesByParametersSetFive = findAppliancesByPower(1000, 2500, getAppliancesArray());
-        printAppliancesArray(appliancesByParametersSetFive);
-        System.out.println();
-        Appliances[] appliancesByParametersSetSix = findAppliancesByState(true, getAppliancesArray());
-        printAppliancesArray(appliancesByParametersSetSix);
-        System.out.println();
-
-
         sortAppliancesArray(true, false, getAppliancesArray(), 0, getAppliancesArray().length - 1);
         printAppliancesArray(getAppliancesArray());
         System.out.println();
 
         sortAppliancesArray(false, true, getAppliancesArray(), 0, getAppliancesArray().length - 1);
         printAppliancesArray(getAppliancesArray());
+        System.out.println();
 
+        Appliances[] appliancesWithParameters = findAppliancesByLocation("Kitchen", getAppliancesArray());
+        appliancesWithParameters = findAppliancesByPower(0,1000, appliancesWithParameters);
+        printAppliancesArray(appliancesWithParameters);
     }
 
 }

@@ -5,8 +5,8 @@ public class Kettle extends KitchenAppliances {
     private boolean hasWater = false;
     private boolean boiled = false;
 
-    public Kettle(String brand, double amperage, double waterVolume, boolean isOff) {
-        super("Kettle", brand, amperage, false, isOff);
+    public Kettle(String brand, double amperage, double waterVolume, boolean isOn) {
+        super("Kettle", brand, amperage, false, isOn);
         this.waterVolume = waterVolume;
     }
 
@@ -27,7 +27,7 @@ public class Kettle extends KitchenAppliances {
         if (boiled) {
             System.out.println("The kettle boiled");
         } else {
-            System.out.println("The kettle didn't boil");
+            System.out.println("The kettle didn't work");
         }
     }
 

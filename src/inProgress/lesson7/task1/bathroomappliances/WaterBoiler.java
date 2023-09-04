@@ -4,8 +4,8 @@ public class WaterBoiler extends BathroomAppliances {
     private final int numberOfHeatingMode;
     private boolean heated = false;
 
-    public WaterBoiler(String brand, double amperage, int numberOfHeatingMode, boolean isOff) {
-        super("Boiler", brand, amperage, false, isOff);
+    public WaterBoiler(String brand, double amperage, int numberOfHeatingMode, boolean isOn) {
+        super("Boiler", brand, amperage, false, isOn);
         this.numberOfHeatingMode = numberOfHeatingMode;
     }
 

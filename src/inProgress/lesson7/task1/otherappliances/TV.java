@@ -6,13 +6,13 @@ public class TV extends Appliances {
     private int numberOfChannels;
 
     public TV(String location, String brand, double amperage, int numberOfChannels) {
-        super("TV", brand, amperage, false);
+        super(location,"TV", brand, amperage, false);
         this.numberOfChannels = numberOfChannels;
         changeLocation(location);
     }
 
-    public TV(String location, String brand, double amperage, boolean isOff, int numberOfChannels) {
-        super("TV", brand, amperage, false, isOff);
+    public TV(String location, String brand, double amperage, int numberOfChannels, boolean isOn) {
+        super(location,"TV", brand, amperage, false, isOn);
         this.numberOfChannels = numberOfChannels;
         changeLocation(location);
     }

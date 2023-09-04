@@ -9,8 +9,8 @@ public class Fridge extends KitchenAppliances {
         this.doorOpeningDirection = doorOpeningDirection;
     }
 
-    public Fridge(String brand, double amperage, boolean isOff, String doorOpeningDirection) {
-        super("Fridge", brand, amperage, true, isOff);
+    public Fridge(String brand, double amperage, String doorOpeningDirection, boolean isOn) {
+        super("Fridge", brand, amperage, true, isOn);
         this.doorOpeningDirection = doorOpeningDirection;
     }
 

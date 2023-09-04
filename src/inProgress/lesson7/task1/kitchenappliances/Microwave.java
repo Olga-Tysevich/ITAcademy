@@ -6,8 +6,8 @@ public class Microwave extends KitchenAppliances {
     private boolean hasPlateWithFood = false;
     private boolean isFoodWarm = false;
 
-    public Microwave(String brand, double amperage, int numberOfPowerLevels, double plateDiameter, boolean isOff) {
-        super("Microwave", brand, amperage, true, isOff);
+    public Microwave(String brand, double amperage, int numberOfPowerLevels, double plateDiameter, boolean isOn) {
+        super("Microwave", brand, amperage, true, isOn);
         this.numberOfPowerLevels = numberOfPowerLevels;
         this.plateDiameter = plateDiameter;
     }
@@ -31,7 +31,7 @@ public class Microwave extends KitchenAppliances {
         if (isFoodWarm) {
             System.out.println("Food is heated");
         } else {
-            System.out.println("Microwave did not turn on");
+            System.out.println("Microwave didn't work");
         }
     }
 
