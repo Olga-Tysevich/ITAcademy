@@ -13,10 +13,13 @@ import static inProgress.lesson7.task1.Appliances.*;
 public class AppliancesDemo {
     public static void main(String[] args) {
         Fridge fridgeSamsung = new Fridge("Samsung", 1.3, "left");
+        Fridge fridgeLG = new Fridge("LG", 1.5, "right");
+
         fridgeSamsung.changeDoorOpeningDirection();
         fridgeSamsung.printDescription();
         System.out.println();
         fridgeSamsung.changeState(true);
+        fridgeLG.changeDoorOpeningDirection();
 
         Microwave microwaveSamsung = new Microwave("Samsung", 3, 6, 250, false);
 
@@ -28,11 +31,15 @@ public class AppliancesDemo {
         System.out.println();
 
         Kettle kettleLornay = new Kettle("L'ORNAY", 4.5, 1800, false);
+        Kettle kettleScarlett = new Kettle("Scarlett", 3.5, 1200, true);
 
+        kettleLornay.changeState(true);
         kettleLornay.printDescription();
         kettleLornay.pourTheWater(1900);
         kettleLornay.pourTheWater(1500);
         kettleLornay.boilWater();
+
+        System.out.println("Scarlet water volume: " + kettleScarlett.getWaterVolume());
         System.out.println();
 
         kettleLornay.printDescription();
@@ -54,33 +61,49 @@ public class AppliancesDemo {
         System.out.println();
 
         TV tv = new TV("Living room", "Samsung", 1.2, 10, true);
+        TV kitchenTV = new TV("Kitchen", "LG", 1.5, 15, true);
 
         tv.printDescription();
         tv.changeNumberOfChannels(8);
         tv.enableChannel(2);
+        kitchenTV.enableChannel(8);
         System.out.println();
 
-        VacuumCleaner vacuumCleaner = new VacuumCleaner("Hallway","LG", 1.5,6.5, true);
-        VacuumCleaner vacuumCleaner2 = new VacuumCleaner("Hallway","LG", 1.5,6.5, true);
+        VacuumCleaner vacuumCleaner = new VacuumCleaner("Hallway", "LG", 1.5, 6.5, true);
 
+        vacuumCleaner.changeLocation("Living room");
+        vacuumCleaner.vacuumTheRoom("Living room", 12);
+        System.out.println();
 
         printNumberOfAppliances();
         System.out.println();
 
-        printAppliancesArray(getAppliancesArray());
+        printArray(getAppliancesArray());
         System.out.println();
 
         sortAppliancesArray(true, false, getAppliancesArray(), 0, getAppliancesArray().length - 1);
-        printAppliancesArray(getAppliancesArray());
+        printArray(getAppliancesArray());
         System.out.println();
 
         sortAppliancesArray(false, true, getAppliancesArray(), 0, getAppliancesArray().length - 1);
-        printAppliancesArray(getAppliancesArray());
+        printArray(getAppliancesArray());
         System.out.println();
 
-        Appliances[] appliancesWithParameters = findAppliancesByLocation("Kitchen", getAppliancesArray());
-        appliancesWithParameters = findAppliancesByPower(0,1000, appliancesWithParameters);
-        printAppliancesArray(appliancesWithParameters);
+        Appliances[] appliancesWithParameters = findAppliancesWithSetOfParameters(true, "Kitchen", false, "", false, "",
+                true, 0, 2, false, 0, 0, false, false);
+        printArray(appliancesWithParameters);
+        System.out.println();
+
+        //В остальные не стала дописывать аналогичные методы, решила что это излишне =)
+        Fridge[] fridgesWithParameters = fridgeLG.findFridgeWithParameters(false, "", false, "", false, "",
+                false, 0, 0, false, 0, 0, false, false, "left");
+        Fridge.printArray(fridgesWithParameters);
+
+        Kettle[] kettlesWithParameter = kettleLornay.findKettleWithParameters(false, "", false, "", false, "",
+                false, 0, 0, false, 0, 0, false, false, 1300, 2000);
+        Kettle.printArray(kettlesWithParameter);
+
+
     }
 
 }

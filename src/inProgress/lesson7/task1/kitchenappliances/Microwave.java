@@ -70,4 +70,17 @@ public class Microwave extends KitchenAppliances {
             isFoodWarm = false;
         }
     }
+
+    public static void printArray(Kettle[] kettles) {
+        if (kettles != null) {
+            for (Kettle kettle : kettles) {
+                System.out.println("| Location " + kettle.getLocation() + " Type " + kettle.getType() + " model " + kettle.getBrand()
+                        + " amperage " + kettle.getAmperage() + " is on " + kettle.getState() + " power " + String.format("%.2f", kettle.getPower()) +
+                        " water volume " + kettle.getWaterVolume() + " |");
+            }
+        } else {
+            System.out.println("Appliances not found");
+        }
+    }
+
 }

@@ -49,11 +49,10 @@ public class VacuumCleaner extends Appliances {
                     System.out.println("It's time to clean the container!");
                     isContainerEmpty = false;
                     break;
-                } else {
-                    System.out.println("Cleaning finished!");
-                    isCleaningFinished = true;
                 }
             }
+            System.out.println("Cleaning finished!");
+            isCleaningFinished = true;
         } else {
             System.out.println("It's time to clean the container!");
         }
