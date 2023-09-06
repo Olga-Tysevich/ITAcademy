@@ -1,6 +1,8 @@
 package inProgress.lesson7.task1;
 
 
+import java.util.Arrays;
+
 public abstract class Appliances {
     private static int numberOfAppliances;
     private static Appliances[] arrayOfAppliances = new Appliances[numberOfAppliances];
@@ -34,14 +36,8 @@ public abstract class Appliances {
 
         Appliances[] updatedArrayOfAppliances = new Appliances[numberOfAppliances];
 
-        int currentIndexInAppliancesArray = 0;
-
-        if (numberOfAppliances - 1 != 0) {
-            while (currentIndexInAppliancesArray < arrayOfAppliances.length) {
-                updatedArrayOfAppliances[currentIndexInAppliancesArray] = arrayOfAppliances[currentIndexInAppliancesArray];
-                currentIndexInAppliancesArray++;
-            }
-        }
+        int currentIndexInAppliancesArray = arrayOfAppliances.length == 0 ? 0 : updatedArrayOfAppliances.length - 1;
+        System.arraycopy(arrayOfAppliances, 0, updatedArrayOfAppliances, 0, arrayOfAppliances.length);
 
         updatedArrayOfAppliances[currentIndexInAppliancesArray] = appliance;
         arrayOfAppliances = updatedArrayOfAppliances;
