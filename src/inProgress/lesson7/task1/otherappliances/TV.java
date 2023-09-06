@@ -14,11 +14,17 @@ public class TV extends Appliances {
     public TV(String location, String brand, double amperage, int numberOfChannels, boolean isOn) {
         super(location, "TV", brand, amperage, false, isOn);
         this.numberOfChannels = numberOfChannels;
+        if (isOn) {
+            numberOfCurrentChannel = 1;
+        }
+
     }
 
     public void enableChannel(int numberOfChannel) {
-        changeState();
-        calculatePower();
+        if (!getState()) {
+            changeState();
+            calculatePower();
+        }
         System.out.println("Channel number " + numberOfChannel + " is on");
         numberOfCurrentChannel = numberOfChannel;
     }

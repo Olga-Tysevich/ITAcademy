@@ -59,7 +59,7 @@ public class AppliancesDemo {
         washingMachine.washLinen();
         System.out.println(washingMachine + "\n");
 
-        TV tvSamsung = new TV("Living room", "Samsung", 1.2, 10, true);
+        TV tvSamsung = new TV("Living room", "Samsung", 1.2, 10, false);
         TV kitchenTV = new TV("Kitchen", "LG", 1.5, 15, true);
 
         System.out.println(tvSamsung);
@@ -92,16 +92,15 @@ public class AppliancesDemo {
         sortArrayOfAppliances(false, true,  getArrayOfAppliances(), 0,  getArrayOfAppliances().length - 1);
         printArrayOfAppliances(getArrayOfAppliances());
 
-        Appliances[] appliancesWithParameters = findAppliancesWithSetOfParameters(true, "Kitchen", false, "", false, "",
-                true, 0, 2, false, 0, 0, false, false);
-        printArrayOfAppliances(appliancesWithParameters);
-
         Appliances applianceWithParameters = findApplianceWithSetOfParameters(false, "", true, "Fridge",
                 false, "",true, 1.3, 1.5,
                 false, 0, 0, false, true);
         System.out.println(applianceWithParameters + "\n");
 
-        //В остальные классы не стала дописывать аналогичные методы, решила что это излишне =)
+        Appliances[] appliancesWithParameters = findAppliancesWithSetOfParameters(true, "Kitchen", false, "", false, "",
+                true, 0, 2, false, 0, 0, false, false);
+        printArrayOfAppliances(appliancesWithParameters);
+
         Fridge[] fridgesWithParameters = Fridge.findFridgesWithSetOfParameters(false, "", false, "", false, "",
                 false, 0, 0, false, 0, 0, false, false, "left");
         Fridge.printArray(fridgesWithParameters);
@@ -115,7 +114,7 @@ public class AppliancesDemo {
         Kettle[] kettlesWithParameter = Kettle.findKettlesWithSetOfParameters(false, "", false, "", false, "",
                 false, 0, 0, false, 0, 0, false, false, 1300, 2000);
         Kettle.printArray(kettlesWithParameter);
-
+        //В остальные классы не стала дописывать аналогичные методы, решила что это излишне =)
 
     }
 
