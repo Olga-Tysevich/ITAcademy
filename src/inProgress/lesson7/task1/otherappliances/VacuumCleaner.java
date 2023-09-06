@@ -17,26 +17,26 @@ public class VacuumCleaner extends Appliances {
         this.dustContainerVolume = dustContainerVolume;
     }
 
-    public double cleanTheRoom(String roomName, double perimeterForCleaning) {
+    public double cleanTheRoom(String roomName, double cleaningAreaPerimeter) {
         double j = 0;
-        if (getState() && isContainerEmpty && perimeterForCleaning > 0) {
-            for (int i = 0; i < dustContainerVolume && j <= perimeterForCleaning; i++, j += 5) {
+        if (getState() && isContainerEmpty && cleaningAreaPerimeter > 0) {
+            for (int i = 0; i < dustContainerVolume && j <= cleaningAreaPerimeter; i++, j += 5) {
                 System.out.println(roomName + " cleaning in progress...");
                 if (i >= dustContainerVolume) {
-                    System.out.println("It's time to clean the container! " + (perimeterForCleaning - j) + " meters left to clear!");
+                    System.out.println("It's time to clean the container! " + (cleaningAreaPerimeter - j) + " meters left to clear!");
                     isContainerEmpty = false;
-                    return perimeterForCleaning - j;
+                    return cleaningAreaPerimeter - j;
                 }
             }
         } else if(getState() && !isContainerEmpty) {
             System.out.println("It's time to clean the container!");
-            return perimeterForCleaning;
-        } else if (perimeterForCleaning <= 0){
+            return cleaningAreaPerimeter;
+        } else if (cleaningAreaPerimeter <= 0){
             System.out.println("Nothing to clean up!");
-            return perimeterForCleaning;
+            return cleaningAreaPerimeter;
         } else  if (!getState()){
             System.out.println("Vacuum cleaner not plugged in!");
-            return perimeterForCleaning;
+            return cleaningAreaPerimeter;
         }
         System.out.println(roomName + " cleaning finished!");
         cleaningCompleted = true;
