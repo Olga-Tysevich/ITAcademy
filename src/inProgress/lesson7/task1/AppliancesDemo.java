@@ -76,7 +76,7 @@ public class AppliancesDemo {
         vacuumCleaner.changeLocation("Living room");
         vacuumCleaner.changeState();
         double perimeterOfLivingRoomForClean = 12;
-        perimeterOfLivingRoomForClean = vacuumCleaner.cleanTheRoom("Living room", 12);
+        perimeterOfLivingRoomForClean = vacuumCleaner.cleanTheRoom("Living room", perimeterOfLivingRoomForClean);
         vacuumCleaner.cleanContainer();
         perimeterOfLivingRoomForClean = vacuumCleaner.cleanTheRoom("Living room", perimeterOfLivingRoomForClean);
         System.out.println(vacuumCleaner + "\n");
