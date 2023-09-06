@@ -16,25 +16,6 @@ public class Fridge extends KitchenAppliances {
         this.doorOpeningDirection = doorOpeningDirection;
     }
 
-    @Override
-    public void printDescription() {
-        super.printDescription();
-        System.out.println("Door opening direction: " + doorOpeningDirection);
-        if (!hasDoorOpeningDirectionChanged) {
-            System.out.println("Door opening direction not changed");
-        } else {
-            System.out.println("Door opening direction changed");
-        }
-    }
-
-    public void printState() {
-        if (getState()) {
-            System.out.println("Fridge off");
-        } else {
-            System.out.println("Fridge on");
-        }
-    }
-
     public void changeDoorOpeningDirection() {
         if (doorOpeningDirection.equals("left")) {
             doorOpeningDirection = "right";
@@ -48,53 +29,66 @@ public class Fridge extends KitchenAppliances {
         }
     }
 
-    public Fridge[] findFridgeWithParameters(boolean findByLocation, String location, boolean findByType, String type, boolean findByBrand,
-                                             String brand, boolean findByAmperage, double minAmperage, double maxAmperage, boolean findByPower,
-                                             double minPower, double maxPower, boolean findByState, boolean isOn, String doorOpeningDirection) {
+    public Fridge[] findFridgesWithSetOfParameters(boolean findByLocation, String location, boolean findByType, String type, boolean findByBrand,
+                                                   String brand, boolean findByAmperage, double minAmperage, double maxAmperage, boolean findByPower,
+                                                   double minPower, double maxPower, boolean findByState, boolean isOn, String doorOpeningDirection) {
 
-        Appliances[] appliancesArrayTemp = findAppliancesWithSetOfParameters(findByLocation, location, findByType, type, findByBrand, brand, findByAmperage,
+        Appliances[] appliancesTempArray = findAppliancesWithSetOfParameters(findByLocation, location, findByType, type, findByBrand, brand, findByAmperage,
                 minAmperage, maxAmperage, findByPower, minPower, maxPower, findByState, isOn);
-        int counterOfFridge = 0;
 
-        if (appliancesArrayTemp != null) {
-            for (Appliances appliance : appliancesArrayTemp) {
-                if (appliance instanceof Fridge) {
-                    boolean conditionsMatch = ((Fridge) appliance).getDoorOpeningDirection().equals(doorOpeningDirection);
-                    if (conditionsMatch) {
-                        counterOfFridge++;
+        int counterOfSuitableFridges = 0;
+
+        if (appliancesTempArray != null) {
+            for (Appliances currentAppliance : appliancesTempArray) {
+                if (currentAppliance instanceof Fridge) {
+                    boolean matchCondition = ((Fridge) currentAppliance).getDoorOpeningDirection().equals(doorOpeningDirection);
+                    if (matchCondition) {
+                        counterOfSuitableFridges++;
                     }
                 }
             }
-                Fridge[] outputFridgeArray = new Fridge[counterOfFridge];
-                counterOfFridge = 0;
 
-                while (counterOfFridge < outputFridgeArray.length) {
+            Fridge[] outputFridgesArray = new Fridge[counterOfSuitableFridges];
+            int currentPositionInOutputArray = 0;
 
-                    for (Appliances outputAppliance : appliancesArrayTemp) {
-                        if (outputAppliance instanceof Fridge) {
-                            boolean conditionsMatch = ((Fridge) outputAppliance).getDoorOpeningDirection().equals(doorOpeningDirection);
-                            if (conditionsMatch) {
-                                outputFridgeArray[counterOfFridge] = ((Fridge) outputAppliance);
-                                counterOfFridge++;
-                            }
+            while (currentPositionInOutputArray < outputFridgesArray.length) {
+
+                for (Appliances currentAppliance : appliancesTempArray) {
+                    if (currentAppliance instanceof Fridge) {
+                        boolean conditionsMatch = ((Fridge) currentAppliance).getDoorOpeningDirection().equals(doorOpeningDirection);
+                        if (conditionsMatch) {
+                            outputFridgesArray[currentPositionInOutputArray] = ((Fridge) currentAppliance);
+                            currentPositionInOutputArray++;
                         }
                     }
                 }
-
-                if (outputFridgeArray.length != 0) {
-                    return outputFridgeArray;
-                }
             }
+
+            if (outputFridgesArray.length != 0) {
+                return outputFridgesArray;
+            }
+        }
         return null;
     }
 
-    public static void printArray(Fridge[] fridges) {
-        if (fridges != null) {
-            for (Fridge fridge : fridges) {
-                System.out.println("| Location " + fridge.getLocation() + " Type " + fridge.getType() + " model " + fridge.getBrand()
-                        + " amperage " + fridge.getAmperage() + " is on " + fridge.getState() + " power " + String.format("%.2f", fridge.getPower()) +
-                        " door opening direction " + fridge.getDoorOpeningDirection() + " |");
+    @Override
+    public String toString() {
+        String reversingDoorOpeningDirection = !hasDoorOpeningDirectionChanged ? ", door opening direction not changed" : ", door opening direction changed";
+        String state = getState() ? ", state: fridge on" : ", state: fridge off";
+        return super.toString() +
+                ", door opening direction: " + this.doorOpeningDirection +
+                reversingDoorOpeningDirection +
+                state +
+                "}";
+    }
+
+    public static void printArray(Fridge[] arrayOfFridges) {
+        if (arrayOfFridges != null) {
+            System.out.println("Array of Fridges: {");
+            for (Fridge fridge : arrayOfFridges) {
+                System.out.println(fridge.toString());
             }
+            System.out.println("}");
         } else {
             System.out.println("Appliances not found");
         }
@@ -107,4 +101,5 @@ public class Fridge extends KitchenAppliances {
     public boolean getDoorDirectionChangeParameter() {
         return hasDoorOpeningDirectionChanged;
     }
+
 }

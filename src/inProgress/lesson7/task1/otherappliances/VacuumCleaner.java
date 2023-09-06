@@ -27,19 +27,19 @@ public class VacuumCleaner extends Appliances {
         }
     }
 
-    @Override
-    public void printDescription() {
-        super.printDescription();
-        System.out.println("Dust container volume: " + dustContainerVolume);
-        if (!isCleaningFinished) {
-            System.out.println("Vacuum cleaner didn't work");
-        } else {
-            System.out.println("Cleaning finished");
-        }
-        if (!isContainerEmpty) {
-            System.out.println("It's time to clean the container!");
-        }
-    }
+//    @Override
+//    public void printDescription() {
+//        super.printDescription();
+//        System.out.println("Dust container volume: " + dustContainerVolume);
+//        if (!isCleaningFinished) {
+//            System.out.println("Vacuum cleaner didn't work");
+//        } else {
+//            System.out.println("Cleaning finished");
+//        }
+//        if (!isContainerEmpty) {
+//            System.out.println("It's time to clean the container!");
+//        }
+//    }
 
     public void vacuumTheRoom(String roomName, double roomPerimeter) {
         if (getState() && isContainerEmpty) {

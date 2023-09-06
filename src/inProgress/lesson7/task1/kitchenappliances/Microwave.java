@@ -6,41 +6,16 @@ public class Microwave extends KitchenAppliances {
     private boolean hasPlateWithFood = false;
     private boolean isFoodWarm = false;
 
-    public Microwave(String brand, double amperage, int numberOfPowerLevels, double plateDiameter, boolean isOn) {
-        super("Microwave", brand, amperage, true, isOn);
-        this.numberOfPowerLevels = numberOfPowerLevels;
-        this.plateDiameter = plateDiameter;
-    }
-
-
     public Microwave(String brand, double amperage, int numberOfPowerLevels, double plateDiameter) {
         super("Microwave", brand, amperage, true);
         this.numberOfPowerLevels = numberOfPowerLevels;
         this.plateDiameter = plateDiameter;
     }
 
-    public void printDescription() {
-        super.printDescription();
-        System.out.println("Number of power levels: " + numberOfPowerLevels);
-        System.out.println("Plate diameter: " + plateDiameter);
-        if (hasPlateWithFood) {
-            System.out.println("Food in the microwave");
-        } else {
-            System.out.println("The microwave is empty");
-        }
-        if (isFoodWarm) {
-            System.out.println("Food is heated");
-        } else {
-            System.out.println("Microwave didn't work");
-        }
-    }
-
-    public void printState() {
-        if (getState()) {
-            System.out.println("Microwave off");
-        } else {
-            System.out.println("Microwave on");
-        }
+    public Microwave(String brand, double amperage, int numberOfPowerLevels, double plateDiameter, boolean isOn) {
+        super("Microwave", brand, amperage, true, isOn);
+        this.numberOfPowerLevels = numberOfPowerLevels;
+        this.plateDiameter = plateDiameter;
     }
 
     public void putPlate(double plateDiameter) {
@@ -54,7 +29,7 @@ public class Microwave extends KitchenAppliances {
     }
 
     public void heatUp(int powerLevel) {
-        if (!getState()) {
+        if (getState()) {
             if (powerLevel <= numberOfPowerLevels) {
                 for (int i = 0; i <= powerLevel; i++) {
                     System.out.println("Wait, the food is heating up...");
@@ -71,16 +46,17 @@ public class Microwave extends KitchenAppliances {
         }
     }
 
-    public static void printArray(Kettle[] kettles) {
-        if (kettles != null) {
-            for (Kettle kettle : kettles) {
-                System.out.println("| Location " + kettle.getLocation() + " Type " + kettle.getType() + " model " + kettle.getBrand()
-                        + " amperage " + kettle.getAmperage() + " is on " + kettle.getState() + " power " + String.format("%.2f", kettle.getPower()) +
-                        " water volume " + kettle.getWaterVolume() + " |");
-            }
-        } else {
-            System.out.println("Appliances not found");
-        }
+    public String toString() {
+        String hasPlate = hasPlateWithFood ? ", food in the microwave" : ", the microwave is empty";
+        String isFoodWarm = this.isFoodWarm ? ", food is heated" : ", microwave didn't work";
+        String state = getState() ? ", microwave on" : ", microwave off";
+        return super.toString() +
+                ", number of power levels: " + numberOfPowerLevels +
+                ", plate diameter: " + plateDiameter +
+                state +
+                hasPlate +
+                isFoodWarm +
+                "}";
     }
 
 }

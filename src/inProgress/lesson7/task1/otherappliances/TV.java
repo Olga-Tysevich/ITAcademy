@@ -21,11 +21,11 @@ public class TV extends Appliances {
         return this.numberOfChannels = numberOfChannels;
     }
 
-    @Override
-    public void printDescription() {
-        super.printDescription();
-        System.out.println("Number of channel: " + numberOfChannels);
-    }
+//    @Override
+//    public void printDescription() {
+//        super.printDescription();
+//        System.out.println("Number of channel: " + numberOfChannels);
+//    }
 
     public void enableChannel(int numberOfChannel) {
         changeState(false);

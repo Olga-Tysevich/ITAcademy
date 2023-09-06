@@ -5,45 +5,21 @@ import inProgress.lesson7.task1.Appliances;
 public class Kettle extends KitchenAppliances {
     private final double waterVolume;
     private boolean hasWater = false;
-    private boolean boiled = false;
-
-    public Kettle(String brand, double amperage, double waterVolume, boolean isOn) {
-        super("Kettle", brand, amperage, false, isOn);
-        this.waterVolume = waterVolume;
-    }
+    private boolean waterBoiled = false;
 
     public Kettle(String brand, double amperage, double waterVolume) {
         super("Kettle", brand, amperage, false);
         this.waterVolume = waterVolume;
     }
 
-    @Override
-    public void printDescription() {
-        super.printDescription();
-        System.out.println("Water volume: " + waterVolume);
-        if (hasWater) {
-            System.out.println("There is water in the kettle");
-        } else {
-            System.out.println("There is no water in the kettle");
-        }
-        if (boiled) {
-            System.out.println("The kettle boiled");
-        } else {
-            System.out.println("The kettle didn't work");
-        }
-    }
-
-    public void printState() {
-        if (getState()) {
-            System.out.println("Kettle off");
-        } else {
-            System.out.println("Kettle on");
-        }
+    public Kettle(String brand, double amperage, double waterVolume, boolean isOn) {
+        super("Kettle", brand, amperage, false, isOn);
+        this.waterVolume = waterVolume;
     }
 
     public void pourTheWater(double waterVolume) {
         if (waterVolume <= this.waterVolume) {
-            for (int i = 0; i < waterVolume; i += 100) {
+            for (int i = 0; i < waterVolume; i += 500) {
                 System.out.println("Current water volume: " + i);
             }
             System.out.println("The kettle is full!");
@@ -55,63 +31,78 @@ public class Kettle extends KitchenAppliances {
     }
 
     public void boilWater() {
-        if (!getState()) {
-            for (int i = 0; i <= waterVolume; i += 100) {
+        if (getState()) {
+            for (int i = 0; i <= waterVolume; i += 500) {
                 System.out.println("Wait, the water is heating up...");
             }
             System.out.println("The kettle boiled!");
-            boiled = true;
+            waterBoiled = true;
         } else {
             System.out.println("Kettle not plugged in!");
-            boiled = false;
+            waterBoiled = false;
         }
     }
 
-    public Kettle[] findKettleWithParameters(boolean findByLocation, String location, boolean findByType, String type, boolean findByBrand,
-                                             String brand, boolean findByAmperage, double minAmperage, double maxAmperage, boolean findByPower,
-                                             double minPower, double maxPower, boolean findByState, boolean isOn, double minWaterVolume, double maxWaterVolume) {
+    public Kettle[] findKettlesWithSetOfParameters(boolean findByLocation, String location, boolean findByType, String type, boolean findByBrand,
+                                                   String brand, boolean findByAmperage, double minAmperage, double maxAmperage, boolean findByPower,
+                                                   double minPower, double maxPower, boolean findByState, boolean isOn, double minWaterVolume, double maxWaterVolume) {
 
-        Appliances[] appliancesArrayTemp = findAppliancesWithSetOfParameters(findByLocation, location, findByType, type, findByBrand, brand, findByAmperage,
+        Appliances[] appliancesTempArray = findAppliancesWithSetOfParameters(findByLocation, location, findByType, type, findByBrand, brand, findByAmperage,
                 minAmperage, maxAmperage, findByPower, minPower, maxPower, findByState, isOn);
-        int counterOfKettle = 0;
 
-        if (appliancesArrayTemp != null) {
-            for (Appliances appliance : appliancesArrayTemp) {
-                if (appliance instanceof Kettle) {
-                    boolean conditionsMatch = ((Kettle) appliance).getWaterVolume() >= minWaterVolume && ((Kettle) appliance).getWaterVolume() <= maxWaterVolume;
-                    if (conditionsMatch) {
-                        counterOfKettle++;
+        int counterOfSuitableKettles = 0;
+
+        if (appliancesTempArray != null) {
+            for (Appliances currentAppliance : appliancesTempArray) {
+                if (currentAppliance instanceof Kettle) {
+                    boolean matchCondition = ((Kettle) currentAppliance).getWaterVolume() >= minWaterVolume
+                            && ((Kettle) currentAppliance).getWaterVolume() <= maxWaterVolume;
+                    if (matchCondition) {
+                        counterOfSuitableKettles++;
                     }
                 }
             }
-                Kettle[] outputKettleArray = new Kettle[counterOfKettle];
-                counterOfKettle = 0;
+            Kettle[] outputKettlesArray = new Kettle[counterOfSuitableKettles];
+            int currentPositionInOutputArray = 0;
 
-                while (counterOfKettle < outputKettleArray.length) {
+            while (currentPositionInOutputArray < outputKettlesArray.length) {
 
-                    for (Appliances outputAppliance : appliancesArrayTemp) {
-                        if (outputAppliance instanceof Kettle) {
-                            boolean conditionsMatch = ((Kettle) outputAppliance) .getWaterVolume() >= minWaterVolume && ((Kettle) outputAppliance) .getWaterVolume() <= maxWaterVolume;
-                            if (conditionsMatch) {
-                                outputKettleArray[counterOfKettle] = ((Kettle) outputAppliance);
-                                counterOfKettle++;
-                            }
+                for (Appliances currentAppliance : appliancesTempArray) {
+                    if (currentAppliance instanceof Kettle) {
+                        boolean matchCondition = ((Kettle) currentAppliance).getWaterVolume() >= minWaterVolume
+                                && ((Kettle) currentAppliance).getWaterVolume() <= maxWaterVolume;
+                        if (matchCondition) {
+                            outputKettlesArray[currentPositionInOutputArray] = ((Kettle) currentAppliance);
+                            currentPositionInOutputArray++;
                         }
                     }
                 }
-
-                if (outputKettleArray.length != 0) {
-                    return outputKettleArray;
-                }
             }
+
+            if (outputKettlesArray.length != 0) {
+                return outputKettlesArray;
+            }
+        }
         return null;
     }
-    public static void printArray(Kettle[] kettles) {
-        if (kettles != null) {
-            for (Kettle kettle : kettles) {
-                System.out.println("| Location " + kettle.getLocation() + " Type " + kettle.getType() + " model " + kettle.getBrand()
-                        + " amperage " + kettle.getAmperage() + " is on " + kettle.getState() + " power " + String.format("%.2f", kettle.getPower()) +
-                        " water volume " + kettle.getWaterVolume() + " |");
+
+    @Override
+    public String toString() {
+        String kettleHasWater = hasWater ? ", there is water in the kettle" : ", there is no water in the kettle";
+        String waterBoiled = this.waterBoiled ? ", the water boiled" : ", the kettle didn't work";
+        String state = getState() ? ", kettle on" : ", kettle off";
+        return super.toString() +
+                ", max water volume: " + waterVolume +
+                state +
+                kettleHasWater +
+                waterBoiled +
+                "}";
+    }
+
+    public static void printArray(Kettle[] kettlesArray) {
+        if (kettlesArray != null) {
+            for (Kettle kettle : kettlesArray) {
+                System.out.println(kettle.toString());
             }
         } else {
             System.out.println("Appliances not found");
@@ -126,7 +117,8 @@ public class Kettle extends KitchenAppliances {
         return hasWater;
     }
 
-    public boolean isBoiled() {
-        return boiled;
+    public boolean isWaterBoiled() {
+        return waterBoiled;
     }
+
 }

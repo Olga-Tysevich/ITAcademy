@@ -3,46 +3,48 @@ package inProgress.lesson7.task1;
 
 public abstract class Appliances {
     private static int numberOfAppliances;
-    private static Appliances[] appliancesArray = new Appliances[numberOfAppliances];
+    private static Appliances[] arrayOfAppliances = new Appliances[numberOfAppliances];
     private String location;
     private final String type;
     private final String brand;
     private final double amperage;
     private boolean isOn = false;
-    private final boolean hasEngine;
+    private final boolean hasElectricMotor;
     private double power = 0;
 
-    public Appliances(String location, String type, String brand, double amperage, boolean hasEngine) {
+    public Appliances(String location, String type, String brand, double amperage, boolean hasElectricMotor) {
         this.location = location;
         this.type = type;
         this.brand = brand;
         this.amperage = amperage;
-        this.hasEngine = hasEngine;
-        getAppliancesArray(this);
+        this.hasElectricMotor = hasElectricMotor;
+        addApplianceToArrayOfAppliances(this);
     }
 
-    public Appliances(String location, String type, String brand, double amperage, boolean hasEngine, boolean isOn) {
-        this(location, type, brand, amperage, hasEngine);
+    public Appliances(String location, String type, String brand, double amperage, boolean hasElectricMotor, boolean isOn) {
+        this(location, type, brand, amperage, hasElectricMotor);
         this.isOn = isOn;
         if (isOn) {
             calculatePower();
         }
     }
 
-    private static void getAppliancesArray(Appliances appliance) {
+    private static void addApplianceToArrayOfAppliances(Appliances appliance) {
         numberOfAppliances++;
-        Appliances[] appliancesArrayNew = new Appliances[numberOfAppliances];
+
+        Appliances[] updatedArrayOfAppliances = new Appliances[numberOfAppliances];
+
         int currentIndexInAppliancesArray = 0;
 
         if (numberOfAppliances - 1 != 0) {
-            while (currentIndexInAppliancesArray < appliancesArray.length) {
-                appliancesArrayNew[currentIndexInAppliancesArray] = appliancesArray[currentIndexInAppliancesArray];
+            while (currentIndexInAppliancesArray < arrayOfAppliances.length) {
+                updatedArrayOfAppliances[currentIndexInAppliancesArray] = arrayOfAppliances[currentIndexInAppliancesArray];
                 currentIndexInAppliancesArray++;
             }
         }
 
-        appliancesArrayNew[currentIndexInAppliancesArray] = appliance;
-        appliancesArray = appliancesArrayNew;
+        updatedArrayOfAppliances[currentIndexInAppliancesArray] = appliance;
+        arrayOfAppliances = updatedArrayOfAppliances;
 
     }
 
@@ -50,7 +52,7 @@ public abstract class Appliances {
         //P = I * U / PowerFactor (При отсутствии данных допустимо принять cos(φ) в пределах 0,7-0,8);
         //Холодильники, стиральные машины, дрели и прочее оборудование с электродвигателями;
         int MAINS_VOLTAGE = 220;
-        if (hasEngine && isOn) {
+        if (hasElectricMotor && isOn) {
             double POWER_FACTOR = 0.7;
             power = amperage * MAINS_VOLTAGE / POWER_FACTOR;
         } else if (isOn) {
@@ -60,94 +62,95 @@ public abstract class Appliances {
         }
     }
 
-    public static void sortAppliancesArray(boolean sortByAmperage, boolean sortByPower, Appliances[] appliancesArray, int lowerBound, int upperBound) {
-        if (lowerBound >= upperBound) {
+    public static void sortArrayOfAppliances(boolean sortByAmperage, boolean sortByPower, Appliances[] arrayOfAppliances, int leftIndex, int rightIndex) {
+        if (leftIndex >= rightIndex) {
             return;
         }
 
-        int rotation;
+        int indexOfPivotElement;
 
         if (sortByAmperage && !sortByPower) {
-            rotation = getRIndexForAmperage(appliancesArray, lowerBound, upperBound);
+            indexOfPivotElement = getPIndexForAmperage(arrayOfAppliances, leftIndex, rightIndex);
         } else if (sortByPower && !sortByAmperage) {
-            rotation = getRIndexForPower(appliancesArray, lowerBound, upperBound);
+            indexOfPivotElement = getPIndexForForPower(arrayOfAppliances, leftIndex, rightIndex);
         } else {
             System.out.println("You can only sort by one parameter!");
             return;
         }
 
         if (sortByAmperage) {
-            sortAppliancesArray(true, false, appliancesArray, lowerBound, rotation - 1);
-            sortAppliancesArray(true, false, appliancesArray, rotation + 1, upperBound);
+            sortArrayOfAppliances(true, false, arrayOfAppliances, leftIndex, indexOfPivotElement - 1);
+            sortArrayOfAppliances(true, false, arrayOfAppliances, indexOfPivotElement + 1, rightIndex);
         } else {
-            sortAppliancesArray(false, true, appliancesArray, lowerBound, rotation - 1);
-            sortAppliancesArray(false, true, appliancesArray, rotation + 1, upperBound);
+            sortArrayOfAppliances(false, true, arrayOfAppliances, leftIndex, indexOfPivotElement - 1);
+            sortArrayOfAppliances(false, true, arrayOfAppliances, indexOfPivotElement + 1, rightIndex);
         }
     }
 
-    private static int getRIndexForAmperage(Appliances[] appliancesArray, int lowerBound, int upperBound) {
-        double rotation = appliancesArray[upperBound].getAmperage();
-        int rIndex = lowerBound;
-        for (int i = lowerBound; i < upperBound; i++) {
-            if (appliancesArray[i].getAmperage() <= rotation) {
-                swap(appliancesArray, i, rIndex);
-                rIndex++;
+    private static int getPIndexForAmperage(Appliances[] arrayOfAppliances, int leftIndex, int rightIndex) {
+        double pivotElement = arrayOfAppliances[rightIndex].getAmperage();
+        int currentIndexOfElementToReplace = leftIndex;
+
+        for (int i = leftIndex; i < rightIndex; i++) {
+            if (arrayOfAppliances[i].getAmperage() <= pivotElement) {
+                swap(arrayOfAppliances, i, currentIndexOfElementToReplace);
+                currentIndexOfElementToReplace++;
             }
         }
-        swap(appliancesArray, upperBound, rIndex);
-        return rIndex;
+        swap(arrayOfAppliances, rightIndex, currentIndexOfElementToReplace);
+        return currentIndexOfElementToReplace;
     }
 
-    private static int getRIndexForPower(Appliances[] appliancesArray, int lowerBound, int upperBound) {
-        double rotation = appliancesArray[upperBound].getPower();
-        int rIndex = lowerBound;
+    private static int getPIndexForForPower(Appliances[] arrayOfAppliances, int lowerBound, int upperBound) {
+        double pivotElement = arrayOfAppliances[upperBound].getPower();
+        int currentIndexOfElementToReplace = lowerBound;
+
         for (int i = lowerBound; i < upperBound; i++) {
-            if (appliancesArray[i].getPower() <= rotation) {
-                swap(appliancesArray, i, rIndex);
-                rIndex++;
+            if (arrayOfAppliances[i].getPower() <= pivotElement) {
+                swap(arrayOfAppliances, i, currentIndexOfElementToReplace);
+                currentIndexOfElementToReplace++;
             }
         }
-        swap(appliancesArray, upperBound, rIndex);
-        return rIndex;
+        swap(arrayOfAppliances, upperBound, currentIndexOfElementToReplace);
+        return currentIndexOfElementToReplace;
     }
 
-    private static void swap(Appliances[] appliancesArray, int i, int rIndex) {
-        Appliances temp = appliancesArray[i];
-        appliancesArray[i] = appliancesArray[rIndex];
-        appliancesArray[rIndex] = temp;
+    private static void swap(Appliances[] arrayOfAppliances, int firstIndexOfElementToReplace, int secondIndexOfElementToReplace) {
+        Appliances temp = arrayOfAppliances[firstIndexOfElementToReplace];
+        arrayOfAppliances[firstIndexOfElementToReplace] = arrayOfAppliances[secondIndexOfElementToReplace];
+        arrayOfAppliances[secondIndexOfElementToReplace] = temp;
     }
 
     public static Appliances[] findAppliancesWithSetOfParameters(boolean findByLocation, String location, boolean findByType, String type, boolean findByBrand,
                                                                  String brand, boolean findByAmperage, double minAmperage, double maxAmperage, boolean findByPower,
                                                                  double minPower, double maxPower, boolean findByState, boolean isOn) {
-        int counterOfAppliances = 0;
-        boolean conditionsMatch;
+        int counterOfSuitableAppliances = 0;
 
-        for (Appliances appliance : appliancesArray) {
-            conditionsMatch = checkSearchTerms(appliance, findByLocation, location, findByType, type, findByBrand, brand, findByAmperage, minAmperage, maxAmperage,
+        for (Appliances currentAppliance : arrayOfAppliances) {
+            boolean matchCondition = checkSearchTerms(currentAppliance, findByLocation, location, findByType, type, findByBrand, brand, findByAmperage, minAmperage, maxAmperage,
                     findByPower, minPower, maxPower, findByState, isOn);
-            if (conditionsMatch) {
-                counterOfAppliances++;
+            if (matchCondition) {
+                counterOfSuitableAppliances++;
             }
         }
 
-        Appliances[] outputAppliancesArray = new Appliances[counterOfAppliances];
-        counterOfAppliances = 0;
+        Appliances[] outputArrayOfAppliances = new Appliances[counterOfSuitableAppliances];
+        int currentPositionInOutputArray = 0;
 
-        while (counterOfAppliances < outputAppliancesArray.length) {
+        while (currentPositionInOutputArray < outputArrayOfAppliances.length) {
 
-            for (Appliances outputAppliance : appliancesArray) {
-                conditionsMatch = checkSearchTerms(outputAppliance, findByLocation, location, findByType, type, findByBrand, brand, findByAmperage, minAmperage, maxAmperage,
-                        findByPower, minPower, maxPower, findByState, isOn);
-                if (conditionsMatch) {
-                    outputAppliancesArray[counterOfAppliances] = outputAppliance;
-                    counterOfAppliances++;
+            for (Appliances currentAppliance : arrayOfAppliances) {
+                boolean matchCondition = checkSearchTerms(currentAppliance, findByLocation, location, findByType, type, findByBrand, brand, findByAmperage, minAmperage,
+                        maxAmperage, findByPower, minPower, maxPower, findByState, isOn);
+                if (matchCondition) {
+                    outputArrayOfAppliances[currentPositionInOutputArray] = currentAppliance;
+                    currentPositionInOutputArray++;
                 }
             }
         }
 
-        if (outputAppliancesArray.length != 0) {
-            return outputAppliancesArray;
+        if (outputArrayOfAppliances.length != 0) {
+            return outputArrayOfAppliances;
         } else {
             return null;
         }
@@ -156,68 +159,81 @@ public abstract class Appliances {
     private static boolean checkSearchTerms(Appliances appliance, boolean findByLocation, String location, boolean findByType, String type, boolean findByBrand,
                                             String brand, boolean findByAmperage, double minAmperage, double maxAmperage, boolean findByPower,
                                             double minPower, double maxPower, boolean findByState, boolean isOn) {
-        boolean isMatchConditionTrue;
-        boolean isLocationMatch;
-        boolean isTypeMatch;
-        boolean isBrandMatch;
-        boolean isAmperageMatch;
-        boolean isPowerMatch;
-        boolean isStateMatch;
+        boolean matchesLocation;
+        boolean matchesType;
+        boolean matchesBrand;
+        boolean matchesAmperage;
+        boolean matchesPower;
+        boolean matchesState;
+
         if (findByLocation) {
-            isLocationMatch = appliance.getLocation().equals(location);
+            matchesLocation = appliance.getLocation().equals(location);
         } else {
-            isLocationMatch = true;
+            matchesLocation = true;
         }
         if (findByType) {
-            isTypeMatch = appliance.getType().equals(type);
+            matchesType = appliance.getType().equals(type);
         } else {
-            isTypeMatch = true;
+            matchesType = true;
         }
         if (findByBrand) {
-            isBrandMatch = appliance.getBrand().equals(brand);
+            matchesBrand = appliance.getBrand().equals(brand);
         } else {
-            isBrandMatch = true;
+            matchesBrand = true;
         }
         if (findByAmperage) {
-            isAmperageMatch = appliance.getAmperage() >= minAmperage && appliance.getAmperage() <= maxAmperage;
+            matchesAmperage = appliance.getAmperage() >= minAmperage && appliance.getAmperage() <= maxAmperage;
         } else {
-            isAmperageMatch = true;
+            matchesAmperage = true;
         }
         if (findByPower) {
-            isPowerMatch = appliance.getPower() >= minPower && appliance.getPower() <= maxPower;
+            matchesPower = appliance.getPower() >= minPower && appliance.getPower() <= maxPower;
         } else {
-            isPowerMatch = true;
+            matchesPower = true;
         }
         if (findByState) {
-            isStateMatch = appliance.getState() == isOn;
+            matchesState = appliance.getState() == isOn;
         } else {
-            isStateMatch = true;
+            matchesState = true;
         }
-        return isMatchConditionTrue = isLocationMatch && isTypeMatch && isBrandMatch && isAmperageMatch && isPowerMatch && isStateMatch;
+        return matchesLocation && matchesType && matchesBrand && matchesAmperage && matchesPower && matchesState;
     }
 
     public static void printNumberOfAppliances() {
         System.out.println("The total number of appliances in the house: " + numberOfAppliances);
     }
 
-    public static void printArray(Appliances[] appliances) {
-        if (appliances != null) {
-            for (Appliances appliance : appliances) {
-                System.out.println("| Location " + appliance.getLocation() + " Type " + appliance.getType() + " model " + appliance.getBrand()
-                        + " amperage " + appliance.getAmperage() + " is on " + appliance.getState() + " power " + String.format("%.2f", appliance.getPower()) + " |");
+    @Override
+    public String toString() {
+        return "{" +
+                "location: " + location +
+                ", type: " + type +
+                ", brand: " + brand +
+                ", amperage: " + amperage +
+                ", power: " + String.format("%.2f", power);
+    }
+
+    public static void printArrayOfAppliances(Appliances[] arrayOfAppliances) {
+        if (arrayOfAppliances != null) {
+            System.out.println("Array of Appliances: {");
+            for (Appliances appliance : arrayOfAppliances) {
+                System.out.println(appliance.toString());
             }
+            System.out.println("};\n");
         } else {
             System.out.println("Appliances not found");
         }
     }
 
-    public void printDescription() {
-        System.out.println("Location: " + location);
-        System.out.println("Type: " + type);
-        System.out.println("Brand: " + brand);
-        System.out.println("Amperage: " + amperage);
-        System.out.println("State: " + isOn);
-        System.out.println("Power: " + String.format("%.2f", power));
+    public void changeState(boolean isOn) {
+        this.isOn = isOn;
+        if (isOn) {
+            calculatePower();
+        }
+    }
+
+    public void changeLocation(String location) {
+        this.location = location;
     }
 
     public String getLocation() {
@@ -252,19 +268,8 @@ public abstract class Appliances {
         return numberOfAppliances;
     }
 
-    public static Appliances[] getAppliancesArray() {
-        return appliancesArray;
-    }
-
-    public void changeState(boolean isOn) {
-        this.isOn = isOn;
-        if (isOn) {
-            calculatePower();
-        }
-    }
-
-    public void changeLocation(String location) {
-        this.location = location;
+    public static Appliances[] addApplianceToArrayOfAppliances() {
+        return arrayOfAppliances;
     }
 
 }

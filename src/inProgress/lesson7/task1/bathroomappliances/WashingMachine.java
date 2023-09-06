@@ -3,7 +3,7 @@ package inProgress.lesson7.task1.bathroomappliances;
 public class WashingMachine extends BathroomAppliances {
     private final double laundryLoadWeight;
     private boolean laundryLoaded;
-    private boolean linenWashed;
+    private boolean laundryFinished;
 
     public WashingMachine(String brand, double amperage, double laundryLoadWeight) {
         super("Washing machine", brand, amperage, true);
@@ -15,33 +15,9 @@ public class WashingMachine extends BathroomAppliances {
         this.laundryLoadWeight = laundryLoadWeight;
     }
 
-    public void printState() {
-        if (getState()) {
-            System.out.println("Washing machine off");
-        } else {
-            System.out.println("Washing machine on");
-        }
-    }
-
-    @Override
-    public void printDescription() {
-        super.printDescription();
-        System.out.println("Laundry load weight: " + laundryLoadWeight);
-        if (laundryLoaded) {
-            System.out.println("Washing machine is full");
-        } else {
-            System.out.println("There is no laundry in the washing machine");
-        }
-        if (linenWashed) {
-            System.out.println("Linen washed");
-        } else {
-            System.out.println("Washing machine didn't work");
-        }
-    }
-
     public void loadLinen(double waterVolume) {
         if (waterVolume <= this.laundryLoadWeight) {
-            for (double i = 0; i < laundryLoadWeight; i += 0.5) {
+            for (double i = 0; i < laundryLoadWeight; i += 2) {
                 System.out.println("Current download volume: " + i);
             }
             System.out.println("Washing machine is full!");
@@ -53,16 +29,28 @@ public class WashingMachine extends BathroomAppliances {
     }
 
     public void washLinen() {
-        if (!getState()) {
-            for (int i = 0; i <= laundryLoadWeight; i += 1) {
+        if (getState()) {
+            for (int i = 0; i <= laundryLoadWeight; i += 2) {
                 System.out.println("Wait, laundry in progress...");
             }
             System.out.println("Linen washed!");
-            linenWashed = true;
+            laundryFinished = true;
         } else {
             System.out.println("Washing machine not plugged in!");
-            linenWashed = false;
+            laundryFinished = false;
         }
+    }
+
+    public String toString() {
+        String laundryLoaded = this.laundryLoaded ? ", washing machine is full" : ", there is no laundry in the washing machine";
+        String laundryFinished = this.laundryFinished ? ", wash finished" : ", washing machine didn't work";
+        String state = getState() ? ", washing machine on" : ", washing machine off";
+        return super.toString() +
+                ", laundry load weight: " + laundryLoadWeight +
+                state +
+                laundryLoaded +
+                laundryFinished +
+                "}";
     }
 
     public double getLaundryLoadWeight() {
@@ -73,7 +61,8 @@ public class WashingMachine extends BathroomAppliances {
         return laundryLoaded;
     }
 
-    public boolean isLinenWashed() {
-        return linenWashed;
+    public boolean isLaundryFinished() {
+        return laundryFinished;
     }
+
 }
