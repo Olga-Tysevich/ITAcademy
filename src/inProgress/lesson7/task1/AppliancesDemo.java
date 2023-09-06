@@ -17,7 +17,7 @@ public class AppliancesDemo {
 
         fridgeSamsung.changeDoorOpeningDirection();
         System.out.println(fridgeSamsung + "\n");
-        fridgeSamsung.changeState(true);
+        fridgeSamsung.changeState();
 
         fridgeLG.changeDoorOpeningDirection();
         System.out.println(fridgeLG + "\n");
@@ -28,7 +28,7 @@ public class AppliancesDemo {
         microwaveSamsung.putPlate(300);
         microwaveSamsung.putPlate(230);
         microwaveSamsung.heatUp(8);
-        microwaveSamsung.changeState(true);
+        microwaveSamsung.changeState();
         microwaveSamsung.heatUp(6);
         System.out.println(microwaveSamsung + "\n");
 
@@ -36,7 +36,7 @@ public class AppliancesDemo {
         Kettle kettleScarlett = new Kettle("Scarlett", 3.5, 1200, true);
 
         System.out.println(kettleLornay);
-        kettleLornay.changeState(true);
+        kettleLornay.changeState();
         kettleLornay.pourTheWater(1900);
         kettleLornay.pourTheWater(1500);
         kettleLornay.boilWater();
@@ -47,66 +47,73 @@ public class AppliancesDemo {
         WaterBoiler boilerElectrolux = new WaterBoiler("Electrolux", 8.2, 3, false);
 
         System.out.println(boilerElectrolux);
-        boilerElectrolux.changeState(true);
+        boilerElectrolux.changeState();
         boilerElectrolux.warmUpWater(2);
         System.out.println(boilerElectrolux + "\n");
 
         WashingMachine washingMachine = new WashingMachine("LG", 5.6, 6.5, true);
 
         System.out.println(washingMachine);
-        washingMachine.changeState(false);
+        washingMachine.changeState();
         washingMachine.loadLinen(5);
         washingMachine.washLinen();
         System.out.println(washingMachine + "\n");
 
-        TV tv = new TV("Living room", "Samsung", 1.2, 10, true);
+        TV tvSamsung = new TV("Living room", "Samsung", 1.2, 10, true);
         TV kitchenTV = new TV("Kitchen", "LG", 1.5, 15, true);
 
-//        tv.printDescription();
-        tv.changeNumberOfChannels(8);
-        tv.enableChannel(2);
+        System.out.println(tvSamsung);
+        tvSamsung.changeNumberOfChannels(8);
+        tvSamsung.enableChannel(2);
+        System.out.println(tvSamsung + "\n");
+        System.out.println(kitchenTV);
         kitchenTV.enableChannel(8);
-        System.out.println();
+        System.out.println(kitchenTV + "\n");
 
         VacuumCleaner vacuumCleaner = new VacuumCleaner("Hallway", "LG", 1.5, 6.5, false);
 
         System.out.println(vacuumCleaner);
         vacuumCleaner.changeLocation("Living room");
-        vacuumCleaner.changeState(true);
+        vacuumCleaner.changeState();
         double perimeterOfLivingRoomForClean = 12;
         perimeterOfLivingRoomForClean = vacuumCleaner.cleanTheRoom("Living room", 12);
         vacuumCleaner.cleanContainer();
         perimeterOfLivingRoomForClean = vacuumCleaner.cleanTheRoom("Living room", perimeterOfLivingRoomForClean);
-
         System.out.println(vacuumCleaner + "\n");
 
         printNumberOfAppliances();
         System.out.println();
 
-        printArrayOfAppliances(addApplianceToArrayOfAppliances());
-        System.out.println();
+        printArrayOfAppliances(getArrayOfAppliances());
 
-        sortArrayOfAppliances(true, false, addApplianceToArrayOfAppliances(), 0, addApplianceToArrayOfAppliances().length - 1);
-//        printArrayOfAppliances(getAppliancesArray());
-//        System.out.println();
+        sortArrayOfAppliances(true, false, getArrayOfAppliances(), 0,  getArrayOfAppliances().length - 1);
+        printArrayOfAppliances(getArrayOfAppliances());
 
-        sortArrayOfAppliances(false, true, addApplianceToArrayOfAppliances(), 0, addApplianceToArrayOfAppliances().length - 1);
-//        printArrayOfAppliances(getAppliancesArray());
-//        System.out.println();
+        sortArrayOfAppliances(false, true,  getArrayOfAppliances(), 0,  getArrayOfAppliances().length - 1);
+        printArrayOfAppliances(getArrayOfAppliances());
 
         Appliances[] appliancesWithParameters = findAppliancesWithSetOfParameters(true, "Kitchen", false, "", false, "",
                 true, 0, 2, false, 0, 0, false, false);
-//        printArrayOfAppliances(appliancesWithParameters);
-//        System.out.println();
+        printArrayOfAppliances(appliancesWithParameters);
+        System.out.println();
 
-        //В остальные не стала дописывать аналогичные методы, решила что это излишне =)
-        Fridge[] fridgesWithParameters = fridgeLG.findFridgesWithSetOfParameters(false, "", false, "", false, "",
+        Appliances applianceWithParameters = findApplianceWithSetOfParameters(false, "", true, "Fridge",
+                false, "",true, 1.3, 1.3,
+                false, 501, 2000, true, false);
+        System.out.println(applianceWithParameters + "\n");
+
+        //В остальные классы не стала дописывать аналогичные методы, решила что это излишне =)
+        Fridge[] fridgesWithParameters = Fridge.findFridgesWithSetOfParameters(false, "", false, "", false, "",
                 false, 0, 0, false, 0, 0, false, false, "left");
         Fridge.printArray(fridgesWithParameters);
-        Fridge fridgeWithParameters = fridgesWithParameters[0];
-        System.out.println("\n" + fridgeWithParameters);
+        if (fridgesWithParameters != null) {
+            Fridge fridgeWithParameters = fridgesWithParameters[0];
+            System.out.println("\n" + fridgeWithParameters + "\n");
+        } else {
+            System.out.println("No fridges found with these parameters!");
+        }
 
-        Kettle[] kettlesWithParameter = kettleLornay.findKettlesWithSetOfParameters(false, "", false, "", false, "",
+        Kettle[] kettlesWithParameter = Kettle.findKettlesWithSetOfParameters(false, "", false, "", false, "",
                 false, 0, 0, false, 0, 0, false, false, 1300, 2000);
         Kettle.printArray(kettlesWithParameter);
 

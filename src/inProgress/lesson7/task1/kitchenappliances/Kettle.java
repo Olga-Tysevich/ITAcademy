@@ -43,7 +43,7 @@ public class Kettle extends KitchenAppliances {
         }
     }
 
-    public Kettle[] findKettlesWithSetOfParameters(boolean findByLocation, String location, boolean findByType, String type, boolean findByBrand,
+    public static Kettle[] findKettlesWithSetOfParameters(boolean findByLocation, String location, boolean findByType, String type, boolean findByBrand,
                                                    String brand, boolean findByAmperage, double minAmperage, double maxAmperage, boolean findByPower,
                                                    double minPower, double maxPower, boolean findByState, boolean isOn, double minWaterVolume, double maxWaterVolume) {
 
@@ -83,6 +83,7 @@ public class Kettle extends KitchenAppliances {
                 return outputKettlesArray;
             }
         }
+        System.out.println("No kettles with such parameters were found!");
         return null;
     }
 
@@ -101,11 +102,13 @@ public class Kettle extends KitchenAppliances {
 
     public static void printArray(Kettle[] kettlesArray) {
         if (kettlesArray != null) {
+            System.out.println("Array of kettles: {");
             for (Kettle kettle : kettlesArray) {
                 System.out.println(kettle.toString());
             }
+            System.out.println("};\n");
         } else {
-            System.out.println("Appliances not found");
+            System.out.println("Array of Kettles is null!");
         }
     }
 

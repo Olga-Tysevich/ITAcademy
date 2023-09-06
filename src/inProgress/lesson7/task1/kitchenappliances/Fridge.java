@@ -29,7 +29,7 @@ public class Fridge extends KitchenAppliances {
         }
     }
 
-    public Fridge[] findFridgesWithSetOfParameters(boolean findByLocation, String location, boolean findByType, String type, boolean findByBrand,
+    public static Fridge[] findFridgesWithSetOfParameters(boolean findByLocation, String location, boolean findByType, String type, boolean findByBrand,
                                                    String brand, boolean findByAmperage, double minAmperage, double maxAmperage, boolean findByPower,
                                                    double minPower, double maxPower, boolean findByState, boolean isOn, String doorOpeningDirection) {
 
@@ -68,6 +68,7 @@ public class Fridge extends KitchenAppliances {
                 return outputFridgesArray;
             }
         }
+        System.out.println("No fridges found with these parameters!");
         return null;
     }
 
@@ -90,7 +91,7 @@ public class Fridge extends KitchenAppliances {
             }
             System.out.println("}");
         } else {
-            System.out.println("Appliances not found");
+            System.out.println("Array of Fridges is null");
         }
     }
 

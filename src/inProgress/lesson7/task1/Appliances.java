@@ -121,6 +121,21 @@ public abstract class Appliances {
         arrayOfAppliances[secondIndexOfElementToReplace] = temp;
     }
 
+    public static Appliances findApplianceWithSetOfParameters(boolean findByLocation, String location, boolean findByType, String type, boolean findByBrand,
+                                                              String brand, boolean findByAmperage, double minAmperage, double maxAmperage, boolean findByPower,
+                                                              double minPower, double maxPower, boolean findByState, boolean isOn) {
+        Appliances[] appliancesTempArray = findAppliancesWithSetOfParameters(findByLocation, location, findByType, type, findByBrand, brand, findByAmperage,
+                minAmperage, maxAmperage, findByPower, minPower, maxPower, findByState, isOn);
+        if (appliancesTempArray != null && appliancesTempArray.length == 1) {
+            return appliancesTempArray[0];
+        } else if (appliancesTempArray != null && appliancesTempArray.length > 1) {
+            System.out.println("More than one item found! Use the search for arrays!");
+            return null;
+        } else {
+            return null;
+        }
+    }
+
     public static Appliances[] findAppliancesWithSetOfParameters(boolean findByLocation, String location, boolean findByType, String type, boolean findByBrand,
                                                                  String brand, boolean findByAmperage, double minAmperage, double maxAmperage, boolean findByPower,
                                                                  double minPower, double maxPower, boolean findByState, boolean isOn) {
@@ -152,6 +167,7 @@ public abstract class Appliances {
         if (outputArrayOfAppliances.length != 0) {
             return outputArrayOfAppliances;
         } else {
+            System.out.println("No appliances with such parameters were found!");
             return null;
         }
     }
@@ -221,12 +237,12 @@ public abstract class Appliances {
             }
             System.out.println("};\n");
         } else {
-            System.out.println("Appliances not found");
+            System.out.println("Array of Appliances is null!");
         }
     }
 
-    public void changeState(boolean isOn) {
-        this.isOn = isOn;
+    public void changeState() {
+        this.isOn = !this.isOn;
         if (isOn) {
             calculatePower();
         }
@@ -268,7 +284,7 @@ public abstract class Appliances {
         return numberOfAppliances;
     }
 
-    public static Appliances[] addApplianceToArrayOfAppliances() {
+    public static Appliances[] getArrayOfAppliances() {
         return arrayOfAppliances;
     }
 
