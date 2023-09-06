@@ -125,7 +125,7 @@ public abstract class Appliances {
         if (appliancesTempArray != null && appliancesTempArray.length == 1) {
             return appliancesTempArray[0];
         } else if (appliancesTempArray != null && appliancesTempArray.length > 1) {
-            System.out.println("More than one item found! Use the search for arrays!");
+            System.out.println("More than one item found! Use search for arrays!");
             return null;
         } else {
             return null;

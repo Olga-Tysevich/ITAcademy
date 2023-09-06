@@ -95,11 +95,10 @@ public class AppliancesDemo {
         Appliances[] appliancesWithParameters = findAppliancesWithSetOfParameters(true, "Kitchen", false, "", false, "",
                 true, 0, 2, false, 0, 0, false, false);
         printArrayOfAppliances(appliancesWithParameters);
-        System.out.println();
 
         Appliances applianceWithParameters = findApplianceWithSetOfParameters(false, "", true, "Fridge",
-                false, "",true, 1.3, 1.3,
-                false, 501, 2000, true, false);
+                false, "",true, 1.3, 1.5,
+                false, 0, 0, false, true);
         System.out.println(applianceWithParameters + "\n");
 
         //В остальные классы не стала дописывать аналогичные методы, решила что это излишне =)
