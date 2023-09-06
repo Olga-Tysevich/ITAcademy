@@ -68,11 +68,17 @@ public class AppliancesDemo {
         kitchenTV.enableChannel(8);
         System.out.println();
 
-        VacuumCleaner vacuumCleaner = new VacuumCleaner("Hallway", "LG", 1.5, 6.5, true);
+        VacuumCleaner vacuumCleaner = new VacuumCleaner("Hallway", "LG", 1.5, 6.5, false);
 
+        System.out.println(vacuumCleaner);
         vacuumCleaner.changeLocation("Living room");
-        vacuumCleaner.vacuumTheRoom("Living room", 12);
-        System.out.println();
+        vacuumCleaner.changeState(true);
+        double perimeterOfLivingRoomForClean = 12;
+        perimeterOfLivingRoomForClean = vacuumCleaner.cleanTheRoom("Living room", 12);
+        vacuumCleaner.cleanContainer();
+        perimeterOfLivingRoomForClean = vacuumCleaner.cleanTheRoom("Living room", perimeterOfLivingRoomForClean);
+
+        System.out.println(vacuumCleaner + "\n");
 
         printNumberOfAppliances();
         System.out.println();

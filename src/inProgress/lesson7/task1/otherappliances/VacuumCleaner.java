@@ -5,60 +5,58 @@ import inProgress.lesson7.task1.Appliances;
 public class VacuumCleaner extends Appliances {
     private final double dustContainerVolume;
     private boolean isContainerEmpty = true;
-    private boolean isCleaningFinished = false;
+    private boolean cleaningCompleted = false;
 
     public VacuumCleaner(String location, String brand, double amperage, double dustContainerVolume) {
-        super(location,"Vacuum cleaner", brand, amperage, true);
+        super(location, "Vacuum cleaner", brand, amperage, true);
         this.dustContainerVolume = dustContainerVolume;
-        changeLocation(location);
     }
 
     public VacuumCleaner(String location, String brand, double amperage, double dustContainerVolume, boolean isOn) {
-        super(location,"Vacuum cleaner", brand, amperage, true, isOn);
+        super(location, "Vacuum cleaner", brand, amperage, true, isOn);
         this.dustContainerVolume = dustContainerVolume;
-        changeLocation(location);
     }
 
-    public void printState() {
-        if (getState()) {
-            System.out.println("Vacuum cleaner off");
-        } else {
-            System.out.println("Vacuum cleaner on");
-        }
-    }
-
-//    @Override
-//    public void printDescription() {
-//        super.printDescription();
-//        System.out.println("Dust container volume: " + dustContainerVolume);
-//        if (!isCleaningFinished) {
-//            System.out.println("Vacuum cleaner didn't work");
-//        } else {
-//            System.out.println("Cleaning finished");
-//        }
-//        if (!isContainerEmpty) {
-//            System.out.println("It's time to clean the container!");
-//        }
-//    }
-
-    public void vacuumTheRoom(String roomName, double roomPerimeter) {
-        if (getState() && isContainerEmpty) {
-            for (double i = 0, j = 0; i < dustContainerVolume && j <= roomPerimeter; i += 0.1, j += 5) {
-                System.out.println("Cleaning in progress...");
-                if (!isContainerEmpty) {
-                    System.out.println("It's time to clean the container!");
+    public double cleanTheRoom(String roomName, double perimeterForCleaning) {
+        double j = 0;
+        if (getState() && isContainerEmpty && perimeterForCleaning > 0) {
+            for (int i = 0; i < dustContainerVolume && j <= perimeterForCleaning; i++, j += 5) {
+                System.out.println(roomName + " cleaning in progress...");
+                if (i >= dustContainerVolume) {
+                    System.out.println("It's time to clean the container! " + (perimeterForCleaning - j) + " meters left to clear!");
                     isContainerEmpty = false;
-                    break;
+                    return perimeterForCleaning - j;
                 }
             }
-            System.out.println("Cleaning finished!");
-            isCleaningFinished = true;
-        } else {
+        } else if(getState() && !isContainerEmpty) {
             System.out.println("It's time to clean the container!");
+            return perimeterForCleaning;
+        } else if (perimeterForCleaning <= 0){
+            System.out.println("Nothing to clean up!");
+            return perimeterForCleaning;
+        } else  if (!getState()){
+            System.out.println("Vacuum cleaner not plugged in!");
+            return perimeterForCleaning;
         }
+        System.out.println(roomName + " cleaning finished!");
+        cleaningCompleted = true;
+        return 0;
+    }
+
+    public String toString() {
+        String isCleaningFinished = this.cleaningCompleted ? ", cleaning finished" : ", vacuum cleaner didn't work";
+        String isContainerEmpty = this.isContainerEmpty ? "" : ", it's time to clean the container!";
+        String state = getState() ? ", vacuum cleaner on" : ", vacuum cleaner off";
+        return super.toString() +
+                ", dust container volume: " + dustContainerVolume +
+                state +
+                isCleaningFinished +
+                isContainerEmpty +
+                "}";
     }
 
     public void cleanContainer() {
+        System.out.println("Dust container cleaned!");
         isContainerEmpty = true;
     }
 
@@ -70,7 +68,8 @@ public class VacuumCleaner extends Appliances {
         return isContainerEmpty;
     }
 
-    public boolean isCleaningFinished() {
-        return isCleaningFinished;
+    public boolean isCleaningCompleted() {
+        return cleaningCompleted;
     }
+
 }
