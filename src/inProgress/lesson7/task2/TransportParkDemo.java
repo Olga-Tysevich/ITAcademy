@@ -83,5 +83,11 @@ public class TransportParkDemo {
 
         parkNumberOne.sortVehiclesForConsumption(0, parkNumberOne.getVehicleParkSize()-1);
         System.out.println(parkNumberOne);
+
+        Vehicle[] vehicleWithParameters = parkNumberOne.findVehicleWithParameters(false, "", false,"",
+                false, 0, false,0,0,false,0,0,
+                false, "");
+
+        Vehicle.printArrayOfVehicle(vehicleWithParameters);
     }
 }

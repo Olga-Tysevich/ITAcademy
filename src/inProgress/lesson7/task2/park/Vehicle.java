@@ -61,6 +61,18 @@ public abstract class Vehicle {
                 routName;
     }
 
+    public static void printArrayOfVehicle(Vehicle[] arrayOfVehicles) {
+        if (arrayOfVehicles != null) {
+            System.out.print("Array of vehicle: {");
+            for (Vehicle currentVehicle: arrayOfVehicles) {
+                System.out.print(currentVehicle);
+            }
+            System.out.println("\n}");
+        } else {
+            System.out.println("Array of Vehicles is null!");
+        }
+    }
+
     public String getTransportParkName() {
         return transportParkName;
     }

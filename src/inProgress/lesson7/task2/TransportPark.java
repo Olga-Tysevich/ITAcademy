@@ -154,7 +154,7 @@ public class TransportPark {
 
         for (int i = leftIndex; i <= rightIndex; i++) {
             if (carPark[i] instanceof Bus) {
-                if(maxFuelConsumption < ((Bus) carPark[i]).getFuelConsumption()) {
+                if (maxFuelConsumption < ((Bus) carPark[i]).getFuelConsumption()) {
                     positionVehicleWithMaxFuelConsumption = i;
                     maxFuelConsumption = ((Bus) carPark[i]).getFuelConsumption();
                 }
@@ -166,6 +166,54 @@ public class TransportPark {
         carPark[rightIndex] = vehicleTemp;
 
         sortVehiclesForConsumption(leftIndex, rightIndex - 1);
+    }
+
+    public Vehicle[] findVehicleWithParameters(boolean findByVehicleType, String vehicleType, boolean findByVehicleModel, String model, boolean findByNumberOfVehicle,
+                                               int numberOfVehicle, boolean findByVehiclePrice, double minVehiclePrice, double maxVehiclePrice,
+                                               boolean findByVehicleCapacity, int minCapacity, int maxCapacity, boolean findByRouteServedName, String routeServedName) {
+
+        int numberOfElementsInOutputArray = 0;
+
+        for (Vehicle currentVehicle : carPark) {
+            boolean checkByParameters = checkByParameters(currentVehicle, findByVehicleType, vehicleType, findByVehicleModel, model, findByNumberOfVehicle, numberOfVehicle,
+                    findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity, findByRouteServedName, routeServedName);
+            if (checkByParameters) {
+                numberOfElementsInOutputArray++;
+            }
+        }
+
+        Vehicle[] outputVehicleArray = new Vehicle[numberOfElementsInOutputArray];
+        int currentPositionInOutputVehicleArray = 0;
+
+        while (currentPositionInOutputVehicleArray < outputVehicleArray.length) {
+            for (Vehicle currentVehicle : carPark) {
+                boolean checkByParameters = checkByParameters(currentVehicle, findByVehicleType, vehicleType, findByVehicleModel, model, findByNumberOfVehicle, numberOfVehicle,
+                        findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity, findByRouteServedName, routeServedName);
+                if (checkByParameters) {
+                    outputVehicleArray[currentPositionInOutputVehicleArray] = currentVehicle;
+                    currentPositionInOutputVehicleArray++;
+                }
+            }
+        }
+        if (outputVehicleArray.length != 0) {
+            return outputVehicleArray;
+        } else {
+            System.out.println("No vehicle with such parameters were found!");
+            return null;
+        }
+    }
+
+    private static boolean checkByParameters(Vehicle currentVehicle, boolean findByVehicleType, String vehicleType, boolean findByVehicleModel, String model, boolean findByNumberOfVehicle,
+                                             int numberOfVehicle, boolean findByVehiclePrice, double minVehiclePrice, double maxVehiclePrice,
+                                             boolean findByVehicleCapacity, int minCapacity, int maxCapacity, boolean findByRouteServedName, String routeServedName) {
+
+        boolean checkByType = !findByVehicleType || currentVehicle.getVehicleType().equals(vehicleType);
+        boolean checkByModel = !findByVehicleModel || currentVehicle.getModel().equals(model);
+        boolean checkByNumberOfVehicle = !findByNumberOfVehicle || currentVehicle.getNumberOfVehicle() == numberOfVehicle;
+        boolean checkByVehiclePrice = !findByVehiclePrice || currentVehicle.getVehiclePrice() >= minVehiclePrice && currentVehicle.getVehiclePrice() <= maxVehiclePrice;
+        boolean checkByVehicleCapacity = !findByVehicleCapacity || currentVehicle.getCapacity() >= minCapacity && currentVehicle.getCapacity() <= maxCapacity;
+        boolean checkByRouteServedName = !findByRouteServedName || currentVehicle.getRouteServedName().equals(routeServedName);
+        return checkByType && checkByModel && checkByNumberOfVehicle && checkByVehiclePrice && checkByVehicleCapacity && checkByRouteServedName;
     }
 
     @Override
