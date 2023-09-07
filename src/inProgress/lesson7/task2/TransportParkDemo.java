@@ -8,7 +8,7 @@ public class TransportParkDemo {
         TransportPark parkNumberOne = new TransportPark("Transport Park No. 1", "B1", "B2", "B3", "TB1", "TB2", "TB3", "RT1", "RT2", "RT3");
 //        System.out.println(parkNumberOne);
 
-        TransportPark parkNumberTwo = new TransportPark("Transport Park No. 2", "B4", "B5", "B6", "TB4", "TB5", "TB6", "RT4", "RT5");
+        TransportPark parkNumberTwo = new TransportPark("Transport Park No. 2", "B4", "B5", "TB4", "TB5", "RT4");
 //        System.out.println(parkNumberTwo);
 
         Bus busLiaz = new Bus(parkNumberOne, "Bus","LIAZ-5292",2315,70000, 6.65, 50, 290);
@@ -27,11 +27,8 @@ public class TransportParkDemo {
                 205);
         Trolleybus trolleybusAKSM32102 = new Trolleybus(parkNumberOne, "Trolleybus", "AKSM-32102", 4563, 47500, 60,
                 170);
-        Trolleybus trolleybusAKSM32104 = new Trolleybus(parkNumberOne, "Trolleybus", "AKSM-32104", 4564, 5500, 65,
+        Trolleybus trolleybusAKSM32104 = new Trolleybus(parkNumberOne, "Trolleybus", "AKSM-32104", 4564, 55000, 65,
                 185);
-
-
-//        parkNumberOne.handOverVehicle(busSkoda, parkNumberTwo);
 
         parkNumberOne.setRouteForVehicle(busLiaz, "B1");
         parkNumberOne.setRouteForVehicle(busMan, "B2");
@@ -48,11 +45,25 @@ public class TransportParkDemo {
         parkNumberOne.handOverVehicle(busKarosa, parkNumberTwo);
         System.out.println(parkNumberOne);
 
-
         parkNumberTwo.setRouteForVehicle(busKarosa,"B4");
         System.out.println(parkNumberTwo);
 
-        parkNumberTwo.changeNumberOfRoutesServed(9, "RT6");
+        parkNumberTwo.addRouteServed("RT5");
+        System.out.println(parkNumberTwo);
+
+        Bus busIkarus = new Bus(parkNumberTwo, "Bus","Ikarus-55", 2536, 45600,7.25, 57, 275);
+        Bus busLAZ = new Bus(parkNumberTwo, "Bus","LAZ-697N", 2746, 52000,8.25, 63, 295);
+
+        Bus routTaxiCitroen = new Bus(parkNumberTwo,"Route bus", "CITROEN JUMPER", 3695, 29500,8.5,
+                15, 80);
+        Bus routTaxiPeugeot = new Bus(parkNumberTwo,"Route bus", "Peugeot Boxer", 3247, 24500,6.75,
+                12, 55);
+
+        Trolleybus trolleybusAEC = new Trolleybus(parkNumberOne, "Trolleybus", "AEC 602", 4794, 65700, 72,
+                168);
+        Trolleybus trolleybusAMZ = new Trolleybus(parkNumberOne, "Trolleybus", "AMZ City Smile 12T", 6344, 69800, 87,
+                253);
+
         System.out.println(parkNumberTwo);
 
     }

@@ -95,12 +95,11 @@ public class TransportPark {
                 "}\n";
     }
 
-    public void changeNumberOfRoutesServed(int numberOfRoutesServed, String routeName) {
-        String[] updatedArrayOfRoutesServedNames = new String[numberOfRoutesServed];
-        System.arraycopy(arrayOfRoutesServedNames, 0, updatedArrayOfRoutesServedNames, 0 , arrayOfRoutesServedNames.length);
+    public void addRouteServed(String routeName) {
+        String[] updatedArrayOfRoutesServedNames = new String[++numberOfRoutesServed];
+        System.arraycopy(arrayOfRoutesServedNames, 0, updatedArrayOfRoutesServedNames, 0, arrayOfRoutesServedNames.length);
         arrayOfRoutesServedNames = updatedArrayOfRoutesServedNames;
-        arrayOfRoutesServedNames[this.numberOfRoutesServed] = routeName;
-        this.numberOfRoutesServed = numberOfRoutesServed;
+        arrayOfRoutesServedNames[numberOfRoutesServed-1] = routeName;
     }
 
     public int getVehicleParkSize() {
