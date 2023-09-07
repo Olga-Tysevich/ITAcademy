@@ -43,28 +43,46 @@ public class TransportPark {
 
     }
 
+    public void setRouteForVehicle(Vehicle vehicle, String routName) {
+        boolean isRouteServiced = false;
+        for (String currentRoutName : arrayOfRoutesServedNames) {
+            if (currentRoutName.equals(routName)) {
+                vehicle.setRoutesServedName(this, routName);
+                isRouteServiced = true;
+                break;
+            }
+        }
+        if (!isRouteServiced) {
+            System.out.println("You do not serve this route!");
+        }
+    }
+
     public void handOverVehicle(Vehicle vehicle, TransportPark transportPark) {
         int id = vehicle.getVehicleIdInPark();
         int positionOfVehicleInCurrentCarPark = 0;
         int numberOfVehiclesInNewTransportPark = transportPark.getVehicleParkSize();
         String newTransportParkName = transportPark.getTransportParkName();
 
-        for (Vehicle currentVehicle : carPark) {
-            if (vehicle.getVehicleIdInPark() == currentVehicle.getVehicleIdInPark()) {
-                vehicle.setTransportParkAndVehicleIdInPark(this, newTransportParkName, numberOfVehiclesInNewTransportPark);
-                transportPark.addVehicle(vehicle);
-                break;
+        if (vehicle.getTransportParkName().equals(this.transportParkName)) {
+            for (Vehicle currentVehicle : carPark) {
+                if (vehicle.getVehicleIdInPark() == currentVehicle.getVehicleIdInPark()) {
+                    vehicle.setTransportParkAndVehicleIdInPark(this, newTransportParkName, numberOfVehiclesInNewTransportPark);
+                    transportPark.addVehicle(vehicle);
+                    break;
+                }
+                positionOfVehicleInCurrentCarPark++;
             }
-            positionOfVehicleInCurrentCarPark++;
+
+            Vehicle[] updatedCarPark = new Vehicle[carPark.length - 1];
+
+            System.arraycopy(carPark, 0, updatedCarPark, 0, positionOfVehicleInCurrentCarPark);
+            System.arraycopy(carPark, positionOfVehicleInCurrentCarPark + 1, updatedCarPark, positionOfVehicleInCurrentCarPark,
+                    carPark.length - positionOfVehicleInCurrentCarPark - 1);
+
+            carPark = updatedCarPark;
+        } else {
+            System.out.println("You can not transfer someone else's vehicle!");
         }
-
-        Vehicle[] updatedCarPark = new Vehicle[carPark.length - 1];
-
-        System.arraycopy(carPark, 0, updatedCarPark, 0, positionOfVehicleInCurrentCarPark);
-        System.arraycopy(carPark, positionOfVehicleInCurrentCarPark + 1, updatedCarPark, positionOfVehicleInCurrentCarPark,
-                carPark.length - positionOfVehicleInCurrentCarPark - 1);
-
-        carPark = updatedCarPark;
 
     }
 
@@ -77,16 +95,20 @@ public class TransportPark {
                 "}\n";
     }
 
+    public void changeNumberOfRoutesServed(int numberOfRoutesServed, String routeName) {
+        String[] updatedArrayOfRoutesServedNames = new String[numberOfRoutesServed];
+        System.arraycopy(arrayOfRoutesServedNames, 0, updatedArrayOfRoutesServedNames, 0 , arrayOfRoutesServedNames.length);
+        arrayOfRoutesServedNames = updatedArrayOfRoutesServedNames;
+        arrayOfRoutesServedNames[this.numberOfRoutesServed] = routeName;
+        this.numberOfRoutesServed = numberOfRoutesServed;
+    }
+
     public int getVehicleParkSize() {
         return vehicleParkSize;
     }
 
     public Vehicle[] getCarPark() {
         return carPark;
-    }
-
-    public void changeNumberOfRoutesServed(int numberOfRoutesServed) {
-        this.numberOfRoutesServed = numberOfRoutesServed;
     }
 
     public String getTransportParkName() {

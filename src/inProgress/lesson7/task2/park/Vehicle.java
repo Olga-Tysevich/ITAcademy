@@ -7,18 +7,16 @@ public abstract class Vehicle {
     private final String model;
     private int numberOfVehicle;
     private double vehiclePrice;
-    private final double fuelConsumption;
     private final int capacity;
     private String transportParkName;
     private int vehicleIdInPark;
-    private String routesServedName;
+    private String routeServedName;
 
-    public Vehicle(TransportPark transportPark, String vehicleType, String model, int numberOfVehicle, double vehiclePrice, double fuelConsumption, int capacity) {
+    public Vehicle(TransportPark transportPark, String vehicleType, String model, int numberOfVehicle, double vehiclePrice, int capacity) {
         this.vehicleType = vehicleType;
         this.model = model;
         this.numberOfVehicle = numberOfVehicle;
         this.vehiclePrice = vehiclePrice;
-        this.fuelConsumption = fuelConsumption;
         this.capacity = capacity;
         transportPark.addVehicle(this);
         transportParkName = transportPark.getTransportParkName();
@@ -27,13 +25,14 @@ public abstract class Vehicle {
 
     @Override
     public String toString() {
+        String routName = routeServedName == null ? ", route not assigned" : ", route name: " + routeServedName;
         return "\nVehicle type = '" + vehicleType + '\'' +
                 ", model= " + model + '\'' +
                 ", number of vehicle = " + numberOfVehicle +
                 ", vehicle price = " + vehiclePrice +
-                ", fuel consumption = " + fuelConsumption +
                 ", capacity = " + capacity +
-                ", vehicle id = " + vehicleIdInPark;
+                ", vehicle id = " + vehicleIdInPark +
+                routName;
     }
 
     public void changeVehiclePrice(double vehiclePrice) {
@@ -44,6 +43,14 @@ public abstract class Vehicle {
         this.numberOfVehicle = numberOfVehicle;
     }
 
+    public void setRoutesServedName(TransportPark currentTransportPark, String routesServedName) {
+        if (currentTransportPark.getTransportParkName().equals(this.transportParkName)) {
+            this.routeServedName = routesServedName;
+        } else {
+            System.out.println("You can not set a route for someone else's vehicle!");
+        }
+    }
+
     public void setTransportParkAndVehicleIdInPark(TransportPark currentTransportPark, String newTransportParkName, int vehicleIdInNewPark) {
         if (currentTransportPark.getTransportParkName().equals(this.transportParkName)) {
             this.transportParkName = newTransportParkName;
@@ -51,6 +58,10 @@ public abstract class Vehicle {
         } else {
             System.out.println("You can not transfer someone else's vehicle!");
         }
+    }
+
+    public String getTransportParkName() {
+        return transportParkName;
     }
 
     public int getVehicleIdInPark() {
@@ -67,10 +78,6 @@ public abstract class Vehicle {
 
     public double getVehiclePrice() {
         return vehiclePrice;
-    }
-
-    public double getFuelConsumption() {
-        return fuelConsumption;
     }
 
     public int getCapacity() {
