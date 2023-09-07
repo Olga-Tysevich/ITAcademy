@@ -23,18 +23,6 @@ public abstract class Vehicle {
         vehicleIdInPark = transportPark.getVehicleParkSize();
     }
 
-    @Override
-    public String toString() {
-        String routName = routeServedName == null ? ", route not assigned" : ", route name: " + routeServedName;
-        return "\nVehicle type = '" + vehicleType + '\'' +
-                ", model= " + model + '\'' +
-                ", number of vehicle = " + numberOfVehicle +
-                ", vehicle price = " + vehiclePrice +
-                ", capacity = " + capacity +
-                ", vehicle id = " + vehicleIdInPark +
-                routName;
-    }
-
     public void changeVehiclePrice(double vehiclePrice) {
         this.vehiclePrice = vehiclePrice;
     }
@@ -60,6 +48,18 @@ public abstract class Vehicle {
         }
     }
 
+    @Override
+    public String toString() {
+        String routName = routeServedName == null ? ", route not assigned" : ", route name: " + routeServedName;
+        return "\nVehicle id = '" + vehicleIdInPark + '\'' +
+                ", vehicle type =  " + vehicleType +
+                ", model= " + model + '\'' +
+                ", number of vehicle = " + numberOfVehicle +
+                ", vehicle price = " + vehiclePrice +
+                ", capacity = " + capacity +
+                routName;
+    }
+
     public String getTransportParkName() {
         return transportParkName;
     }
@@ -82,5 +82,13 @@ public abstract class Vehicle {
 
     public int getCapacity() {
         return capacity;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public String getRouteServedName() {
+        return routeServedName;
     }
 }

@@ -2,6 +2,7 @@ package inProgress.lesson7.task2;
 
 import inProgress.lesson7.task2.park.Bus;
 import inProgress.lesson7.task2.park.Trolleybus;
+import inProgress.lesson7.task2.park.Vehicle;
 
 public class TransportParkDemo {
     public static void main(String[] args) {
@@ -74,5 +75,10 @@ public class TransportParkDemo {
 
         System.out.println(parkNumberTwo);
 
+        parkNumberOne.sendToRoute(busLiaz);
+
+        TransportPark.printCarParkList();
+
+        parkNumberOne.printArrayOfTransferredVehicle();
     }
 }
