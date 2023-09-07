@@ -22,4 +22,8 @@ public class Bus extends Vehicle {
     public double getFuelTankCapacity() {
         return fuelTankCapacity;
     }
+
+    public double getFuelConsumption() {
+        return fuelConsumption;
+    }
 }

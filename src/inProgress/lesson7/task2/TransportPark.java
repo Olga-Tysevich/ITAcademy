@@ -1,5 +1,7 @@
 package inProgress.lesson7.task2;
 
+import inProgress.lesson7.task1.Appliances;
+import inProgress.lesson7.task2.park.Bus;
 import inProgress.lesson7.task2.park.Vehicle;
 
 import java.text.NumberFormat;
@@ -60,7 +62,6 @@ public class TransportPark {
 
         arrayOfVehicle[currentPositionInArrayOfVehicle] = vehicle;
         this.carPark = arrayOfVehicle;
-        costOfCarPark += vehicle.getVehiclePrice();
     }
 
 
@@ -136,15 +137,35 @@ public class TransportPark {
         System.out.println("Route number: " + vehicle.getRouteServedName() + " completed!");
     }
 
-    public static void printCarParkList() {
-        NumberFormat numberFormat = NumberFormat.getInstance();
-
-        System.out.println("\nList of transport parks: {");
-        for (TransportPark transportPark : arrayOfTransportParks) {
-            System.out.println("Transport park name: " + transportPark.getTransportParkName() + ", total number of served routes: " + transportPark.getNumberOfRoutesServed() +
-                    ", total number of vehicles: " + transportPark.getVehicleParkSize() + ", cost of car park: " + numberFormat.format(transportPark.costOfCarPark));
+    public double calculateCostOfCarPark() {
+        costOfCarPark = 0;
+        for (Vehicle currentVehicle : carPark) {
+            costOfCarPark += currentVehicle.getVehiclePrice();
         }
-        System.out.println("}\n");
+        return costOfCarPark;
+    }
+
+    public void sortVehiclesForConsumption(int leftIndex, int rightIndex) {
+        if (rightIndex < 0) {
+            return;
+        }
+        double maxFuelConsumption = 0;
+        int positionVehicleWithMaxFuelConsumption = 0;
+
+        for (int i = leftIndex; i <= rightIndex; i++) {
+            if (carPark[i] instanceof Bus) {
+                if(maxFuelConsumption < ((Bus) carPark[i]).getFuelConsumption()) {
+                    positionVehicleWithMaxFuelConsumption = i;
+                    maxFuelConsumption = ((Bus) carPark[i]).getFuelConsumption();
+                }
+            }
+        }
+
+        Vehicle vehicleTemp = carPark[positionVehicleWithMaxFuelConsumption];
+        carPark[positionVehicleWithMaxFuelConsumption] = carPark[rightIndex];
+        carPark[rightIndex] = vehicleTemp;
+
+        sortVehiclesForConsumption(leftIndex, rightIndex - 1);
     }
 
     @Override
@@ -156,12 +177,28 @@ public class TransportPark {
                 "}\n";
     }
 
-    public void printArrayOfTransferredVehicle() {
+
+    public static void printCarParkList() {
+        NumberFormat numberFormat = NumberFormat.getInstance();
+
+        System.out.println("\nList of transport parks: {");
+        for (TransportPark transportPark : arrayOfTransportParks) {
+            System.out.println("Transport park name: " + transportPark.getTransportParkName() + ", total number of served routes: " + transportPark.getNumberOfRoutesServed() +
+                    ", total number of vehicles: " + transportPark.getVehicleParkSize() + ", cost of car park: " + numberFormat.format(transportPark.calculateCostOfCarPark()));
+        }
+        System.out.println("}\n");
+    }
+
+    public void printArrayOfTransferredVehicles() {
         if (transferredVehicles.length != 0) {
             for (Vehicle currentVehicle : transferredVehicles) {
-                System.out.print("Details of transferred vehicle:");
-                System.out.print(currentVehicle);
-                System.out.println(", current transport park: " + currentVehicle.getTransportParkName());
+                if (currentVehicle != null) {
+                    System.out.print("Details of transferred vehicle:");
+                    System.out.print(currentVehicle);
+                    System.out.println(", current transport park: " + currentVehicle.getTransportParkName());
+                } else {
+                    System.out.println("There are no vehicles in the array!");
+                }
             }
         } else {
             System.out.println("There are no vehicles in the array!");
@@ -172,10 +209,6 @@ public class TransportPark {
         return vehicleParkSize;
     }
 
-    public Vehicle[] getCarPark() {
-        return carPark;
-    }
-
     public String getTransportParkName() {
         return transportParkName;
     }
@@ -184,27 +217,16 @@ public class TransportPark {
         return numberOfRoutesServed;
     }
 
-    public String[] getArrayOfRoutesServedNames() {
-        return arrayOfRoutesServedNames;
-    }
-
     public double getCostOfCarPark() {
         return costOfCarPark;
-    }
-
-    public Vehicle[] getTransferredVehicles() {
-        return transferredVehicles;
     }
 
     public static int getNumberOfTransportParks() {
         return numberOfTransportParks;
     }
 
-    public static TransportPark[] getArrayOfTransportParks() {
-        return arrayOfTransportParks;
-    }
-
     public static int getNumberOfTransferredVehicles() {
         return numberOfTransferredVehicles;
     }
+
 }

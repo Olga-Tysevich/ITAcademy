@@ -79,6 +79,9 @@ public class TransportParkDemo {
 
         TransportPark.printCarParkList();
 
-        parkNumberOne.printArrayOfTransferredVehicle();
+        parkNumberOne.printArrayOfTransferredVehicles();
+
+        parkNumberOne.sortVehiclesForConsumption(0, parkNumberOne.getVehicleParkSize()-1);
+        System.out.println(parkNumberOne);
     }
 }

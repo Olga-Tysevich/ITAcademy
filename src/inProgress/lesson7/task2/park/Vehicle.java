@@ -48,6 +48,7 @@ public abstract class Vehicle {
         }
     }
 
+
     @Override
     public String toString() {
         String routName = routeServedName == null ? ", route not assigned" : ", route name: " + routeServedName;
