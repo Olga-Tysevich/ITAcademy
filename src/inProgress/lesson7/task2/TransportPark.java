@@ -1,6 +1,5 @@
 package inProgress.lesson7.task2;
 
-import inProgress.lesson7.task1.Appliances;
 import inProgress.lesson7.task2.park.Bus;
 import inProgress.lesson7.task2.park.Vehicle;
 
@@ -168,9 +167,26 @@ public class TransportPark {
         sortVehiclesForConsumption(leftIndex, rightIndex - 1);
     }
 
-    public Vehicle[] findVehicleWithParameters(boolean findByVehicleType, String vehicleType, boolean findByVehicleModel, String model, boolean findByNumberOfVehicle,
-                                               int numberOfVehicle, boolean findByVehiclePrice, double minVehiclePrice, double maxVehiclePrice,
-                                               boolean findByVehicleCapacity, int minCapacity, int maxCapacity, boolean findByRouteServedName, String routeServedName) {
+    public Vehicle findVehicleWithParameters(boolean findByVehicleType, String vehicleType, boolean findByVehicleModel, String model, boolean findByNumberOfVehicle,
+                                             int numberOfVehicle, boolean findByVehiclePrice, double minVehiclePrice, double maxVehiclePrice,
+                                             boolean findByVehicleCapacity, int minCapacity, int maxCapacity, boolean findByRouteServedName, String routeServedName) {
+
+        Vehicle[] arrayOfVehicleTemp = findVehiclesWithParameters(findByVehicleType, vehicleType, findByVehicleModel, model, findByNumberOfVehicle, numberOfVehicle,
+                findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity, findByRouteServedName, routeServedName);
+
+        if (arrayOfVehicleTemp != null && arrayOfVehicleTemp.length == 1) {
+            return arrayOfVehicleTemp[0];
+        } else if (arrayOfVehicleTemp != null && arrayOfVehicleTemp.length > 1) {
+            System.out.println("More than one item found! Use search for arrays!");
+            return null;
+        } else {
+            return null;
+        }
+    }
+
+    public Vehicle[] findVehiclesWithParameters(boolean findByVehicleType, String vehicleType, boolean findByVehicleModel, String model, boolean findByNumberOfVehicle,
+                                                int numberOfVehicle, boolean findByVehiclePrice, double minVehiclePrice, double maxVehiclePrice,
+                                                boolean findByVehicleCapacity, int minCapacity, int maxCapacity, boolean findByRouteServedName, String routeServedName) {
 
         int numberOfElementsInOutputArray = 0;
 
@@ -195,6 +211,57 @@ public class TransportPark {
                 }
             }
         }
+        if (outputVehicleArray.length != 0) {
+            return outputVehicleArray;
+        } else {
+            System.out.println("No vehicle with such parameters were found!");
+            return null;
+        }
+    }
+
+    public static Vehicle[] findVehicleFromAllParks(boolean findByVehicleType, String vehicleType, boolean findByVehicleModel, String model,
+                                                    boolean findByNumberOfVehicle, int numberOfVehicle, boolean findByVehiclePrice, double minVehiclePrice,
+                                                    double maxVehiclePrice, boolean findByVehicleCapacity, int minCapacity, int maxCapacity,
+                                                    boolean findByRouteServedName, String routeServedName) {
+
+        Vehicle[] arrayOfVehicleWithParameters;
+        int counterOfRowInArrayOfVehiclesTwoD = 0;
+        int currentRowInArrayOfVehiclesTwoD = 0;
+        int numberOfElementsInOutputArray = 0;
+        int currentPositionInOutputArray = 0;
+
+        for (TransportPark currentTransportPark : arrayOfTransportParks) {
+            arrayOfVehicleWithParameters = currentTransportPark.findVehiclesWithParameters(findByVehicleType, vehicleType, findByVehicleModel, model, findByNumberOfVehicle, numberOfVehicle,
+                    findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity, findByRouteServedName, routeServedName);
+            if (arrayOfVehicleWithParameters != null) {
+                counterOfRowInArrayOfVehiclesTwoD++;
+            }
+        }
+
+        Vehicle[][] arrayOfVehicleTempTwoD = new Vehicle[counterOfRowInArrayOfVehiclesTwoD][];
+
+        for (TransportPark currentTransportPark : arrayOfTransportParks) {
+            arrayOfVehicleWithParameters = currentTransportPark.findVehiclesWithParameters(findByVehicleType, vehicleType, findByVehicleModel, model, findByNumberOfVehicle, numberOfVehicle,
+                    findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity, findByRouteServedName, routeServedName);
+            if (arrayOfVehicleWithParameters != null) {
+                 arrayOfVehicleTempTwoD[currentRowInArrayOfVehiclesTwoD] = arrayOfVehicleWithParameters;
+                currentRowInArrayOfVehiclesTwoD++;
+            }
+        }
+
+        for (Vehicle[] arrayOfVehicle :  arrayOfVehicleTempTwoD) {
+            numberOfElementsInOutputArray += arrayOfVehicle.length;
+        }
+
+        Vehicle[] outputVehicleArray = new Vehicle[numberOfElementsInOutputArray];
+
+        for (Vehicle[] arrayOfVehicles :  arrayOfVehicleTempTwoD) {
+            for (Vehicle currentVehicle : arrayOfVehicles) {
+                outputVehicleArray[currentPositionInOutputArray] = currentVehicle;
+                currentPositionInOutputArray++;
+            }
+        }
+
         if (outputVehicleArray.length != 0) {
             return outputVehicleArray;
         } else {
@@ -250,6 +317,19 @@ public class TransportPark {
             }
         } else {
             System.out.println("There are no vehicles in the array!");
+        }
+    }
+
+    public static void printArrayOfVehicle(Vehicle[] arrayOfVehicles) {
+        if (arrayOfVehicles != null) {
+            System.out.print("Array of vehicle: {");
+            for (Vehicle currentVehicle: arrayOfVehicles) {
+                System.out.print(currentVehicle);
+                System.out.print(", " + currentVehicle.getTransportParkName() + " ");
+            }
+            System.out.println("\n}");
+        } else {
+            System.out.println("Array of Vehicles is null!");
         }
     }
 

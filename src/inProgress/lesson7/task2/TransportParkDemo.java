@@ -82,12 +82,22 @@ public class TransportParkDemo {
         parkNumberOne.printArrayOfTransferredVehicles();
 
         parkNumberOne.sortVehiclesForConsumption(0, parkNumberOne.getVehicleParkSize()-1);
-        System.out.println(parkNumberOne);
+        System.out.println(parkNumberOne + "\n");
 
-        Vehicle[] vehicleWithParameters = parkNumberOne.findVehicleWithParameters(false, "", false,"",
-                false, 0, false,0,0,false,0,0,
+        Vehicle vehicleWithParameters = parkNumberOne.findVehicleWithParameters(false, "", false,"",
+                false, 0, true,55000,55000,false,0,15,
+                false, "");
+        System.out.println(vehicleWithParameters + "\n");
+
+        Vehicle[] vehiclesWithParameters = parkNumberOne.findVehiclesWithParameters(false, "", false,"",
+                false, 0, false,0,50000,false,0,15,
                 false, "");
 
-        Vehicle.printArrayOfVehicle(vehicleWithParameters);
+        Vehicle.printArrayOfVehicle(vehiclesWithParameters);
+
+        Vehicle[] vehiclesWithParametersByAllParks = TransportPark.findVehicleFromAllParks(true, "Bus", false,"",
+                false, 0, true,0,55000,false,0,15,
+                false, "");
+        TransportPark.printArrayOfVehicle(vehiclesWithParametersByAllParks);
     }
 }
