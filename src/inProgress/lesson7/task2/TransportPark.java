@@ -280,7 +280,7 @@ public class TransportPark {
             int currentPositionInOutputVehicleArray = 0;
 
             while (currentPositionInOutputVehicleArray < outputVehicleArray.length) {
-                for (Vehicle currentVehicle : carPark) {
+                for (Vehicle currentVehicle : arrayOfVehicleTemp) {
                     if (findByFuelConsumption || findByFuelTankCapacity) {
                         matchConditionForBus = checkByBusParameters(currentVehicle, findByFuelConsumption, minFuelConsumption, maxFuelConsumption, findByFuelTankCapacity,
                                 minFuelTankCapacity, maxFuelTankCapacity);
