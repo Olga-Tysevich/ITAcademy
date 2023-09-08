@@ -3,6 +3,7 @@ package inProgress.lesson7.task2;
 import inProgress.lesson7.task2.park.Bus;
 import inProgress.lesson7.task2.park.Trolleybus;
 import inProgress.lesson7.task2.park.Vehicle;
+
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Random;
@@ -185,11 +186,11 @@ public class TransportPark {
                                              double maxPowerOfElectricMotor) {
 
         Vehicle[] arrayOfVehicleTemp;
-        if (findByFuelConsumption || findByPowerOfElectricMotor) {
+        if (findByFuelConsumption || findByFuelTankCapacity || findByPowerOfElectricMotor) {
             arrayOfVehicleTemp = findVehiclesWithParameters(findByVehicleType, vehicleType, findByVehicleModel, model, findByNumberOfVehicle, numberOfVehicle,
-                findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity, findByRouteServedName, routeServedName,
-                findByFuelConsumption, minFuelConsumption, maxFuelConsumption, findByFuelTankCapacity, minFuelTankCapacity, maxFuelTankCapacity,
-                findByPowerOfElectricMotor, minPowerOfElectricMotor, maxPowerOfElectricMotor);
+                    findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity, findByRouteServedName, routeServedName,
+                    findByFuelConsumption, minFuelConsumption, maxFuelConsumption, findByFuelTankCapacity, minFuelTankCapacity, maxFuelTankCapacity,
+                    findByPowerOfElectricMotor, minPowerOfElectricMotor, maxPowerOfElectricMotor);
         } else {
             arrayOfVehicleTemp = findVehiclesWithParameters(findByVehicleType, vehicleType, findByVehicleModel, model, findByNumberOfVehicle, numberOfVehicle,
                     findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity, findByRouteServedName, routeServedName);
@@ -309,7 +310,7 @@ public class TransportPark {
                                                     double maxVehiclePrice, boolean findByVehicleCapacity, int minCapacity, int maxCapacity,
                                                     boolean findByRouteServedName, String routeServedName) {
 
-        return  findVehicleFromAllParks(findByVehicleType, vehicleType, findByVehicleModel, model, findByNumberOfVehicle,
+        return findVehicleFromAllParks(findByVehicleType, vehicleType, findByVehicleModel, model, findByNumberOfVehicle,
                 numberOfVehicle, findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity, findByRouteServedName,
                 routeServedName, false, 0, 0, false, 0, 0,
                 false, 0, 0);
