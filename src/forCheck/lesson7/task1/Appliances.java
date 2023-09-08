@@ -94,17 +94,17 @@ public abstract class Appliances {
         return currentIndexOfElementToReplace;
     }
 
-    private static int getPIndexForForPower(Appliances[] arrayOfAppliances, int lowerBound, int upperBound) {
-        double pivotElement = arrayOfAppliances[upperBound].getPower();
-        int currentIndexOfElementToReplace = lowerBound;
+    private static int getPIndexForForPower(Appliances[] arrayOfAppliances, int leftIndex, int rightIndex) {
+        double pivotElement = arrayOfAppliances[rightIndex].getPower();
+        int currentIndexOfElementToReplace = leftIndex;
 
-        for (int i = lowerBound; i < upperBound; i++) {
+        for (int i = leftIndex; i < rightIndex; i++) {
             if (arrayOfAppliances[i].getPower() <= pivotElement) {
                 swap(arrayOfAppliances, i, currentIndexOfElementToReplace);
                 currentIndexOfElementToReplace++;
             }
         }
-        swap(arrayOfAppliances, upperBound, currentIndexOfElementToReplace);
+        swap(arrayOfAppliances, rightIndex, currentIndexOfElementToReplace);
         return currentIndexOfElementToReplace;
     }
 
