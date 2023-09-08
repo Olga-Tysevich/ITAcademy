@@ -129,10 +129,10 @@ public class TransportPark {
         Random randomNumberOfStops = new Random();
         int numberOfStops = randomNumberOfStops.nextInt(5) + 1;
 
-        System.out.println(vehicle.getVehicleType() + " " + vehicle.getModel() + " start moving to stop number 1");
+        System.out.println(vehicle.getVehicleType() + " " + vehicle.getModel() + " start driving to stop number 1");
 
         for (int i = 1; i <= numberOfStops; i++) {
-            System.out.println(vehicle.getVehicleType() + " " + vehicle.getModel() + " moving to stop number " + i);
+            System.out.println(vehicle.getVehicleType() + " " + vehicle.getModel() + " driving to stop number " + i);
             System.out.println("Current stop number: " + i);
         }
 
@@ -141,16 +141,19 @@ public class TransportPark {
 
     public double calculateCostOfCarPark() {
         costOfVehiclePark = 0;
+
         for (Vehicle currentVehicle : vehiclePark) {
             costOfVehiclePark += currentVehicle.getVehiclePrice();
         }
+
         return costOfVehiclePark;
     }
 
-    public void sortVehiclesForConsumption(int leftIndex, int rightIndex) {
+    public void sortVehiclesForFuelConsumption(int leftIndex, int rightIndex) {
         if (rightIndex < 0) {
             return;
         }
+
         double maxFuelConsumption = 0;
         int positionVehicleWithMaxFuelConsumption = 0;
 
@@ -167,7 +170,7 @@ public class TransportPark {
         vehiclePark[positionVehicleWithMaxFuelConsumption] = vehiclePark[rightIndex];
         vehiclePark[rightIndex] = vehicleTemp;
 
-        sortVehiclesForConsumption(leftIndex, rightIndex - 1);
+        sortVehiclesForFuelConsumption(leftIndex, rightIndex - 1);
     }
 
     public Vehicle findVehicleWithParameters(boolean findByVehicleType, String vehicleType, boolean findByVehicleModel, String model, boolean findByNumberOfVehicle,
@@ -188,6 +191,7 @@ public class TransportPark {
                                              double maxPowerOfElectricMotor) {
 
         Vehicle[] arrayOfVehicleTemp;
+
         if (findByFuelConsumption || findByFuelTankCapacity || findByPowerOfElectricMotor) {
             arrayOfVehicleTemp = findVehiclesWithParameters(findByVehicleType, vehicleType, findByVehicleModel, model, findByNumberOfVehicle, numberOfVehicle,
                     findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity, findByRouteServedName, routeServedName,
@@ -197,7 +201,6 @@ public class TransportPark {
             arrayOfVehicleTemp = findVehiclesWithParameters(findByVehicleType, vehicleType, findByVehicleModel, model, findByNumberOfVehicle, numberOfVehicle,
                     findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity, findByRouteServedName, routeServedName);
         }
-
 
         return checkForSingleElement(arrayOfVehicleTemp);
     }
@@ -241,6 +244,7 @@ public class TransportPark {
                 }
             }
         }
+
         if (outputVehicleArray.length != 0) {
             return outputVehicleArray;
         } else {
@@ -256,14 +260,16 @@ public class TransportPark {
                                                 double minFuelTankCapacity, double maxFuelTankCapacity, boolean findByPowerOfElectricMotor, double minPowerOfElectricMotor,
                                                 double maxPowerOfElectricMotor) {
 
-        int counterOfSuitableVehicle = 0;
+        int counterOfSuitableVehicles = 0;
         boolean matchConditionForBus = false;
         boolean matchConditionForTrolleybus = false;
-        Vehicle[] arrayOfVehicleTemp = findVehiclesWithParameters(findByVehicleType, vehicleType, findByVehicleModel, model, findByNumberOfVehicle, numberOfVehicle,
+
+        Vehicle[] arrayOfVehiclesTemp = findVehiclesWithParameters(findByVehicleType, vehicleType, findByVehicleModel, model, findByNumberOfVehicle, numberOfVehicle,
                 findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity, findByRouteServedName, routeServedName);
 
-        if (arrayOfVehicleTemp != null) {
-            for (Vehicle currentVehicle : arrayOfVehicleTemp) {
+        if (arrayOfVehiclesTemp != null) {
+
+            for (Vehicle currentVehicle : arrayOfVehiclesTemp) {
                 if (findByFuelConsumption || findByFuelTankCapacity) {
                     matchConditionForBus = checkByBusParameters(currentVehicle, findByFuelConsumption, minFuelConsumption, maxFuelConsumption, findByFuelTankCapacity,
                             minFuelTankCapacity, maxFuelTankCapacity);
@@ -272,17 +278,19 @@ public class TransportPark {
                     matchConditionForTrolleybus = checkByTrolleybusParameters(currentVehicle, minPowerOfElectricMotor, maxPowerOfElectricMotor);
                 }
                 if (matchConditionForBus) {
-                    counterOfSuitableVehicle++;
+                    counterOfSuitableVehicles++;
                 }
                 if (matchConditionForTrolleybus) {
-                    counterOfSuitableVehicle++;
+                    counterOfSuitableVehicles++;
                 }
             }
-            Vehicle[] outputVehicleArray = new Vehicle[counterOfSuitableVehicle];
+
+            Vehicle[] outputVehicleArray = new Vehicle[counterOfSuitableVehicles];
             int currentPositionInOutputVehicleArray = 0;
 
             while (currentPositionInOutputVehicleArray < outputVehicleArray.length) {
-                for (Vehicle currentVehicle : arrayOfVehicleTemp) {
+
+                for (Vehicle currentVehicle : arrayOfVehiclesTemp) {
                     if (findByFuelConsumption || findByFuelTankCapacity) {
                         matchConditionForBus = checkByBusParameters(currentVehicle, findByFuelConsumption, minFuelConsumption, maxFuelConsumption, findByFuelTankCapacity,
                                 minFuelTankCapacity, maxFuelTankCapacity);
@@ -295,7 +303,9 @@ public class TransportPark {
                         currentPositionInOutputVehicleArray++;
                     }
                 }
+
             }
+
             if (outputVehicleArray.length != 0) {
                 return outputVehicleArray;
             } else {
@@ -303,7 +313,9 @@ public class TransportPark {
                 return null;
             }
         }
+
         return null;
+
     }
 
     public static Vehicle[] findVehicleFromAllParks(boolean findByVehicleType, String vehicleType, boolean findByVehicleModel, String model,
@@ -333,7 +345,7 @@ public class TransportPark {
         int currentPositionInOutputArray = 0;
 
         for (TransportPark currentTransportPark : arrayOfTransportParks) {
-            if (findByFuelConsumption || findByFuelTankCapacity) {
+            if (findByFuelConsumption || findByFuelTankCapacity || findByPowerOfElectricMotor) {
                 arrayOfVehicleWithParameters = currentTransportPark.findVehiclesWithParameters(findByVehicleType, vehicleType, findByVehicleModel, model,
                         findByNumberOfVehicle, numberOfVehicle, findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity,
                         findByRouteServedName, routeServedName, findByFuelConsumption, minFuelConsumption, maxFuelConsumption, findByFuelTankCapacity, minFuelTankCapacity,
@@ -361,7 +373,7 @@ public class TransportPark {
                             break checkForIgnoredPark;
                         }
                     }
-                    if (findByFuelConsumption || findByFuelTankCapacity) {
+                    if (findByFuelConsumption || findByFuelTankCapacity || findByPowerOfElectricMotor) {
                         arrayOfVehicleWithParameters = currentTransportPark.findVehiclesWithParameters(findByVehicleType, vehicleType, findByVehicleModel, model,
                                 findByNumberOfVehicle, numberOfVehicle, findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity,
                                 findByRouteServedName, routeServedName, findByFuelConsumption, minFuelConsumption, maxFuelConsumption, findByFuelTankCapacity,
