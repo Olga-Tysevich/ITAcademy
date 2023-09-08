@@ -77,7 +77,7 @@ public class TransportPark {
 
         for (String currentRouteName : arrayOfRoutesServedNames) {
             if (currentRouteName.equals(routeName)) {
-                vehicle.setRoutesServedName(this, routeName);
+                vehicle.setServedRouteName(this, routeName);
                 isRouteServiced = true;
                 break;
             }
@@ -504,7 +504,7 @@ public class TransportPark {
 
             for (Vehicle currentVehicle : arrayOfTransferredVehicles) {
                 if (currentVehicle != null) {
-                    System.out.print("Details of transferred vehicle:");
+                    System.out.print(transportParkName + ", details of transferred vehicle:");
                     System.out.print(currentVehicle);
                     System.out.println(", current transport park: " + currentVehicle.getTransportParkName());
                 } else {

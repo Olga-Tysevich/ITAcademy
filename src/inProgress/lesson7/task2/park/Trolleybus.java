@@ -6,7 +6,6 @@ public class Trolleybus extends Vehicle{
     private final double powerOfElectricMotor;
 
     public Trolleybus(TransportPark transportPark, String vehicleType, String model, int numberOfVehicle, double vehiclePrice, int capacity, double powerOfElectricMotor) {
-
         super(transportPark, vehicleType, model, numberOfVehicle, vehiclePrice, capacity);
         this.powerOfElectricMotor = powerOfElectricMotor;
     }

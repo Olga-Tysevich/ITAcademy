@@ -10,7 +10,7 @@ public abstract class Vehicle {
     private final int capacity;
     private String transportParkName;
     private int vehicleIdInPark;
-    private String routeServedName = "";
+    private String routeServedName = "route not assigned";
 
     public Vehicle(TransportPark transportPark, String vehicleType, String model, int numberOfVehicle, double vehiclePrice, int capacity) {
         this.vehicleType = vehicleType;
@@ -23,17 +23,9 @@ public abstract class Vehicle {
         vehicleIdInPark = transportPark.getVehicleParkSize();
     }
 
-    public void changeVehiclePrice(double vehiclePrice) {
-        this.vehiclePrice = vehiclePrice;
-    }
-
-    public void changeNumberOfVehicle(int numberOfVehicle) {
-        this.numberOfVehicle = numberOfVehicle;
-    }
-
-    public void setRoutesServedName(TransportPark currentTransportPark, String routesServedName) {
+    public void setServedRouteName(TransportPark currentTransportPark, String servedRouteName) {
         if (currentTransportPark.getTransportParkName().equals(this.transportParkName)) {
-            this.routeServedName = routesServedName;
+            this.routeServedName = servedRouteName;
         } else {
             System.out.println("You can not set a route for someone else's vehicle!");
         }
@@ -48,10 +40,9 @@ public abstract class Vehicle {
         }
     }
 
-
     @Override
     public String toString() {
-        String routName = routeServedName == null ? ", route not assigned" : ", route name: " + routeServedName;
+        String routName = routeServedName.equals("route not assigned") ? ", route not assigned" : ", route name: " + routeServedName;
         return "\nVehicle id = '" + vehicleIdInPark + '\'' +
                 ", vehicle type =  " + vehicleType +
                 ", model= " + model + '\'' +
@@ -63,14 +54,26 @@ public abstract class Vehicle {
 
     public static void printArrayOfVehicle(Vehicle[] arrayOfVehicles) {
         if (arrayOfVehicles != null) {
+
             System.out.print("Array of vehicle: {");
+
             for (Vehicle currentVehicle : arrayOfVehicles) {
                 System.out.print(currentVehicle);
             }
+
             System.out.println("\n}");
+
         } else {
             System.out.println("Array of Vehicles is null!");
         }
+    }
+
+    public void changeVehiclePrice(double vehiclePrice) {
+        this.vehiclePrice = vehiclePrice;
+    }
+
+    public void changeNumberOfVehicle(int numberOfVehicle) {
+        this.numberOfVehicle = numberOfVehicle;
     }
 
     public String getTransportParkName() {

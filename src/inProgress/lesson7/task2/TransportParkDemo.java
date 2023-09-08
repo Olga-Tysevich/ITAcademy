@@ -82,37 +82,42 @@ public class TransportParkDemo {
         parkNumberOne.printArrayOfTransferredVehicles();
         System.out.println();
 
-        parkNumberOne.sortVehiclesForFuelConsumption(0, parkNumberOne.getVehicleParkSize()-1);
+        System.out.println(parkNumberOne.getTransportParkName() + " vehicle fleet cost " + parkNumberOne.calculateCostOfCarPark() +"\n");
+
+        parkNumberOne.sortVehiclesForFuelConsumption(0, parkNumberOne.getVehicleParkSize() - 1);
         System.out.println(parkNumberOne + "\n");
 
-        Vehicle vehicleWithParameters = parkNumberOne.findVehicleWithParameters(false, "", false,"",
-                false, 0, true,55000,55000,false,0,15,
+        Vehicle vehicleWithParameters = parkNumberOne.findVehicleWithParameters(false, "", false, "",
+                false, 0, true, 55000, 55000, false, 0, 15,
                 false, "", false, 0, 8,
-                false,0,250, true, 185,185);
+                false, 0, 250, true, 185, 185);
 
         System.out.println("Vehicle with options: " + vehicleWithParameters + "\n");
 
-        Vehicle[] vehiclesWithParameters = parkNumberOne.findVehiclesWithParameters(false, "", false,"",
-                false, 0, false,0,50000,false,0,15,
-                false, "");
+        Vehicle[] vehiclesWithParameters = parkNumberTwo.findVehiclesWithParameters(false, "", false, "",
+                false, 0, false, 0, 50000, false, 0, 15,
+                true, "route not assigned");
 
         Vehicle.printArrayOfVehicle(vehiclesWithParameters);
+        System.out.println();
 
-        Vehicle[] vehiclesWithParametersByAllParks = TransportPark.findVehicleFromAllParks(true, "Bus", false,"",
-                false, 0, true,0,55000,false,0,15,
+        Vehicle[] vehiclesWithAllParameters = parkNumberOne.findVehiclesWithParameters(false, "", false, "",
+                false, 0, false, 0, 50000, false, 0, 15,
+                false, "", false, 0, 8,
+                false, 0, 250, true, 0, 185);
+        Vehicle.printArrayOfVehicle(vehiclesWithAllParameters);
+        System.out.println();
+
+        Vehicle[] vehiclesWithParametersByAllParks = TransportPark.findVehicleFromAllParks(true, "Bus", false, "",
+                false, 0, true, 0, 55000, false, 0, 15,
                 false, "");
         TransportPark.printArrayOfVehicle(vehiclesWithParametersByAllParks);
+        System.out.println();
 
-        Vehicle[] vehiclesWithAllParameters = parkNumberOne.findVehiclesWithParameters(false, "", false,"",
-                false, 0, false,0,50000,false,0,15,
+        vehiclesWithParametersByAllParks = TransportPark.findVehicleFromAllParks(false, "Bus", false, "",
+                false, 0, true, 0, 55000, false, 0, 15,
                 false, "", false, 0, 8,
-                false,0,250, true, 0,185);
-        Vehicle.printArrayOfVehicle(vehiclesWithAllParameters);
-
-        Vehicle[] vehiclesWithParametersByAllParks2 = TransportPark.findVehicleFromAllParks(false, "Bus", false,"",
-                false, 0, true,0,55000,false,0,15,
-                false, "", false, 0, 8,
-                false,0,250, true, 0,185);
-        TransportPark.printArrayOfVehicle(vehiclesWithParametersByAllParks2);
+                false, 0, 250, true, 0, 185);
+        TransportPark.printArrayOfVehicle(vehiclesWithParametersByAllParks);
     }
 }
