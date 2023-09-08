@@ -1,8 +1,8 @@
-package inProgress.lesson7.task2;
+package forCheck.lesson7.task2;
 
-import inProgress.lesson7.task2.park.Bus;
-import inProgress.lesson7.task2.park.Trolleybus;
-import inProgress.lesson7.task2.park.Vehicle;
+import forCheck.lesson7.task2.park.Bus;
+import forCheck.lesson7.task2.park.Trolleybus;
+import forCheck.lesson7.task2.park.Vehicle;
 
 public class TransportParkDemo {
     public static void main(String[] args) {

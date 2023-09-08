@@ -1,7 +1,4 @@
-package inProgress.lesson7.task1;
-
-
-import java.util.Arrays;
+package forCheck.lesson7.task1;
 
 public abstract class Appliances {
     private static int numberOfAppliances;

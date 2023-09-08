@@ -1,4 +1,4 @@
-package inProgress.lesson7.task1.bathroomappliances;
+package forCheck.lesson7.task1.bathroomappliances;
 
 public class WaterBoiler extends BathroomAppliances {
     private final int numberOfHeatingMode;
