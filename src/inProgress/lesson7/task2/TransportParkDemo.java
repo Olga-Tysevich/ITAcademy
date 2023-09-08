@@ -77,7 +77,7 @@ public class TransportParkDemo {
 
         parkNumberOne.sendToRoute(busLiaz);
 
-        TransportPark.printCarParkList();
+        TransportPark.printTransportParksList();
 
         parkNumberOne.printArrayOfTransferredVehicles();
         System.out.println();
