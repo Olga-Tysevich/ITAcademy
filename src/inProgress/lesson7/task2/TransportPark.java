@@ -15,72 +15,74 @@ public class TransportPark {
     private int numberOfRoutesServed;
     private String[] arrayOfRoutesServedNames = new String[numberOfRoutesServed];
     private int vehicleParkSize;
-    private Vehicle[] carPark = new Vehicle[vehicleParkSize];
+    private Vehicle[] vehiclePark = new Vehicle[vehicleParkSize];
     private static int numberOfTransferredVehicles;
-    private Vehicle[] transferredVehicles = new Vehicle[numberOfTransferredVehicles];
-    private double costOfCarPark;
+    private Vehicle[] arrayOfTransferredVehicles = new Vehicle[numberOfTransferredVehicles];
+    private double costOfVehiclePark;
 
-    public TransportPark(String transportParkName, String... routesName) {
+    public TransportPark(String transportParkName, String... namesOfRoutesServed) {
         this.transportParkName = transportParkName;
-        for (String routeName : routesName) {
+        for (String routeName : namesOfRoutesServed) {
             addRouteNameToArrayOfRSNames(routeName);
         }
-        addTransportParkToArray(this);
+        addTransportParkToArrayTP(this);
     }
 
-    private static void addTransportParkToArray(TransportPark transportPark) {
+    private static void addTransportParkToArrayTP(TransportPark transportPark) {
         numberOfTransportParks++;
 
-        TransportPark[] updatedTransportPark = new TransportPark[numberOfTransportParks];
+        TransportPark[] arrayOfTransportParks = new TransportPark[numberOfTransportParks];
 
-        int currentInTransportParkArray = numberOfTransportParks == 0 ? 0 : updatedTransportPark.length - 1;
-        System.arraycopy(arrayOfTransportParks, 0, updatedTransportPark, 0, arrayOfTransportParks.length);
+        int currentPositionInTPArray = arrayOfTransportParks.length - 1;
+        System.arraycopy(TransportPark.arrayOfTransportParks, 0, arrayOfTransportParks, 0, TransportPark.arrayOfTransportParks.length);
 
-        updatedTransportPark[currentInTransportParkArray] = transportPark;
-        arrayOfTransportParks = updatedTransportPark;
+        arrayOfTransportParks[currentPositionInTPArray] = transportPark;
+        TransportPark.arrayOfTransportParks = arrayOfTransportParks;
     }
 
     private void addRouteNameToArrayOfRSNames(String routeName) {
         numberOfRoutesServed++;
-        int currentPositionInArrayOfRSName;
+
         String[] arrayOfRoutesServedNames = new String[numberOfRoutesServed];
 
-        currentPositionInArrayOfRSName = numberOfRoutesServed - 1 == 0 ? 0 : arrayOfRoutesServedNames.length - 1;
+        int currentPositionInArrayOfRSName = arrayOfRoutesServedNames.length - 1;
         System.arraycopy(this.arrayOfRoutesServedNames, 0, arrayOfRoutesServedNames, 0, this.arrayOfRoutesServedNames.length);
 
         arrayOfRoutesServedNames[currentPositionInArrayOfRSName] = routeName;
         this.arrayOfRoutesServedNames = arrayOfRoutesServedNames;
     }
 
-    public void addVehicle(Vehicle vehicle) {
+    public void addVehicleToTransportPark(Vehicle vehicle) {
         vehicleParkSize++;
-        int currentPositionInArrayOfVehicle;
+
         Vehicle[] arrayOfVehicle = new Vehicle[vehicleParkSize];
 
-        currentPositionInArrayOfVehicle = vehicleParkSize - 1 == 0 ? 0 : arrayOfVehicle.length - 1;
-        System.arraycopy(this.carPark, 0, arrayOfVehicle, 0, this.carPark.length);
+        int currentPositionInArrayOfVehicle = arrayOfVehicle.length - 1;
+        System.arraycopy(this.vehiclePark, 0, arrayOfVehicle, 0, this.vehiclePark.length);
 
         arrayOfVehicle[currentPositionInArrayOfVehicle] = vehicle;
-        this.carPark = arrayOfVehicle;
+        this.vehiclePark = arrayOfVehicle;
     }
 
+    public void addServedRouteToTransportPark(String routeName) {
+        String[] arrayOfRoutesServedNames = new String[++numberOfRoutesServed];
 
-    public void addRouteServed(String routeName) {
-        String[] updatedArrayOfRoutesServedNames = new String[++numberOfRoutesServed];
-        System.arraycopy(arrayOfRoutesServedNames, 0, updatedArrayOfRoutesServedNames, 0, arrayOfRoutesServedNames.length);
-        arrayOfRoutesServedNames = updatedArrayOfRoutesServedNames;
-        arrayOfRoutesServedNames[numberOfRoutesServed - 1] = routeName;
+        System.arraycopy(this.arrayOfRoutesServedNames, 0, arrayOfRoutesServedNames, 0, this.arrayOfRoutesServedNames.length);
+        this.arrayOfRoutesServedNames = arrayOfRoutesServedNames;
+        this.arrayOfRoutesServedNames[numberOfRoutesServed - 1] = routeName;
     }
 
-    public void setRouteForVehicle(Vehicle vehicle, String routName) {
+    public void setRouteForVehicle(Vehicle vehicle, String routeName) {
         boolean isRouteServiced = false;
-        for (String currentRoutName : arrayOfRoutesServedNames) {
-            if (currentRoutName.equals(routName)) {
-                vehicle.setRoutesServedName(this, routName);
+
+        for (String currentRouteName : arrayOfRoutesServedNames) {
+            if (currentRouteName.equals(routeName)) {
+                vehicle.setRoutesServedName(this, routeName);
                 isRouteServiced = true;
                 break;
             }
         }
+
         if (!isRouteServiced) {
             System.out.println("You do not serve this route!");
         }
@@ -92,30 +94,30 @@ public class TransportPark {
         String newTransportParkName = transportPark.getTransportParkName();
 
         if (vehicle.getTransportParkName().equals(this.transportParkName)) {
-            for (Vehicle currentVehicle : carPark) {
+            for (Vehicle currentVehicle : vehiclePark) {
                 if (vehicle.getVehicleIdInPark() == currentVehicle.getVehicleIdInPark()) {
                     vehicle.setTransportParkAndVehicleIdInPark(this, newTransportParkName, numberOfVehiclesInNewTransportPark);
-                    transportPark.addVehicle(vehicle);
+                    transportPark.addVehicleToTransportPark(vehicle);
                     break;
                 }
                 positionOfVehicleInCurrentCarPark++;
             }
 
-            Vehicle[] updatedCarPark = new Vehicle[carPark.length - 1];
+            Vehicle[] updatedVehiclePark = new Vehicle[vehiclePark.length - 1];
 
-            System.arraycopy(carPark, 0, updatedCarPark, 0, positionOfVehicleInCurrentCarPark);
-            System.arraycopy(carPark, positionOfVehicleInCurrentCarPark + 1, updatedCarPark, positionOfVehicleInCurrentCarPark,
-                    carPark.length - positionOfVehicleInCurrentCarPark - 1);
+            System.arraycopy(vehiclePark, 0, updatedVehiclePark, 0, positionOfVehicleInCurrentCarPark);
+            System.arraycopy(vehiclePark, positionOfVehicleInCurrentCarPark + 1, updatedVehiclePark, positionOfVehicleInCurrentCarPark,
+                    vehiclePark.length - positionOfVehicleInCurrentCarPark - 1);
 
-            carPark = updatedCarPark;
+            vehiclePark = updatedVehiclePark;
             vehicleParkSize--;
-            costOfCarPark -= vehicle.getVehiclePrice();
+            costOfVehiclePark -= vehicle.getVehiclePrice();
 
-            Vehicle[] updatedTransferredVehicles = new Vehicle[transferredVehicles.length + 1];
+            Vehicle[] updatedTransferredVehicles = new Vehicle[arrayOfTransferredVehicles.length + 1];
 
-            System.arraycopy(transferredVehicles, 0, updatedTransferredVehicles, 0, transferredVehicles.length);
-            transferredVehicles = updatedTransferredVehicles;
-            transferredVehicles[transferredVehicles.length - 1] = vehicle;
+            System.arraycopy(arrayOfTransferredVehicles, 0, updatedTransferredVehicles, 0, arrayOfTransferredVehicles.length);
+            arrayOfTransferredVehicles = updatedTransferredVehicles;
+            arrayOfTransferredVehicles[arrayOfTransferredVehicles.length - 1] = vehicle;
             numberOfTransferredVehicles++;
 
         } else {
@@ -138,11 +140,11 @@ public class TransportPark {
     }
 
     public double calculateCostOfCarPark() {
-        costOfCarPark = 0;
-        for (Vehicle currentVehicle : carPark) {
-            costOfCarPark += currentVehicle.getVehiclePrice();
+        costOfVehiclePark = 0;
+        for (Vehicle currentVehicle : vehiclePark) {
+            costOfVehiclePark += currentVehicle.getVehiclePrice();
         }
-        return costOfCarPark;
+        return costOfVehiclePark;
     }
 
     public void sortVehiclesForConsumption(int leftIndex, int rightIndex) {
@@ -153,17 +155,17 @@ public class TransportPark {
         int positionVehicleWithMaxFuelConsumption = 0;
 
         for (int i = leftIndex; i <= rightIndex; i++) {
-            if (carPark[i] instanceof Bus) {
-                if (maxFuelConsumption < ((Bus) carPark[i]).getFuelConsumption()) {
+            if (vehiclePark[i] instanceof Bus) {
+                if (maxFuelConsumption < ((Bus) vehiclePark[i]).getFuelConsumption()) {
                     positionVehicleWithMaxFuelConsumption = i;
-                    maxFuelConsumption = ((Bus) carPark[i]).getFuelConsumption();
+                    maxFuelConsumption = ((Bus) vehiclePark[i]).getFuelConsumption();
                 }
             }
         }
 
-        Vehicle vehicleTemp = carPark[positionVehicleWithMaxFuelConsumption];
-        carPark[positionVehicleWithMaxFuelConsumption] = carPark[rightIndex];
-        carPark[rightIndex] = vehicleTemp;
+        Vehicle vehicleTemp = vehiclePark[positionVehicleWithMaxFuelConsumption];
+        vehiclePark[positionVehicleWithMaxFuelConsumption] = vehiclePark[rightIndex];
+        vehiclePark[rightIndex] = vehicleTemp;
 
         sortVehiclesForConsumption(leftIndex, rightIndex - 1);
     }
@@ -217,7 +219,7 @@ public class TransportPark {
 
         int numberOfElementsInOutputArray = 0;
 
-        for (Vehicle currentVehicle : carPark) {
+        for (Vehicle currentVehicle : vehiclePark) {
             boolean checkByParameters = checkByParameters(currentVehicle, findByVehicleType, vehicleType, findByVehicleModel, model, findByNumberOfVehicle, numberOfVehicle,
                     findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity, findByRouteServedName, routeServedName);
             if (checkByParameters) {
@@ -229,7 +231,7 @@ public class TransportPark {
         int currentPositionInOutputVehicleArray = 0;
 
         while (currentPositionInOutputVehicleArray < outputVehicleArray.length) {
-            for (Vehicle currentVehicle : carPark) {
+            for (Vehicle currentVehicle : vehiclePark) {
                 boolean checkByParameters = checkByParameters(currentVehicle, findByVehicleType, vehicleType, findByVehicleModel, model, findByNumberOfVehicle,
                         numberOfVehicle, findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity, findByRouteServedName,
                         routeServedName);
@@ -352,7 +354,8 @@ public class TransportPark {
             Vehicle[][] arrayOfVehicleTempTwoD = new Vehicle[counterOfRowInArrayOfVehiclesTwoD][];
 
             for (TransportPark currentTransportPark : arrayOfTransportParks) {
-                checkForIgnoredPark:{
+                checkForIgnoredPark:
+                {
                     for (String parkName : namesOfIgnoredParks) {
                         if (currentTransportPark.getTransportParkName().equals(parkName)) {
                             break checkForIgnoredPark;
@@ -398,7 +401,7 @@ public class TransportPark {
 
     private String[] addParkToIgnoredArray(String[] namesOfIgnoredParks, String parkName) {
         String[] namesOfIgnoredParksTemp;
-        int positionInIgnoredParksTemp = namesOfIgnoredParks.length == 0? 0 : namesOfIgnoredParks.length;
+        int positionInIgnoredParksTemp = namesOfIgnoredParks.length == 0 ? 0 : namesOfIgnoredParks.length;
 
         namesOfIgnoredParksTemp = new String[namesOfIgnoredParks.length + 1];
         System.arraycopy(namesOfIgnoredParks, 0, namesOfIgnoredParksTemp, 0, namesOfIgnoredParks.length);
@@ -455,7 +458,7 @@ public class TransportPark {
         return "TransportPark: {" + transportParkName +
                 ", number of routes served = " + numberOfRoutesServed +
                 ", serviced routes: " + Arrays.toString(arrayOfRoutesServedNames) +
-                ",\nCurrent car park: " + Arrays.toString(carPark) +
+                ",\nCurrent car park: " + Arrays.toString(vehiclePark) +
                 "}\n";
     }
 
@@ -471,8 +474,8 @@ public class TransportPark {
     }
 
     public void printArrayOfTransferredVehicles() {
-        if (transferredVehicles.length != 0) {
-            for (Vehicle currentVehicle : transferredVehicles) {
+        if (arrayOfTransferredVehicles.length != 0) {
+            for (Vehicle currentVehicle : arrayOfTransferredVehicles) {
                 if (currentVehicle != null) {
                     System.out.print("Details of transferred vehicle:");
                     System.out.print(currentVehicle);
@@ -511,8 +514,8 @@ public class TransportPark {
         return numberOfRoutesServed;
     }
 
-    public double getCostOfCarPark() {
-        return costOfCarPark;
+    public double getCostOfVehiclePark() {
+        return costOfVehiclePark;
     }
 
     public static int getNumberOfTransportParks() {

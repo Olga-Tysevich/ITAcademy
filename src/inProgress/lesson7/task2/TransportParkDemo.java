@@ -50,7 +50,7 @@ public class TransportParkDemo {
         parkNumberTwo.setRouteForVehicle(busKarosa, "B4");
         System.out.println(parkNumberTwo);
 
-        parkNumberTwo.addRouteServed("RT5");
+        parkNumberTwo.addServedRouteToTransportPark("RT5");
         System.out.println(parkNumberTwo);
 
         Bus busIkarus = new Bus(parkNumberTwo, "Bus", "Ikarus-55", 2536, 45600, 7.25, 57, 275);

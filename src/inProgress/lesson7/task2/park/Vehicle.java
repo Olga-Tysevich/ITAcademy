@@ -18,7 +18,7 @@ public abstract class Vehicle {
         this.numberOfVehicle = numberOfVehicle;
         this.vehiclePrice = vehiclePrice;
         this.capacity = capacity;
-        transportPark.addVehicle(this);
+        transportPark.addVehicleToTransportPark(this);
         transportParkName = transportPark.getTransportParkName();
         vehicleIdInPark = transportPark.getVehicleParkSize();
     }
