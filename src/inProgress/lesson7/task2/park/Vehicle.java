@@ -10,7 +10,7 @@ public abstract class Vehicle {
     private final int capacity;
     private String transportParkName;
     private int vehicleIdInPark;
-    private String routeServedName;
+    private String routeServedName = "";
 
     public Vehicle(TransportPark transportPark, String vehicleType, String model, int numberOfVehicle, double vehiclePrice, int capacity) {
         this.vehicleType = vehicleType;
@@ -64,7 +64,7 @@ public abstract class Vehicle {
     public static void printArrayOfVehicle(Vehicle[] arrayOfVehicles) {
         if (arrayOfVehicles != null) {
             System.out.print("Array of vehicle: {");
-            for (Vehicle currentVehicle: arrayOfVehicles) {
+            for (Vehicle currentVehicle : arrayOfVehicles) {
                 System.out.print(currentVehicle);
             }
             System.out.println("\n}");

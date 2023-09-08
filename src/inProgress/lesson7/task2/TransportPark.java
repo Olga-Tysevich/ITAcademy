@@ -352,10 +352,10 @@ public class TransportPark {
             Vehicle[][] arrayOfVehicleTempTwoD = new Vehicle[counterOfRowInArrayOfVehiclesTwoD][];
 
             for (TransportPark currentTransportPark : arrayOfTransportParks) {
-                checkForIgnorePark:{
+                checkForIgnoredPark:{
                     for (String parkName : namesOfIgnoredParks) {
                         if (currentTransportPark.getTransportParkName().equals(parkName)) {
-                            break checkForIgnorePark;
+                            break checkForIgnoredPark;
                         }
                     }
                     if (findByFuelConsumption || findByFuelTankCapacity) {
