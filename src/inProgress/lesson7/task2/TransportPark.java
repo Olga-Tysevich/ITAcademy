@@ -3,7 +3,6 @@ package inProgress.lesson7.task2;
 import inProgress.lesson7.task2.park.Bus;
 import inProgress.lesson7.task2.park.Trolleybus;
 import inProgress.lesson7.task2.park.Vehicle;
-
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Random;
@@ -185,10 +184,17 @@ public class TransportPark {
                                              double minFuelTankCapacity, double maxFuelTankCapacity, boolean findByPowerOfElectricMotor, double minPowerOfElectricMotor,
                                              double maxPowerOfElectricMotor) {
 
-        Vehicle[] arrayOfVehicleTemp = findVehiclesWithParameters(findByVehicleType, vehicleType, findByVehicleModel, model, findByNumberOfVehicle, numberOfVehicle,
+        Vehicle[] arrayOfVehicleTemp;
+        if (findByFuelConsumption || findByPowerOfElectricMotor) {
+            arrayOfVehicleTemp = findVehiclesWithParameters(findByVehicleType, vehicleType, findByVehicleModel, model, findByNumberOfVehicle, numberOfVehicle,
                 findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity, findByRouteServedName, routeServedName,
                 findByFuelConsumption, minFuelConsumption, maxFuelConsumption, findByFuelTankCapacity, minFuelTankCapacity, maxFuelTankCapacity,
                 findByPowerOfElectricMotor, minPowerOfElectricMotor, maxPowerOfElectricMotor);
+        } else {
+            arrayOfVehicleTemp = findVehiclesWithParameters(findByVehicleType, vehicleType, findByVehicleModel, model, findByNumberOfVehicle, numberOfVehicle,
+                    findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity, findByRouteServedName, routeServedName);
+        }
+
 
         return checkForSingleElement(arrayOfVehicleTemp);
     }
