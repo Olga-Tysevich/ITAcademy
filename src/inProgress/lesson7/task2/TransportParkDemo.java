@@ -80,13 +80,15 @@ public class TransportParkDemo {
         TransportPark.printCarParkList();
 
         parkNumberOne.printArrayOfTransferredVehicles();
+        System.out.println();
 
         parkNumberOne.sortVehiclesForConsumption(0, parkNumberOne.getVehicleParkSize()-1);
         System.out.println(parkNumberOne + "\n");
 
         Vehicle vehicleWithParameters = parkNumberOne.findVehicleWithParameters(false, "", false,"",
                 false, 0, true,55000,55000,false,0,15,
-                false, "");
+                false, "", false, 0, 8,
+                false,0,250, true, 185,185);
 
         System.out.println("Vehicle with options: " + vehicleWithParameters + "\n");
 
