@@ -99,5 +99,11 @@ public class TransportParkDemo {
                 false, 0, true,0,55000,false,0,15,
                 false, "");
         TransportPark.printArrayOfVehicle(vehiclesWithParametersByAllParks);
+
+        Vehicle[] vehiclesWithAllParameters = parkNumberOne.findVehiclesWithParameters(false, "", false,"",
+                false, 0, false,0,50000,false,0,15,
+                false, "", true, 0, 8,
+                true,0,250, true, 0,185);
+        Vehicle.printArrayOfVehicle(vehiclesWithAllParameters);
     }
 }
