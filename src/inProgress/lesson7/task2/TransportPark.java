@@ -175,6 +175,25 @@ public class TransportPark {
         Vehicle[] arrayOfVehicleTemp = findVehiclesWithParameters(findByVehicleType, vehicleType, findByVehicleModel, model, findByNumberOfVehicle, numberOfVehicle,
                 findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity, findByRouteServedName, routeServedName);
 
+        return checkForSingleElement(arrayOfVehicleTemp);
+    }
+
+    public Vehicle findVehicleWithParameters(boolean findByVehicleType, String vehicleType, boolean findByVehicleModel, String model, boolean findByNumberOfVehicle,
+                                             int numberOfVehicle, boolean findByVehiclePrice, double minVehiclePrice, double maxVehiclePrice,
+                                             boolean findByVehicleCapacity, int minCapacity, int maxCapacity, boolean findByRouteServedName, String routeServedName,
+                                             boolean findByFuelConsumption, double minFuelConsumption, double maxFuelConsumption, boolean findByFuelTankCapacity,
+                                             double minFuelTankCapacity, double maxFuelTankCapacity, boolean findByPowerOfElectricMotor, double minPowerOfElectricMotor,
+                                             double maxPowerOfElectricMotor) {
+
+        Vehicle[] arrayOfVehicleTemp = findVehiclesWithParameters(findByVehicleType, vehicleType, findByVehicleModel, model, findByNumberOfVehicle, numberOfVehicle,
+                findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity, findByRouteServedName, routeServedName,
+                findByFuelConsumption, minFuelConsumption, maxFuelConsumption, findByFuelTankCapacity, minFuelTankCapacity, maxFuelTankCapacity,
+                findByPowerOfElectricMotor, minPowerOfElectricMotor, maxPowerOfElectricMotor);
+
+        return checkForSingleElement(arrayOfVehicleTemp);
+    }
+
+    private Vehicle checkForSingleElement(Vehicle[] arrayOfVehicleTemp) {
         if (arrayOfVehicleTemp != null && arrayOfVehicleTemp.length == 1) {
             return arrayOfVehicleTemp[0];
         } else if (arrayOfVehicleTemp != null && arrayOfVehicleTemp.length > 1) {

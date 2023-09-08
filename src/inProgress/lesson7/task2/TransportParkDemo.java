@@ -87,7 +87,8 @@ public class TransportParkDemo {
         Vehicle vehicleWithParameters = parkNumberOne.findVehicleWithParameters(false, "", false,"",
                 false, 0, true,55000,55000,false,0,15,
                 false, "");
-        System.out.println(vehicleWithParameters + "\n");
+
+        System.out.println("Vehicle with options: " + vehicleWithParameters + "\n");
 
         Vehicle[] vehiclesWithParameters = parkNumberOne.findVehiclesWithParameters(false, "", false,"",
                 false, 0, false,0,50000,false,0,15,
@@ -102,8 +103,8 @@ public class TransportParkDemo {
 
         Vehicle[] vehiclesWithAllParameters = parkNumberOne.findVehiclesWithParameters(false, "", false,"",
                 false, 0, false,0,50000,false,0,15,
-                false, "", true, 0, 8,
-                true,0,250, true, 0,185);
+                false, "", false, 0, 8,
+                false,0,250, true, 0,185);
         Vehicle.printArrayOfVehicle(vehiclesWithAllParameters);
     }
 }
