@@ -1,7 +1,5 @@
 package inProgress.lesson8;
 
-import java.awt.*;
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -83,7 +81,7 @@ public class Main {
 
         //task #4
         String[] emails = {"my_email@gmail.com", "myemail-@gmail.com", "a.petrov@gmail.com.au", "coder4575@yandex.ru", "myemail@gmail.com", " myemail@gmail.com",
-                "my email@gmail.com", "elena.Turova@patio-minsk.by", "elena.Turova@patio-minsk", "123"};
+                "my email@gmail.com", "elena.Turova@patio-minsk.by", "elena.Turova@patio-minsk", "123", "aaffe", "testmail@mail.de.рф"};
 
         for (String email : emails) {
             if (checkEmail(email)) {
@@ -101,14 +99,15 @@ public class Main {
             if (checkIPAddress(ipAddress)) {
                 System.out.println(ipAddress + " is correct");
             } else {
-                System.out.println(ipAddress + " is incorrect. You must enter four groups of numbers in the format 0.0.0.0. The size of each group cannot be less than 0 and greater than 255!");
+                System.out.println(ipAddress + " is incorrect. You must enter four groups of numbers in the format 0.0.0.0. " +
+                        "The size of each group cannot be less than 0 and greater than 255!");
             }
         }
 
     }
 
     public static boolean checkEmail(String email) {
-        Pattern patternEmail = Pattern.compile("^[a-zA-Z0-9]+[_\\-.]?[a-zA-Z0-9]+@[a-zA-Z0-9]+[_\\-.]?[a-zA-Z0-9]+\\.[a-zA-Z]{2,6}");
+        Pattern patternEmail = Pattern.compile("^[a-zA-Z0-9]+[_\\-.]?[a-zA-Z0-9]+@[a-zA-Z0-9]+[_\\-.]?[a-zA-Z0-9]+\\.[a-zа-я]{2,6}");
         Matcher matcherEmail = patternEmail.matcher(email);
 
         return matcherEmail.matches();
