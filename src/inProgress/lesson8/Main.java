@@ -93,7 +93,7 @@ public class Main {
 
         //task #5
         String[] arrayOfIpAddresses = {"127.0.0.1", "255.255.255.253", "100.99.44.2", "100.99.44", "123", "abc", "100,99,44,2", "100 99 44 2", "256.255.255.253",
-                "952.255.255.253"};
+                "-252.255.255.253", "0.0.0.0", "10.10.10.10", "100.100.100.100", "0.0.0.0."};
 
         for (String currentIpAddress : arrayOfIpAddresses) {
             if (checkIPAddress(currentIpAddress)) {
@@ -116,7 +116,7 @@ public class Main {
     }
 
     public static boolean checkIPAddress(String ipAddress) {
-            Pattern patternIPAddress = Pattern.compile("^((\\d{1,2}|[12][0-4]\\d|[12][0-5]{2})\\.){3}(\\d{1,2}|[12][0-4]\\d|[12][0-5]{2})");
+            Pattern patternIPAddress = Pattern.compile("^((\\d|[0-1]\\d{1,2}|\\d{2}|2[0-4]\\d|2[0-5]{2})\\.){3}(\\d|[0-1]\\d{1,2}|\\d{2}|2[0-4]\\d|2[0-5]{2})$");
             Matcher matcherIPAddress = patternIPAddress.matcher(ipAddress);
 
             return matcherIPAddress.matches();
