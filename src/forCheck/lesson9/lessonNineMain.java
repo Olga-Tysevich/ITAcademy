@@ -1,9 +1,9 @@
-package inProgress.lesson9;
+package forCheck.lesson9;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Main {
+public class lessonNineMain {
     public static void main(String[] args) {
         String[] arrayOfStrings = {"abcabctext", "dcabtext"};
         String text = "      The psychedelic lysergic  acid diethylamide (LSD) has experienced a revival in research, including clinical trials that evaluate " +
@@ -33,7 +33,7 @@ public class Main {
             }
         }
 
-        System.out.println("The longest matcherNumber: " + numberWithMaxNumberOfDigits + "\n");
+        System.out.println("The longest number: " + numberWithMaxNumberOfDigits + "\n");
 
         //task #3.2
         Pattern patternWords = Pattern.compile("\\w*-?[µa-zA-Z]+-?\\w*");
