@@ -1,6 +1,6 @@
-package forCheck.lesson7.task2.park;
+package forCheck.lesson7_8.task2.park;
 
-import forCheck.lesson7.task2.TransportPark;
+import forCheck.lesson7_8.task2.TransportPark;
 
 public abstract class Vehicle {
     private final String vehicleType;

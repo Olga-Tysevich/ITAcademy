@@ -1,6 +1,6 @@
-package forCheck.lesson7.task1.bathroomappliances;
+package forCheck.lesson7_8.task1.bathroomappliances;
 
-import forCheck.lesson7.task1.Appliances;
+import forCheck.lesson7_8.task1.Appliances;
 
 public abstract class BathroomAppliances extends Appliances {
     public BathroomAppliances(String type, String brand, double amperage, boolean hasElectricMotor) {

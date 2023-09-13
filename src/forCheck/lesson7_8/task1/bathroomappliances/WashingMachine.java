@@ -1,4 +1,4 @@
-package forCheck.lesson7.task1.bathroomappliances;
+package forCheck.lesson7_8.task1.bathroomappliances;
 
 public class WashingMachine extends BathroomAppliances {
     private final double laundryLoadWeight;

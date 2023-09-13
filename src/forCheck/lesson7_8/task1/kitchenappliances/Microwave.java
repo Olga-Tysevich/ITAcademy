@@ -1,4 +1,4 @@
-package forCheck.lesson7.task1.kitchenappliances;
+package forCheck.lesson7_8.task1.kitchenappliances;
 
 public class Microwave extends KitchenAppliances {
     private final int numberOfPowerLevels;

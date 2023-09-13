@@ -1,6 +1,6 @@
-package forCheck.lesson7.task1.kitchenappliances;
+package forCheck.lesson7_8.task1.kitchenappliances;
 
-import forCheck.lesson7.task1.Appliances;
+import forCheck.lesson7_8.task1.Appliances;
 
 public class Fridge extends KitchenAppliances {
     private String doorOpeningDirection;

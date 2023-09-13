@@ -1,6 +1,6 @@
-package forCheck.lesson7.task1.otherappliances;
+package forCheck.lesson7_8.task1.otherappliances;
 
-import forCheck.lesson7.task1.Appliances;
+import forCheck.lesson7_8.task1.Appliances;
 
 public class VacuumCleaner extends Appliances {
     private final double dustContainerVolume;

@@ -1,4 +1,4 @@
-package forCheck.lesson7.task1;
+package forCheck.lesson7_8.task1;
 
 public abstract class Appliances {
     private static int numberOfAppliances;

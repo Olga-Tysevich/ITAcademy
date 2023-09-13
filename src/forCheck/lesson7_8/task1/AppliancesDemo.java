@@ -1,13 +1,13 @@
-package forCheck.lesson7.task1;
+package forCheck.lesson7_8.task1;
 
-import forCheck.lesson7.task1.bathroomappliances.WashingMachine;
-import forCheck.lesson7.task1.bathroomappliances.WaterBoiler;
-import forCheck.lesson7.task1.kitchenappliances.Fridge;
-import forCheck.lesson7.task1.kitchenappliances.Kettle;
-import forCheck.lesson7.task1.kitchenappliances.Microwave;
-import forCheck.lesson7.task1.otherappliances.TV;
-import forCheck.lesson7.task1.otherappliances.VacuumCleaner;
-import static forCheck.lesson7.task1.Appliances.*;
+import forCheck.lesson7_8.task1.bathroomappliances.WashingMachine;
+import forCheck.lesson7_8.task1.bathroomappliances.WaterBoiler;
+import forCheck.lesson7_8.task1.kitchenappliances.Fridge;
+import forCheck.lesson7_8.task1.kitchenappliances.Kettle;
+import forCheck.lesson7_8.task1.kitchenappliances.Microwave;
+import forCheck.lesson7_8.task1.otherappliances.TV;
+import forCheck.lesson7_8.task1.otherappliances.VacuumCleaner;
+import static forCheck.lesson7_8.task1.Appliances.*;
 
 public class AppliancesDemo {
     public static void main(String[] args) {
