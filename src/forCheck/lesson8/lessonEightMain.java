@@ -3,7 +3,7 @@ package forCheck.lesson8;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class lessonNineMain {
+public class lessonEightMain {
     public static void main(String[] args) {
         String[] arrayOfStrings = {"abcabctext", "dcabtext"};
         String text = "      The psychedelic lysergic  acid diethylamide (LSD) has experienced a revival in research, including clinical trials that evaluate " +
