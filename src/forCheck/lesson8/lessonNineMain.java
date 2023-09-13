@@ -83,7 +83,6 @@ public class lessonNineMain {
                 {"myemail-_a@gmail.com", " myemail@gmail.com", "my email@gmail.com", "elena.turova@patio-minsk", "123", "aaffe", ""}
         };
 
-
         Pattern patternEmail = Pattern.compile("^([a-zA-Z0-9]+[_\\-.]?[a-zA-Z0-9]+)+@(([a-zA-Z0-9]+[_\\-.]?[a-zA-Z0-9]+)|[a-zA-Z])+\\.[a-z]{2,6}");
 
         for (String[] array : arrayEmailsAddresses){
@@ -99,7 +98,6 @@ public class lessonNineMain {
                 }
             }
         }
-
 
         System.out.println();
 
