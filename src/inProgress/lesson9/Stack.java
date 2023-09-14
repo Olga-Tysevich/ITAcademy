@@ -7,7 +7,6 @@ public class Stack<E> {
         private static class Element<E> {
             private final E value;
             private Element<E> next;
-
             private Element<E> nextMaxElement;
 
             public Element(E element) {
@@ -72,9 +71,12 @@ public class Stack<E> {
                 if (maxElement != null) {
                     maxElement.nextMaxElement = returnElement == maxElement.nextMaxElement ? returnElement.nextMaxElement : maxElement.nextMaxElement;
                 }
+
                 return returnElement.value;
+
             } else {
                 System.out.println("There are no elements on the stack!");
+
                 return null;
             }
         }
@@ -97,6 +99,7 @@ public class Stack<E> {
                 elementList.append("| ").append(currentElement).append(" |");
                 currentElement = currentElement.next;
             }
+
             return elementList.toString();
         }
 
