@@ -1,10 +1,10 @@
 package forCheck.lesson9;
 
-public class Stack<E> {
+public class Stack<E extends Comparable<E>> {
     private Element<E> firstElement = null;
     private Element<E> maxElement = null;
 
-    private static class Element<E> {
+    private static class Element<E extends Comparable<E>> implements Comparable<E>{
         private final E value;
         private Element<E> next;
         private Element<E> nextMaxElement;
@@ -17,6 +17,11 @@ public class Stack<E> {
         public String toString() {
             return String.valueOf(value);
         }
+
+        @Override
+        public int compareTo( E comparableElement) {
+            return value.compareTo(comparableElement);
+        }
     }
 
     public void push(E element) {
@@ -26,7 +31,7 @@ public class Stack<E> {
 
         if (maxElement != null) {
             Element<E> newMaxEl = maxElement;
-            double checkValue = compareValues(element, maxElement.value);
+            double checkValue = element.compareTo(maxElement.value);
 
             if (checkValue >= 0) {
                 maxElement = newFirstEl;
@@ -35,7 +40,7 @@ public class Stack<E> {
                 Element<E> newNextMax = maxElement.nextMaxElement;
 
                 if (newNextMax != null) {
-                    checkValue = compareValues(element, newNextMax.value);
+                    checkValue = element.compareTo(newNextMax.value);
 
                     if (checkValue >= 0) {
                         maxElement.nextMaxElement = firstElement;
@@ -50,17 +55,6 @@ public class Stack<E> {
             maxElement = newFirstEl;
         }
 
-    }
-
-    private double compareValues(E currentElement, E comparableElement) {
-        double checkValue;
-        if (currentElement instanceof String) {
-            checkValue = String.valueOf(currentElement).compareTo(String.valueOf(comparableElement));
-        } else {
-            checkValue = Double.parseDouble(String.valueOf(currentElement)) - Double.parseDouble(String.valueOf(comparableElement));
-        }
-
-        return checkValue;
     }
 
     public E pop() {
