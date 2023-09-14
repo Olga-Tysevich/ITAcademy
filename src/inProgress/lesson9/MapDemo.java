@@ -1,9 +1,7 @@
 package inProgress.lesson9;
 
-import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class MapDemo {
     public static void main(String[] args) {
