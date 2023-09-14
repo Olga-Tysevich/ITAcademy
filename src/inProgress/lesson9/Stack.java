@@ -36,37 +36,47 @@ public class Stack<E> {
         }
 
         private void setElementValue(E element) {
-            Element<E> updateFirstElement = new Element<>(element);
-            updateFirstElement.next = firstElement;
-            firstElement = updateFirstElement;
+            Element<E> newFirstEl = new Element<>(element);
+            newFirstEl.next = firstElement;
+            firstElement = newFirstEl;
+
             if (maxElement != null) {
-                Element<E> updateMax = maxElement;
-                double checkValue;
-                if (element instanceof String) {
-                    checkValue = String.valueOf(element).compareTo(String.valueOf(maxElement.value));
-                } else {
-                    checkValue = Double.parseDouble(String.valueOf(element)) - Double.parseDouble(String.valueOf(maxElement.value));
-                }
+                Element<E> updateMaxEl = maxElement;
+                double checkValue = compareValues(element, maxElement.value);
+
                 if (checkValue >= 0) {
-                    maxElement = updateFirstElement;
-                    updateFirstElement.nextMaxElement = updateMax;
+                    maxElement = newFirstEl;
+                    newFirstEl.nextMaxElement = updateMaxEl;
                 } else {
-                    Element<E> checkNextMax = maxElement.nextMaxElement;
-                    if (checkNextMax != null) {
-                        if (element instanceof String) {
-                            checkValue = String.valueOf(element).compareTo(String.valueOf(checkNextMax.value));
-                        } else {
-                            checkValue = Double.parseDouble(String.valueOf(element)) - Double.parseDouble(String.valueOf(checkNextMax.value));
-                        }
+                    Element<E> newNextMax = maxElement.nextMaxElement;
+
+                    if (newNextMax != null) {
+                        checkValue = compareValues(element, newNextMax.value);
+
                         if (checkValue >= 0) {
                             maxElement.nextMaxElement = firstElement;
-                            firstElement.nextMaxElement = checkNextMax;
+                            firstElement.nextMaxElement = newNextMax;
                         }
+
                     }
+
                 }
+
             } else {
-                maxElement = updateFirstElement;
+                maxElement = newFirstEl;
             }
+
+        }
+
+        private double compareValues(E currentElement, E comparableElement) {
+            double checkValue;
+            if (currentElement instanceof String) {
+                checkValue = String.valueOf(currentElement).compareTo(String.valueOf(comparableElement));
+            } else {
+                checkValue = Double.parseDouble(String.valueOf(currentElement)) - Double.parseDouble(String.valueOf(comparableElement));
+            }
+
+            return checkValue;
         }
 
         private E deleteFirst() {
@@ -75,7 +85,7 @@ public class Stack<E> {
                 maxElement = firstElement == maxElement ? maxElement.nextMaxElement : maxElement;
                 firstElement = firstElement.next;
                 if (maxElement != null) {
-                    maxElement.nextMaxElement = returnElement == maxElement.nextMaxElement? returnElement.nextMaxElement: maxElement.nextMaxElement;
+                    maxElement.nextMaxElement = returnElement == maxElement.nextMaxElement ? returnElement.nextMaxElement : maxElement.nextMaxElement;
                 }
                 return returnElement.value;
             } else {
@@ -103,10 +113,12 @@ public class Stack<E> {
             }
             return elementList.toString();
         }
+
     }
 
     @Override
     public String toString() {
         return "Stack: " + elementList;
     }
+
 }
