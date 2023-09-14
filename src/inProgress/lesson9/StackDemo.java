@@ -37,7 +37,7 @@ public class StackDemo {
         stackInt.push(1);
         stackInt.push(15);
 
-        Integer testMaxElInt = 0;
+        Integer testMaxElInt = 1;
         while (testMaxElInt != null) {
             testMaxElInt = stackInt.max();
             System.out.println("Max element: " + testMaxElInt);
@@ -79,5 +79,6 @@ public class StackDemo {
             System.out.println(stackWords + "\n");
             stackWords.pop();
         }
+
     }
 }
