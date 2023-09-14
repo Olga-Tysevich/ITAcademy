@@ -1,6 +1,6 @@
 package inProgress.lesson9;
 
-public class CollectionsMain {
+public class StackDemo {
     public static void main(String[] args) {
         Stack<String> stackString = new Stack<>();
 

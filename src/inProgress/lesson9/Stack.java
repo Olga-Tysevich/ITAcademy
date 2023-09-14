@@ -118,7 +118,7 @@ public class Stack<E> {
 
     @Override
     public String toString() {
-        return "Stack: " + elementList;
+        return "testCode.Stack: " + elementList;
     }
 
 }
