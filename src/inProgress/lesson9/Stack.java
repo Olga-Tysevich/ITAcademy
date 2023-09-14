@@ -37,7 +37,7 @@ public class Stack<E> {
         }
 
         private void setElementValue(E element) {
-            Element<E> updateFirstElement = new Element<E>(element);
+            Element<E> updateFirstElement = new Element<>(element);
             updateFirstElement.next = firstElement;
             firstElement = updateFirstElement;
             if (updateFirstElement.next != null) {
