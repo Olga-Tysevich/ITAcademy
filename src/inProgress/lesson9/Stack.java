@@ -1,7 +1,7 @@
 package inProgress.lesson9;
 
 public class Stack<E> {
-    private ElementList<E> elementList = new ElementList<>();
+    private final ElementList<E> elementList = new ElementList<>();
 
     public void push(E element) {
         elementList.setElementValue(element);
@@ -15,12 +15,12 @@ public class Stack<E> {
         return elementList.deleteMax();
     }
 
-    private class ElementList<E> {
+    private static class ElementList<E> {
         private Element<E> firstElement = null;
         private Element<E> maxElement = null;
 
-        private class Element<E> {
-            private E value;
+        private static class Element<E> {
+            private final E value;
             private Element<E> prev;
             private Element<E> next;
 
@@ -70,15 +70,19 @@ public class Stack<E> {
         }
 
         private E deleteMax() {
-            Element<E> returnMax = maxElement;
-            maxElement = maxElement.nextMaxElement;
-            if (returnMax == firstElement) {
-                firstElement = returnMax.next != null ? returnMax.next : null;
-            } else {
-                returnMax.prev.next = returnMax.next;
-                returnMax.next.prev = returnMax.prev;
+            if (firstElement != null) {Element<E> returnMax = maxElement;
+                maxElement = maxElement.nextMaxElement;
+                if (returnMax == firstElement) {
+                    firstElement = returnMax.next != null ? returnMax.next : null;
+                } else {
+                    returnMax.prev.next = returnMax.next;
+                    returnMax.next.prev = returnMax.prev;
+                }
+                return returnMax.value;
+            }else {
+                System.out.println("There are no elements on the stack!");
+                return null;
             }
-            return returnMax.value;
         }
 
         @Override

@@ -13,7 +13,8 @@ public class CollectionsMain {
         newStack.push("A");
 
         System.out.println(newStack + "\n");
-        newStack.pop();
+        String deleteFirst = newStack.pop();
+        System.out.println("Deleted element: " + deleteFirst);
         System.out.println(newStack + "\n");
 
         String maxEl = newStack.max();
@@ -34,5 +35,11 @@ public class CollectionsMain {
         String maxEl6 = newStack.max();
         System.out.println("Max element: " + maxEl6);
         System.out.println(newStack + "\n");
+        String maxEl7 = newStack.max();
+        System.out.println("Max element: " + maxEl7);
+        System.out.println(newStack + "\n");
+
+        newStack.push("S");
+        System.out.println(newStack);
     }
 }
