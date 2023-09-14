@@ -12,7 +12,7 @@ public class Stack<E> {
     }
 
     public E max() {
-        return elementList.deleteMax();
+        return elementList.findMax();
     }
 
     private static class ElementList<E> {
@@ -45,13 +45,24 @@ public class Stack<E> {
             }
             if (maxElement != null) {
                 Element<E> updateMax = maxElement;
-                if (String.valueOf(element).compareTo(String.valueOf(maxElement.value)) >= 0) {
+                double checkValue;
+                if (element instanceof String) {
+                    checkValue = String.valueOf(element).compareTo(String.valueOf(maxElement.value));
+                } else {
+                    checkValue = Double.parseDouble(String.valueOf(element)) - Double.parseDouble(String.valueOf(maxElement.value));
+                }
+                if (checkValue >= 0) {
                     maxElement = updateFirstElement;
                     updateFirstElement.nextMaxElement = updateMax;
                 } else {
                     Element<E> checkNextMax = maxElement.nextMaxElement;
                     if (checkNextMax != null) {
-                        if (String.valueOf(element).compareTo(String.valueOf(checkNextMax.value)) >= 0) {
+                        if (element instanceof String) {
+                            checkValue = String.valueOf(element).compareTo(String.valueOf(checkNextMax.value));
+                        } else {
+                            checkValue = Double.parseDouble(String.valueOf(element)) - Double.parseDouble(String.valueOf(checkNextMax.value));
+                        }
+                        if (checkValue >= 0) {
                             maxElement.nextMaxElement = firstElement;
                             firstElement.nextMaxElement = checkNextMax;
                         }
@@ -65,8 +76,14 @@ public class Stack<E> {
         private E deleteFirst() {
             if (firstElement != null) {
                 Element<E> returnElement = firstElement;
+                maxElement = firstElement == maxElement ? maxElement.nextMaxElement : maxElement;
                 firstElement = firstElement.next;
-                firstElement.prev = null;
+                if (maxElement != null) {
+                    maxElement.nextMaxElement = returnElement == maxElement.nextMaxElement? returnElement.nextMaxElement: maxElement.nextMaxElement;
+                }
+                if (firstElement != null) {
+                    firstElement.prev = null;
+                }
                 return returnElement.value;
             } else {
                 System.out.println("There are no elements on the stack!");
@@ -74,17 +91,9 @@ public class Stack<E> {
             }
         }
 
-        private E deleteMax() {
-            if (firstElement != null) {
-                Element<E> returnMax = maxElement;
-                maxElement = maxElement.nextMaxElement;
-                if (returnMax == firstElement) {
-                    firstElement = returnMax.next != null ? returnMax.next : null;
-                } else {
-                    returnMax.prev.next = returnMax.next;
-                    returnMax.next.prev = returnMax.prev;
-                }
-                return returnMax.value;
+        private E findMax() {
+            if (maxElement != null) {
+                return maxElement.value;
             } else {
                 System.out.println("There are no elements on the stack!");
                 return null;

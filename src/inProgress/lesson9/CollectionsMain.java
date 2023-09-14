@@ -2,44 +2,47 @@ package inProgress.lesson9;
 
 public class CollectionsMain {
     public static void main(String[] args) {
-        Stack<String> newStack = new Stack<>();
+//        Stack<String> stackString = new Stack<>();
+//
+//        stackString.push("A");
+//        stackString.push("B");
+//        stackString.push("C");
+//        stackString.push("D");
+//        stackString.push("E");
+//        stackString.push("J");
+//        stackString.push("A");
 
-        newStack.push("A");
-        newStack.push("J");
-        newStack.push("B");
-        newStack.push("C");
-        newStack.push("D");
-        newStack.push("E");
-        newStack.push("A");
+//        System.out.println(stackString + "\n");
+//        String deleteFirst = stackString.pop();
+//        System.out.println("Deleted element: " + deleteFirst);
+//        System.out.println(stackString + "\n");
+//
+//        String testMaxElStr = "";
+//        while (testMaxElStr != null) {
+//            testMaxElStr = stackString.max();
+//            System.out.println("Max element: " + testMaxElStr);
+//            System.out.println(stackString + "\n");
+//            stackString.pop();
+//        }
+//
+//        stackString.push("S");
+//        System.out.println(stackString);
 
-        System.out.println(newStack + "\n");
-        String deleteFirst = newStack.pop();
-        System.out.println("Deleted element: " + deleteFirst);
-        System.out.println(newStack + "\n");
+        Stack<Integer> stackInt = new Stack<>();
 
-        String maxEl = newStack.max();
-        System.out.println("Max element: " + maxEl);
-        System.out.println(newStack + "\n");
-        String maxEl2 = newStack.max();
-        System.out.println("Max element: " + maxEl2);
-        System.out.println(newStack + "\n");
-        String maxEl3 = newStack.max();
-        System.out.println("Max element: " + maxEl3);
-        System.out.println(newStack + "\n");
-        String maxEl4 = newStack.max();
-        System.out.println("Max element: " + maxEl4);
-        System.out.println(newStack + "\n");
-        String maxEl5 = newStack.max();
-        System.out.println("Max element: " + maxEl5);
-        System.out.println(newStack + "\n");
-        String maxEl6 = newStack.max();
-        System.out.println("Max element: " + maxEl6);
-        System.out.println(newStack + "\n");
-        String maxEl7 = newStack.max();
-        System.out.println("Max element: " + maxEl7);
-        System.out.println(newStack + "\n");
+        stackInt.push(1);
+        stackInt.push(12);
+        stackInt.push(3);
+        stackInt.push(8);
+        stackInt.push(1);
+        stackInt.push(15);
 
-        newStack.push("S");
-        System.out.println(newStack);
+        Integer testMaxElInt = 0;
+        while (testMaxElInt != null) {
+            testMaxElInt = stackInt.max();
+            System.out.println("Max element: " + testMaxElInt);
+            System.out.println(stackInt + "\n");
+            stackInt.pop();
+        }
     }
 }
