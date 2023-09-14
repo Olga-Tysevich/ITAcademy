@@ -1,4 +1,4 @@
-package inProgress.lesson9;
+package forCheck.lesson9;
 
 public class Stack<E> {
     private Element<E> firstElement = null;

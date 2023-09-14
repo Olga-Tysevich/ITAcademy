@@ -1,4 +1,4 @@
-package inProgress.lesson9;
+package forCheck.lesson9;
 
 public class StackDemo {
     public static void main(String[] args) {
@@ -31,6 +31,7 @@ public class StackDemo {
         Stack<Integer> stackInt = new Stack<>();
 
         stackInt.push(1);
+        stackInt.push(3);
         stackInt.push(12);
         stackInt.push(3);
         stackInt.push(8);
