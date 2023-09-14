@@ -17,17 +17,17 @@ public class MapDemo {
     }
 
     public static void getCharsCount(String string) {
-        Map<Character, Integer> charsArray = new LinkedHashMap<>();
+        Map<Character, Integer> charsMap = new LinkedHashMap<>();
 
         for (int i = 0; i < string.length(); i++) {
             char currentChar = string.charAt(i);
-            if (charsArray.containsKey(currentChar)) {
-                charsArray.put(currentChar, charsArray.get(currentChar) + 1);
+            if (charsMap.containsKey(currentChar)) {
+                charsMap.put(currentChar, charsMap.get(currentChar) + 1);
             } else {
-                charsArray.put(currentChar, 1);
+                charsMap.put(currentChar, 1);
             }
         }
 
-        charsArray.forEach((k, v) -> System.out.print("| " + k + " - " + v + " |"));
+        charsMap.forEach((k, v) -> System.out.print("| " + k + " - " + v + " |"));
     }
 }

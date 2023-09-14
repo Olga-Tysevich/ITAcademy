@@ -62,6 +62,22 @@ public class StackDemo {
             System.out.println(stackDouble + "\n");
             stackDouble.pop();
         }
-    }
 
+        Stack<String> stackWords = new Stack<>();
+
+        stackWords.push("авантюрин");
+        stackWords.push("абсурд");
+        stackWords.push("азартный");
+        stackWords.push("адский");
+        stackWords.push("ювелир");
+        stackWords.push("обжаловать");
+
+        String testMaxElWord = "";
+        while (testMaxElWord != null) {
+            testMaxElWord = stackWords.max();
+            System.out.println("Max element: " + testMaxElWord);
+            System.out.println(stackWords + "\n");
+            stackWords.pop();
+        }
+    }
 }

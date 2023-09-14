@@ -1,21 +1,6 @@
 package inProgress.lesson9;
 
 public class Stack<E> {
-    private final ElementList<E> elementList = new ElementList<>();
-
-    public void push(E element) {
-        elementList.setElementValue(element);
-    }
-
-    public E pop() {
-        return elementList.deleteFirst();
-    }
-
-    public E max() {
-        return elementList.findMax();
-    }
-
-    private static class ElementList<E> {
         private Element<E> firstElement = null;
         private Element<E> maxElement = null;
 
@@ -35,7 +20,7 @@ public class Stack<E> {
             }
         }
 
-        private void setElementValue(E element) {
+        public void push(E element) {
             Element<E> newFirstEl = new Element<>(element);
             newFirstEl.next = firstElement;
             firstElement = newFirstEl;
@@ -79,7 +64,7 @@ public class Stack<E> {
             return checkValue;
         }
 
-        private E deleteFirst() {
+        public E pop() {
             if (firstElement != null) {
                 Element<E> returnElement = firstElement;
                 maxElement = firstElement == maxElement ? maxElement.nextMaxElement : maxElement;
@@ -94,7 +79,7 @@ public class Stack<E> {
             }
         }
 
-        private E findMax() {
+        public E max() {
             if (maxElement != null) {
                 return maxElement.value;
             } else {
@@ -107,18 +92,12 @@ public class Stack<E> {
         public String toString() {
             StringBuilder elementList = new StringBuilder();
             Element<E> currentElement = firstElement;
+            System.out.print("Stack: ");
             while (currentElement != null) {
                 elementList.append("| ").append(currentElement).append(" |");
                 currentElement = currentElement.next;
             }
             return elementList.toString();
         }
-
-    }
-
-    @Override
-    public String toString() {
-        return "testCode.Stack: " + elementList;
-    }
 
 }
