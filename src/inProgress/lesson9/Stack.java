@@ -63,14 +63,20 @@ public class Stack<E> {
         }
 
         private E deleteFirst() {
-            Element<E> returnElement = firstElement;
-            firstElement = firstElement.next;
-            firstElement.prev = null;
-            return returnElement.value;
+            if (firstElement != null) {
+                Element<E> returnElement = firstElement;
+                firstElement = firstElement.next;
+                firstElement.prev = null;
+                return returnElement.value;
+            } else {
+                System.out.println("There are no elements on the stack!");
+                return null;
+            }
         }
 
         private E deleteMax() {
-            if (firstElement != null) {Element<E> returnMax = maxElement;
+            if (firstElement != null) {
+                Element<E> returnMax = maxElement;
                 maxElement = maxElement.nextMaxElement;
                 if (returnMax == firstElement) {
                     firstElement = returnMax.next != null ? returnMax.next : null;
@@ -79,7 +85,7 @@ public class Stack<E> {
                     returnMax.next.prev = returnMax.prev;
                 }
                 return returnMax.value;
-            }else {
+            } else {
                 System.out.println("There are no elements on the stack!");
                 return null;
             }
