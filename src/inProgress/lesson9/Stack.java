@@ -25,12 +25,12 @@ public class Stack<E> {
             firstElement = newFirstEl;
 
             if (maxElement != null) {
-                Element<E> updateMaxEl = maxElement;
+                Element<E> newMaxEl = maxElement;
                 double checkValue = compareValues(element, maxElement.value);
 
                 if (checkValue >= 0) {
                     maxElement = newFirstEl;
-                    newFirstEl.nextMaxElement = updateMaxEl;
+                    newFirstEl.nextMaxElement = newMaxEl;
                 } else {
                     Element<E> newNextMax = maxElement.nextMaxElement;
 
@@ -65,14 +65,14 @@ public class Stack<E> {
 
         public E pop() {
             if (firstElement != null) {
-                Element<E> returnElement = firstElement;
+                Element<E> returningEl = firstElement;
                 maxElement = firstElement == maxElement ? maxElement.nextMaxElement : maxElement;
                 firstElement = firstElement.next;
                 if (maxElement != null) {
-                    maxElement.nextMaxElement = returnElement == maxElement.nextMaxElement ? returnElement.nextMaxElement : maxElement.nextMaxElement;
+                    maxElement.nextMaxElement = returningEl == maxElement.nextMaxElement ? returningEl.nextMaxElement : maxElement.nextMaxElement;
                 }
 
-                return returnElement.value;
+                return returningEl.value;
 
             } else {
                 System.out.println("There are no elements on the stack!");
@@ -94,6 +94,7 @@ public class Stack<E> {
         public String toString() {
             StringBuilder elementList = new StringBuilder();
             Element<E> currentElement = firstElement;
+
             System.out.print("Stack: ");
             while (currentElement != null) {
                 elementList.append("| ").append(currentElement).append(" |");
