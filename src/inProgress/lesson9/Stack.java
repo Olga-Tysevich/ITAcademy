@@ -21,7 +21,6 @@ public class Stack<E> {
 
         private static class Element<E> {
             private final E value;
-            private Element<E> prev;
             private Element<E> next;
 
             private Element<E> nextMaxElement;
@@ -40,9 +39,6 @@ public class Stack<E> {
             Element<E> updateFirstElement = new Element<>(element);
             updateFirstElement.next = firstElement;
             firstElement = updateFirstElement;
-            if (updateFirstElement.next != null) {
-                updateFirstElement.next.prev = firstElement;
-            }
             if (maxElement != null) {
                 Element<E> updateMax = maxElement;
                 double checkValue;
@@ -80,9 +76,6 @@ public class Stack<E> {
                 firstElement = firstElement.next;
                 if (maxElement != null) {
                     maxElement.nextMaxElement = returnElement == maxElement.nextMaxElement? returnElement.nextMaxElement: maxElement.nextMaxElement;
-                }
-                if (firstElement != null) {
-                    firstElement.prev = null;
                 }
                 return returnElement.value;
             } else {
