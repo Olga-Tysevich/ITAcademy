@@ -4,7 +4,7 @@ public class Stack<E extends Comparable<E>> {
     private Element<E> firstElement = null;
     private Element<E> maxElement = null;
 
-    private static class Element<E extends Comparable<E>> implements Comparable<E>{
+    private static class Element<E extends Comparable<E>> implements Comparable<E> {
         private final E value;
         private Element<E> next;
         private Element<E> nextMaxElement;
@@ -19,7 +19,7 @@ public class Stack<E extends Comparable<E>> {
         }
 
         @Override
-        public int compareTo( E comparableElement) {
+        public int compareTo(E comparableElement) {
             return value.compareTo(comparableElement);
         }
     }
