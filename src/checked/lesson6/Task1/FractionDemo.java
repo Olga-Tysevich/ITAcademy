@@ -1,4 +1,4 @@
-package forCheck.lesson6.Task1;
+package checked.lesson6.Task1;
 
 
 public class FractionDemo {
