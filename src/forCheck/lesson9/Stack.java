@@ -47,9 +47,6 @@ public class Stack<E extends Comparable<E>> {
             Element<E> returningEl = firstElement;
             maxElement = firstElement == maxElement ? maxElement.nextMaxElement : maxElement;
             firstElement = firstElement.next;
-            if (maxElement != null) {
-                maxElement.nextMaxElement = returningEl == maxElement.nextMaxElement ? returningEl.nextMaxElement : maxElement.nextMaxElement;
-            }
 
             return returningEl.value;
 
