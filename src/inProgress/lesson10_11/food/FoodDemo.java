@@ -1,5 +1,7 @@
 package inProgress.lesson10_11.food;
 
+import inProgress.lesson10_11.food.list.*;
+
 public class FoodDemo {
     public static void main(String[] args) {
         Meat meat1 = new Meat("Beef");

@@ -1,4 +1,4 @@
-package inProgress.lesson10_11.food;
+package inProgress.lesson10_11.food.list;
 
 public enum FoodType {
     MEAT,

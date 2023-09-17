@@ -1,5 +1,7 @@
 package inProgress.lesson10_11.food;
 
+import inProgress.lesson10_11.food.list.Food;
+
 public class Vegetarian {
 
     public boolean isVegetarian(Food[] foods) {

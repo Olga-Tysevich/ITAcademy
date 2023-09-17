@@ -30,25 +30,10 @@ public class Stack<E extends Comparable<E>> {
         firstElement = newFirstEl;
 
         if (maxElement != null) {
-            Element<E> newMaxEl = maxElement;
-            double checkValue = element.compareTo(maxElement.value);
 
-            if (checkValue >= 0) {
-                maxElement = newFirstEl;
-                newFirstEl.nextMaxElement = newMaxEl;
-            } else {
-                Element<E> newNextMax = maxElement.nextMaxElement;
-
-                if (newNextMax != null) {
-                    checkValue = element.compareTo(newNextMax.value);
-
-                    if (checkValue >= 0) {
-                        maxElement.nextMaxElement = firstElement;
-                        firstElement.nextMaxElement = newNextMax;
-                    }
-
-                }
-
+            if (firstElement.compareTo(maxElement.value) >= 0) {
+                firstElement.nextMaxElement = maxElement;
+                maxElement = firstElement;
             }
 
         } else {
