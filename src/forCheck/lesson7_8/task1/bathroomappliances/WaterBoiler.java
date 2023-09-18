@@ -1,16 +1,18 @@
 package forCheck.lesson7_8.task1.bathroomappliances;
 
-public class WaterBoiler extends BathroomAppliances {
+import forCheck.lesson7_8.task1.Vacuum;
+
+public class WaterBoiler extends BathroomAppliance {
     private final int numberOfHeatingMode;
     private boolean waterWarmedUp = false;
 
-    public WaterBoiler(String brand, double amperage, int numberOfHeatingMode) {
-        super("Boiler", brand, amperage, false);
+    public WaterBoiler(Vacuum vacuum, String brand, double amperage, int numberOfHeatingMode) {
+        super(vacuum, "Boiler", brand, amperage, false);
         this.numberOfHeatingMode = numberOfHeatingMode;
     }
 
-    public WaterBoiler(String brand, double amperage, int numberOfHeatingMode, boolean isOn) {
-        super("Boiler", brand, amperage, false, isOn);
+    public WaterBoiler(Vacuum vacuum, String brand, double amperage, int numberOfHeatingMode, boolean isOn) {
+        super(vacuum, "Boiler", brand, amperage, false, isOn);
         this.numberOfHeatingMode = numberOfHeatingMode;
     }
 

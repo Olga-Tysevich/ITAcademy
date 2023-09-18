@@ -1,19 +1,20 @@
 package forCheck.lesson7_8.task1.otherappliances;
 
-import forCheck.lesson7_8.task1.Appliances;
+import forCheck.lesson7_8.task1.Appliance;
+import forCheck.lesson7_8.task1.Vacuum;
 
-public class VacuumCleaner extends Appliances {
+public class VacuumCleaner extends Appliance {
     private final double dustContainerVolume;
     private boolean isContainerEmpty = true;
     private boolean cleaningCompleted = false;
 
-    public VacuumCleaner(String location, String brand, double amperage, double dustContainerVolume) {
-        super(location, "Vacuum cleaner", brand, amperage, true);
+    public VacuumCleaner(Vacuum vacuum, String location, String brand, double amperage, double dustContainerVolume) {
+        super(vacuum, location, "Vacuum cleaner", brand, amperage, true);
         this.dustContainerVolume = dustContainerVolume;
     }
 
-    public VacuumCleaner(String location, String brand, double amperage, double dustContainerVolume, boolean isOn) {
-        super(location, "Vacuum cleaner", brand, amperage, true, isOn);
+    public VacuumCleaner(Vacuum vacuum, String location, String brand, double amperage, double dustContainerVolume, boolean isOn) {
+        super(vacuum, location, "Vacuum cleaner", brand, amperage, true, isOn);
         this.dustContainerVolume = dustContainerVolume;
     }
 
@@ -28,13 +29,13 @@ public class VacuumCleaner extends Appliances {
                     return cleaningAreaPerimeter - j;
                 }
             }
-        } else if(getState() && !isContainerEmpty) {
+        } else if (getState() && !isContainerEmpty) {
             System.out.println("It's time to clean the container!");
             return cleaningAreaPerimeter;
-        } else if (cleaningAreaPerimeter <= 0){
+        } else if (cleaningAreaPerimeter <= 0) {
             System.out.println("Nothing to clean up!");
             return cleaningAreaPerimeter;
-        } else  if (!getState()){
+        } else if (!getState()) {
             System.out.println("Vacuum cleaner not plugged in!");
             return cleaningAreaPerimeter;
         }

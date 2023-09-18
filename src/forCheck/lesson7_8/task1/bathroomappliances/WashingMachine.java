@@ -1,17 +1,19 @@
 package forCheck.lesson7_8.task1.bathroomappliances;
 
-public class WashingMachine extends BathroomAppliances {
+import forCheck.lesson7_8.task1.Vacuum;
+
+public class WashingMachine extends BathroomAppliance {
     private final double laundryLoadWeight;
     private boolean laundryLoaded;
     private boolean laundryFinished;
 
-    public WashingMachine(String brand, double amperage, double laundryLoadWeight) {
-        super("Washing machine", brand, amperage, true);
+    public WashingMachine(Vacuum vacuum, String brand, double amperage, double laundryLoadWeight) {
+        super(vacuum, "Washing machine", brand, amperage, true);
         this.laundryLoadWeight = laundryLoadWeight;
     }
 
-    public WashingMachine(String brand, double amperage, double laundryLoadWeight, boolean isOn) {
-        super("Washing machine", brand, amperage, true, isOn);
+    public WashingMachine(Vacuum vacuum, String brand, double amperage, double laundryLoadWeight, boolean isOn) {
+        super(vacuum, "Washing machine", brand, amperage, true, isOn);
         this.laundryLoadWeight = laundryLoadWeight;
     }
 

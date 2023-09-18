@@ -1,18 +1,19 @@
 package forCheck.lesson7_8.task1.otherappliances;
 
-import forCheck.lesson7_8.task1.Appliances;
+import forCheck.lesson7_8.task1.Appliance;
+import forCheck.lesson7_8.task1.Vacuum;
 
-public class TV extends Appliances {
+public class TV extends Appliance {
     private int numberOfChannels;
     private int numberOfCurrentChannel;
 
-    public TV(String location, String brand, double amperage, int numberOfChannels) {
-        super(location, "TV", brand, amperage, false);
+    public TV(Vacuum vacuum, String location, String brand, double amperage, int numberOfChannels) {
+        super(vacuum, location, "TV", brand, amperage, false);
         this.numberOfChannels = numberOfChannels;
     }
 
-    public TV(String location, String brand, double amperage, int numberOfChannels, boolean isOn) {
-        super(location, "TV", brand, amperage, false, isOn);
+    public TV(Vacuum vacuum, String location, String brand, double amperage, int numberOfChannels, boolean isOn) {
+        super(vacuum, location, "TV", brand, amperage, false, isOn);
         this.numberOfChannels = numberOfChannels;
         if (isOn) {
             numberOfCurrentChannel = 1;

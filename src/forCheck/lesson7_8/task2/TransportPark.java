@@ -362,11 +362,8 @@ public class TransportPark {
         }
 
         if (counterOfRowInArrayOfVehiclesTwoD != 0) {
-
             Vehicle[][] arrayOfVehicleTempTwoD = new Vehicle[counterOfRowInArrayOfVehiclesTwoD][];
-
             for (TransportPark currentTransportPark : arrayOfTransportParks) {
-
                 checkForIgnoredPark:
                 {
                     for (String currentParkName : namesOfIgnoredParks) {
@@ -374,7 +371,6 @@ public class TransportPark {
                             break checkForIgnoredPark;
                         }
                     }
-
                     if (findByFuelConsumption || findByFuelTankCapacity || findByPowerOfElectricMotor) {
                         arrayOfVehicleWithParameters = currentTransportPark.findVehiclesWithParameters(findByVehicleType, vehicleType, findByVehicleModel, model,
                                 findByNumberOfVehicle, numberOfVehicle, findByVehiclePrice, minVehiclePrice, maxVehiclePrice, findByVehicleCapacity, minCapacity, maxCapacity,
@@ -389,9 +385,7 @@ public class TransportPark {
                         arrayOfVehicleTempTwoD[currentRowInArrayOfVehiclesTwoD] = arrayOfVehicleWithParameters;
                         currentRowInArrayOfVehiclesTwoD++;
                     }
-
                 }
-
             }
 
             for (Vehicle[] currentArrayOfVehicle : arrayOfVehicleTempTwoD) {
@@ -412,7 +406,6 @@ public class TransportPark {
             } else {
                 return null;
             }
-
         }
 
         return null;

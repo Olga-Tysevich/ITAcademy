@@ -1,19 +1,21 @@
 package forCheck.lesson7_8.task1.kitchenappliances;
 
-public class Microwave extends KitchenAppliances {
+import forCheck.lesson7_8.task1.Vacuum;
+
+public class Microwave extends KitchenAppliance {
     private final int numberOfPowerLevels;
     private final double plateDiameter;
     private boolean hasPlateWithFood = false;
     private boolean isFoodWarm = false;
 
-    public Microwave(String brand, double amperage, int numberOfPowerLevels, double plateDiameter) {
-        super("Microwave", brand, amperage, true);
+    public Microwave(Vacuum vacuum, String brand, double amperage, int numberOfPowerLevels, double plateDiameter) {
+        super(vacuum, "Microwave", brand, amperage, true);
         this.numberOfPowerLevels = numberOfPowerLevels;
         this.plateDiameter = plateDiameter;
     }
 
-    public Microwave(String brand, double amperage, int numberOfPowerLevels, double plateDiameter, boolean isOn) {
-        super("Microwave", brand, amperage, true, isOn);
+    public Microwave(Vacuum vacuum, String brand, double amperage, int numberOfPowerLevels, double plateDiameter, boolean isOn) {
+        super(vacuum, "Microwave", brand, amperage, true, isOn);
         this.numberOfPowerLevels = numberOfPowerLevels;
         this.plateDiameter = plateDiameter;
     }

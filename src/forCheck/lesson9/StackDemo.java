@@ -6,6 +6,7 @@ public class StackDemo {
 
         stackString.push("A");
         stackString.push("B");
+        stackString.push("A");
         stackString.push("C");
         stackString.push("D");
         stackString.push("E");
@@ -25,14 +26,17 @@ public class StackDemo {
             stackString.pop();
         }
 
+
         stackString.push("S");
         System.out.println(stackString + "\n");
 
         Stack<Integer> stackInt = new Stack<>();
 
         stackInt.push(1);
+        stackInt.push(24);
         stackInt.push(3);
         stackInt.push(12);
+        stackInt.push(24);
         stackInt.push(3);
         stackInt.push(8);
         stackInt.push(1);
