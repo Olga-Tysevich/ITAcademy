@@ -1,8 +1,8 @@
-package inProgress.lesson10_11.food;
+package forCheck.lesson10_11.food;
 
-import inProgress.lesson10_11.food.list.Food;
+import forCheck.lesson10_11.food.list.Food;
 
-public class Vegetarian {
+public class FoodInspection {
 
     public boolean isVegetarian(Food[] foods) {
         boolean isVegetarian = false;
@@ -15,6 +15,7 @@ public class Vegetarian {
                 break;
             }
         }
+
         return isVegetarian;
     }
 }

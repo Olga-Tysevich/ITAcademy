@@ -1,4 +1,4 @@
-package inProgress.lesson10_11.food.list;
+package forCheck.lesson10_11.food.list;
 
 public abstract class Food {
     private String name;

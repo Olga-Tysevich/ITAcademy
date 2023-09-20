@@ -1,4 +1,4 @@
-package inProgress.lesson10_11.iterator;
+package forCheck.lesson10_11.iterator;
 
 public class IteratorTwoDArray<T> {
     private final T[][] array;

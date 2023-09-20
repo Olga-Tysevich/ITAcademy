@@ -1,9 +1,9 @@
-package inProgress.lesson10_11.food.list;
+package forCheck.lesson10_11.food.list;
 
-public class Meat extends Food {
+public class Beef extends Food {
     private final FoodType type = FoodType.MEAT;
 
-    public Meat(String name) {
+    public Beef(String name) {
         super(name);
     }
 

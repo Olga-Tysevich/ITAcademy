@@ -1,4 +1,4 @@
-package inProgress.lesson10_11.pair;
+package forCheck.lesson10_11.pair;
 
 public class PairDemo {
     public static void main(String[] args) {
