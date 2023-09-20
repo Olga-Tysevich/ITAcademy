@@ -2,9 +2,9 @@ package forCheck.lesson10_11.food;
 
 import forCheck.lesson10_11.food.list.Food;
 
-public class FoodInspection {
+public abstract class FoodInspection {
 
-    public boolean isVegetarian(Food[] foods) {
+    public static boolean isVegetarian(Food[] foods) {
         boolean isVegetarian = false;
         for (Food f : foods) {
             isVegetarian = switch (f.getFoodType()) {

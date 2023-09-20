@@ -16,17 +16,10 @@ public class FoodDemo {
         Eggplant eggplant = new Eggplant("Eggplant");
         System.out.println("Name: " + eggplant.getName() + ", type: " + eggplant.getFoodType());
 
-        Food[] foodList1 = {beef, salmon, mango, eggplant};
-        Food[] foodList2 = {mango, eggplant, beef, salmon};
-        Food[] foodList3 = {mango, eggplant, beef};
-        Food[] foodList4 = {mango, eggplant};
-
-        FoodInspection checkFoodInspection = new FoodInspection();
-
-        System.out.println(checkFoodInspection.isVegetarian(foodList1));
-        System.out.println(checkFoodInspection.isVegetarian(foodList2));
-        System.out.println(checkFoodInspection.isVegetarian(foodList3));
-        System.out.println(checkFoodInspection.isVegetarian(foodList4));
+        System.out.println(FoodInspection.isVegetarian(new Food[]{beef, salmon, mango, eggplant}));
+        System.out.println(FoodInspection.isVegetarian(new Food[]{mango, eggplant, beef, salmon}));
+        System.out.println(FoodInspection.isVegetarian(new Food[]{mango, eggplant, beef}));
+        System.out.println(FoodInspection.isVegetarian(new Food[]{mango, eggplant}));
 
     }
-}
+    }
