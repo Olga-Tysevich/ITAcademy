@@ -47,15 +47,15 @@ public class FileManager {
 
     public void readBinaryFile(String filePath) {
         try (InputStream inputStream = new FileInputStream(filePath)) {
-            int a = inputStream.available();
+            int fileLength = inputStream.available();
             int currentNumber;
-            int sum = 0;
-            for (int i = 0; i < a; i++) {
+            double sum = 0;
+            for (int i = 0; i < fileLength; i++) {
                 currentNumber = inputStream.read();
                 System.out.print(currentNumber + " ");
                 sum += currentNumber;
             }
-            System.out.println("\n" + ((double) sum / 30));
+            System.out.println("\n" + (sum / 30));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
