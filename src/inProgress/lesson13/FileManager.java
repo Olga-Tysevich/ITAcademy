@@ -8,8 +8,8 @@ import java.util.Random;
 public class FileManager {
     Random random;
 
-    public void writeFile(String outputFilePath) {
-        try (FileWriter fileWriter = new FileWriter(outputFilePath)) {
+    public void writeFile(String outFilePath) {
+        try (FileWriter fileWriter = new FileWriter(outFilePath)) {
             for (int i = 0; i < 1000; i++) {
                 random = new Random();
                 fileWriter.write(random.nextInt(100001) + "\n");
@@ -19,11 +19,11 @@ public class FileManager {
         }
     }
 
-    public void mergeAndSortFileData(String firstFilePath, String secondFilePath, String outputFilePath) {
-        ArrayList<Integer> arrayList = copyFileDataToArrayList(new ArrayList<>(), firstFilePath);
-        copyFileDataToArrayList(arrayList, secondFilePath);
+    public void mergeAndSortFileData(String pathFirstFile, String pathSecondFile, String outFilePath) {
+        ArrayList<Integer> arrayList = copyFileDataToArrayList(new ArrayList<>(), pathFirstFile);
+        copyFileDataToArrayList(arrayList, pathSecondFile);
         Collections.sort(arrayList);
-        try (FileWriter fileWriter = new FileWriter(outputFilePath)) {
+        try (FileWriter fileWriter = new FileWriter(outFilePath)) {
             while (arrayList.iterator().hasNext()) {
                 fileWriter.write(arrayList.iterator().next() + "\n");
                 arrayList.remove(arrayList.iterator().next());
@@ -33,8 +33,8 @@ public class FileManager {
         }
     }
 
-    public void createBinaryFile(String outputFilePath) {
-        try (OutputStream outputStream = new FileOutputStream(outputFilePath)) {
+    public void writeBinaryFile(String outFilePath) {
+        try (OutputStream outputStream = new FileOutputStream(outFilePath)) {
             random = new Random();
             for (int i = 1; i < 31; i++) {
                 outputStream.write(random.nextInt(101));
@@ -46,11 +46,11 @@ public class FileManager {
 
     public void readBinaryFile(String filePath) {
         try (InputStream inputStream = new FileInputStream(filePath)) {
-            int currentNumber;
+            int current;
             double sum = 0;
-            while ((currentNumber = inputStream.read()) != -1) {
-                System.out.print(currentNumber + " ");
-                sum += currentNumber;
+            while ((current = inputStream.read()) != -1) {
+                System.out.print(current + " ");
+                sum += current;
             }
             System.out.println("\n" + (sum / 30));
         } catch (IOException e) {

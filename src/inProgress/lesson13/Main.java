@@ -10,7 +10,7 @@ public class Main {
                 "src/inProgress/lesson13/out.txt");
 
         //task #2
-        fileManager.createBinaryFile("src/inProgress/lesson13/binaryFile.txt");
+        fileManager.writeBinaryFile("src/inProgress/lesson13/binaryFile.txt");
         fileManager.readBinaryFile("src/inProgress/lesson13/binaryFile.txt");
     }
 }
