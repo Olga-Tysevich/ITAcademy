@@ -1,17 +1,17 @@
 package inProgress.lesson13;
 
-import java.io.*;
-
 public class Main {
     public static void main(String[] args) {
         //task #1
-        File in1 = new File("src/inProgress/lesson13/in1.txt");
-        File in2 = new File("src/inProgress/lesson13/in2.txt");
         FileManager fileManager = new FileManager();
-        fileManager.writeFile(in1);
-        fileManager.writeFile(in2);
+        fileManager.writeFile("src/inProgress/lesson13/in1.txt");
+        fileManager.writeFile("src/inProgress/lesson13/in2.txt");
+        fileManager.mergeAndSortFileData("src/inProgress/lesson13/in1.txt", "src/inProgress/lesson13/in2.txt",
+                "src/inProgress/lesson13/out.txt");
 
-        fileManager.mergeAndSortFileData(in1,in2,"src/inProgress/lesson13/out.txt");
+        //task #2
+        fileManager.createBinaryFile("src/inProgress/lesson13/binaryFile.txt");
+        fileManager.readBinaryFile("src/inProgress/lesson13/binaryFile.txt");
     }
 }
 
