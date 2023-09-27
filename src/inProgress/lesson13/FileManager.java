@@ -20,11 +20,10 @@ public class FileManager {
     }
 
     public void mergeAndSortFileData(String firstFilePath, String secondFilePath, String outputFilePath) {
-        File out = new File(outputFilePath);
-        ArrayList<Integer> arrayList = setValuesOfArrayList(new ArrayList<>(), firstFilePath);
-        setValuesOfArrayList(arrayList, secondFilePath);
+        ArrayList<Integer> arrayList = copyFileDataToArrayList(new ArrayList<>(), firstFilePath);
+        copyFileDataToArrayList(arrayList, secondFilePath);
         Collections.sort(arrayList);
-        try (FileWriter fileWriter = new FileWriter(out)) {
+        try (FileWriter fileWriter = new FileWriter(outputFilePath)) {
             while (arrayList.iterator().hasNext()) {
                 fileWriter.write(arrayList.iterator().next() + "\n");
                 arrayList.remove(arrayList.iterator().next());
@@ -47,11 +46,9 @@ public class FileManager {
 
     public void readBinaryFile(String filePath) {
         try (InputStream inputStream = new FileInputStream(filePath)) {
-            int fileLength = inputStream.available();
             int currentNumber;
             double sum = 0;
-            for (int i = 0; i < fileLength; i++) {
-                currentNumber = inputStream.read();
+            while ((currentNumber = inputStream.read()) != -1) {
                 System.out.print(currentNumber + " ");
                 sum += currentNumber;
             }
@@ -61,7 +58,7 @@ public class FileManager {
         }
     }
 
-    private ArrayList<Integer> setValuesOfArrayList(ArrayList<Integer> arrayList, String filePath) {
+    private ArrayList<Integer> copyFileDataToArrayList(ArrayList<Integer> arrayList, String filePath) {
         String str1;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
             while ((str1 = bufferedReader.readLine()) != null) {
