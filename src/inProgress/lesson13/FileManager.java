@@ -8,7 +8,7 @@ import java.util.Random;
 public class FileManager {
     Random random;
 
-    public void writeFile(String outFilePath) {
+    public void writeNumbersToFile(String outFilePath) {
         try (FileWriter fileWriter = new FileWriter(outFilePath)) {
             for (int i = 0; i < 1000; i++) {
                 random = new Random();
