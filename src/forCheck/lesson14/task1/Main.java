@@ -1,4 +1,4 @@
-package inProgress.lesson14.task1;
+package forCheck.lesson14.task1;
 
 import java.util.Arrays;
 import java.util.Random;

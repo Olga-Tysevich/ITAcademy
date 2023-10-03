@@ -1,4 +1,4 @@
-package inProgress.lesson14.task2;
+package forCheck.lesson14.task2;
 
 import java.io.File;
 import java.io.FileWriter;
