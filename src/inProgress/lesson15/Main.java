@@ -2,6 +2,7 @@ package inProgress.lesson15;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -20,6 +21,24 @@ public class Main {
         System.out.println("Sum of all numbers: " + list.stream().mapToInt(Integer::intValue).sum());
         System.out.println("Sum of all digits: " + Arrays.stream(list.stream().map(String::valueOf).collect(Collectors.joining()).split(""))
                 .mapToInt(Integer::parseInt).sum());
+
+        //task #2
+        List<String> myList = Arrays.asList("a1", "a2", "a3", "b1", "b3", "c2", "c1", "c5");
+        myList.stream().filter(s -> !s.contains("3")).forEach(s -> System.out.print(s + " "));
+        System.out.println();
+        myList.stream().filter(s -> !s.contains("3"))
+                .sorted(Comparator.<String>comparingInt(s -> Integer.parseInt(s.split("")[1]))
+                        .thenComparing(Comparator.<String, String>comparing(s -> s.split("")[0]).reversed()))
+                .forEach(s -> System.out.print(s + " "));
+        System.out.println();
+        List<String> result = myList.stream().filter(s -> !s.contains("3"))
+                .sorted(Comparator.<String>comparingInt(s -> Integer.parseInt(s.split("")[1]))
+                        .thenComparing(Comparator.<String, String>comparing(s -> s.split("")[0]).reversed()))
+                .skip(1).limit(myList.size() - myList.stream().filter(s -> s.contains("3")).toList().size() - 2)
+                .map(String::toUpperCase).toList();
+
+        result.forEach(s -> System.out.print(s + " "));
+        System.out.println("\nNumber of remaining elements: " + result.size());
 
 
     }
