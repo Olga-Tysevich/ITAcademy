@@ -6,8 +6,4 @@ public enum RecyclableType {
     LARGE,
     ACCESSORY,
     TV;
-
-    public static RecyclableType getRecyclableType(int position) {
-        return RecyclableType.values()[position -1];
-    }
 }

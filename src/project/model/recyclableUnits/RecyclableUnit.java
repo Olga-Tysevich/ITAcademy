@@ -13,8 +13,8 @@ public class RecyclableUnit {
     public RecyclableUnit(int id) {
         ID = id;
         materials = new TreeMap<>();
-        for (int i = 1; i < Material.values().length; i++) {
-            materials.put(Material.getSecondaryMaterial(i), 0.00);
+        for (int i = 0; i < Material.values().length; i++) {
+            materials.put(Material.values()[i], 0.00);
         }
     }
 

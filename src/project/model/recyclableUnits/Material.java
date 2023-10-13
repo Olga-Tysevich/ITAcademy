@@ -9,9 +9,5 @@ public enum Material {
     COPPER,
     LEAD,
     BRASS,
-    BOARD;
-
-    public static Material getSecondaryMaterial(int position) {
-        return Material.values()[position - 1];
-    }
+    BOARD
 }

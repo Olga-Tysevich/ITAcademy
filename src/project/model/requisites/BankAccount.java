@@ -1,15 +1,15 @@
 package project.model.requisites;
 
 public class BankAccount {
-    private final int ID;
+    private int id;
     private final int OWNER_ID;
     private String bankName;
     private String accountNumber;
     private String BIC;
     private String bankAddress;
 
-    public BankAccount(int OWNER_ID, int ID, String bankName, String accountNumber, String BIC, String bankAddress) {
-        this.ID = ID;
+    public BankAccount(int id, int OWNER_ID, String bankName, String accountNumber, String BIC, String bankAddress) {
+        this.id = id;
         this.OWNER_ID = OWNER_ID;
         this.bankName = bankName;
         this.accountNumber = accountNumber;
@@ -18,9 +18,8 @@ public class BankAccount {
     }
 
 
-    public BankAccount(int OWNER_ID, int ID) {
+    public BankAccount(int OWNER_ID) {
         this.OWNER_ID = OWNER_ID;
-        this.ID = ID;
     }
 
     public void setData(int userChoice, String value) {
@@ -35,7 +34,7 @@ public class BankAccount {
     @Override
     public String toString() {
         return "BankAccount{" +
-                "ID='" + ID +
+                "ID='" + id +
                 ", bankName=" + bankName + '\'' +
                 ", accountNumber='" + accountNumber + '\'' +
                 ", bankAddress='" + bankAddress + '\'' +
@@ -43,12 +42,28 @@ public class BankAccount {
                 "}\n";
     }
 
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public void setBIC(String BIC) {
+        this.BIC = BIC;
+    }
+
+    public void setBankAddress(String bankAddress) {
+        this.bankAddress = bankAddress;
+    }
+
     public int getOWNER_ID() {
         return OWNER_ID;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
     public String getBankName() {

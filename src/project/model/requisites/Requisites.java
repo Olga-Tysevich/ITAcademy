@@ -1,16 +1,17 @@
 package project.model.requisites;
 
 public class Requisites {
-    private final int ID;
+    private int id;
     private final int OWNER_ID;
-    private String taxpayerID;
-    private String classifierCode;
+    private int taxpayerID;
+    private int classifierCode;
     private String nameForPrint;
     private String legalAddress;
     private String mailingAddress;
     private String phone;
 
-    public Requisites(int OWNER_ID, int ID, String nameForPrint, String taxpayerID, String classifierCode, String legalAddress, String mailingAddress, String phone) {
+    public Requisites(int id, int OWNER_ID, String nameForPrint, int taxpayerID, int classifierCode, String legalAddress, String mailingAddress, String phone) {
+        this.id = id;
         this.OWNER_ID = OWNER_ID;
         this.taxpayerID = taxpayerID;
         this.classifierCode = classifierCode;
@@ -18,50 +19,62 @@ public class Requisites {
         this.legalAddress = legalAddress;
         this.mailingAddress = mailingAddress;
         this.phone = phone;
-        this.ID = ID;
 
     }
-    public Requisites(int OWNER_ID, int ID) {
+    public Requisites(int OWNER_ID) {
         this.OWNER_ID = OWNER_ID;
-        this.ID = ID;
-    }
-    public void setData(int userChoice, String value) {
-        switch (userChoice) {
-            case 1 -> nameForPrint = value;
-            case 2 -> taxpayerID = value;
-            case 3 -> classifierCode = value;
-            case 4 -> legalAddress = value;
-            case 5 -> mailingAddress = value;
-            case 6 -> phone = value;
-        }
-
     }
 
     @Override
     public String toString() {
         return "Requisites{" +
-                "NAME='" + nameForPrint + '\'' +
-                ", TAXPAYER_ID='" + taxpayerID + '\'' +
-                ", CLASSIFIER_CODE='" + classifierCode + '\'' +
+                "id=" + id +
+                ", taxpayerID=" + taxpayerID +
+                ", classifierCode=" + classifierCode +
+                ", nameForPrint='" + nameForPrint + '\'' +
                 ", legalAddress='" + legalAddress + '\'' +
                 ", mailingAddress='" + mailingAddress + '\'' +
                 ", phone='" + phone + '\'' +
-                "}\n";
+                '}';
     }
 
-    public int getID() {
-        return ID;
+    public void setTaxpayerID(int taxpayerID) {
+        this.taxpayerID = taxpayerID;
+    }
+
+    public void setClassifierCode(int classifierCode) {
+        this.classifierCode = classifierCode;
+    }
+
+    public void setNameForPrint(String nameForPrint) {
+        this.nameForPrint = nameForPrint;
+    }
+
+    public void setLegalAddress(String legalAddress) {
+        this.legalAddress = legalAddress;
+    }
+
+    public void setMailingAddress(String mailingAddress) {
+        this.mailingAddress = mailingAddress;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getOWNER_ID() {
         return OWNER_ID;
     }
 
-    public String getTaxpayerID() {
+    public int getTaxpayerID() {
         return taxpayerID;
     }
 
-    public String getClassifierCode() {
+    public int getClassifierCode() {
         return classifierCode;
     }
 
