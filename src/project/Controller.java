@@ -115,5 +115,4 @@ public class Controller {
             db.insert(entry);
         }
     }
-
 }

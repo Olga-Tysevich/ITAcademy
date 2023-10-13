@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class RequisitesCUI implements RequisitesUI {
-    DataListMenuUI dataListMenuUI;
+    DataListMenuUI dataListMenuUI = new DataListCUI();
     @Override
     public void displayRequisitesData(Requisites requisites) {
         System.out.println("Название: " + requisites.getNameForPrint() + ": 1 - изменить название");

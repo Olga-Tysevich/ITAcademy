@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -66,7 +67,7 @@ public class SQLDB implements DB {
 
     @Override
     public List<BankAccount> selectBankAccounts(int owner_id) {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override

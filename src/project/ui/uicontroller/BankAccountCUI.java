@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BankAccountCUI implements BankAccountUI {
-    DataListMenuUI dataListMenuUI;
+    DataListMenuUI dataListMenuUI = new DataListCUI();
 
     @Override
     public void displayBankAccount(BankAccount bankAccount) {
