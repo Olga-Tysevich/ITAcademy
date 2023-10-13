@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.concurrent.Callable;
 
 public class SumOfRow implements Callable<Integer> {
-    int[][] matrix;
+    private int[][] matrix;
 
     public SumOfRow(int[][] matrix) {
         this.matrix = matrix;

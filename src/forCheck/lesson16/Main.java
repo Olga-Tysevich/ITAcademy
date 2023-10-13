@@ -14,24 +14,22 @@ public class Main {
                 .toArray(int[][]::new);
         Arrays.stream(matrix).forEach(s -> System.out.println(Arrays.toString(s)));
 
-        ExecutorService executor = Executors.newFixedThreadPool(2);
+        ExecutorService executor = Executors.newFixedThreadPool(3);
 
         Future<Integer> sumOfRow = executor.submit(new SumOfRow(matrix));
         Future<Integer> sumOfColumn = executor.submit(new SumOfColumn(matrix, NUMBER_OF_COLUMN));
 
-        try {
-            if (sumOfRow.get() > sumOfColumn.get()) {
-                System.out.println("The sum of the products of rows values is greater than the sum of the products of columns values: ");
-                System.out.println("Sum of products of row values: " + sumOfRow.get());
-                System.out.println("Sum of products of column values: " + sumOfColumn.get());
-            } else {
-                System.out.println("The the sum of the products of columns values is greater than sum of the products of rows values: ");
-                System.out.println("Sum of products of row values: " + sumOfRow.get());
-                System.out.println("Sum of products of column values: " + sumOfColumn.get());
+        while (true) {
+            try {
+                if (sumOfRow.isDone() && sumOfColumn.isDone()) {
+                    executor.submit(new MaxValue(sumOfRow.get(), sumOfColumn.get()));
+                    break;
+                }
+            } catch (InterruptedException | ExecutionException e) {
+                throw new RuntimeException(e);
             }
-        } catch (InterruptedException | ExecutionException e) {
-            throw new RuntimeException(e);
         }
+
         executor.shutdown();
     }
 }
