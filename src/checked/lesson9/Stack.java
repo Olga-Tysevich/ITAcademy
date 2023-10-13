@@ -1,4 +1,4 @@
-package forCheck.lesson9;
+package checked.lesson9;
 
 public class Stack<E extends Comparable<E>> {
     private Element<E> firstElement = null;

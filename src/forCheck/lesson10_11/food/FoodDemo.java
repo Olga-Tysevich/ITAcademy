@@ -1,6 +1,6 @@
 package forCheck.lesson10_11.food;
 
-import forCheck.lesson10_11.food.list.*;
+import forCheck.lesson10_11.food.model.*;
 
 public class FoodDemo {
     public static void main(String[] args) {
@@ -20,6 +20,7 @@ public class FoodDemo {
         System.out.println(FoodInspection.isVegetarian(new Food[]{mango, eggplant, beef, salmon}));
         System.out.println(FoodInspection.isVegetarian(new Food[]{mango, eggplant, beef}));
         System.out.println(FoodInspection.isVegetarian(new Food[]{mango, eggplant}));
+        System.out.println(FoodInspection.isVegetarian(new Food[]{mango, mango, eggplant}));
 
     }
     }

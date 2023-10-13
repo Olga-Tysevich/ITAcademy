@@ -1,4 +1,4 @@
-package forCheck.lesson14.task3;
+package checked.lesson14.task3;
 
 import java.util.ArrayList;
 import java.util.List;

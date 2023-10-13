@@ -1,4 +1,4 @@
-package forCheck.lesson9;
+package checked.lesson9;
 
 public class StackDemo {
     public static void main(String[] args) {

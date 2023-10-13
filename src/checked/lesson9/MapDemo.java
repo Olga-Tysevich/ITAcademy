@@ -1,4 +1,4 @@
-package forCheck.lesson9;
+package checked.lesson9;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

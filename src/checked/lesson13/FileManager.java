@@ -1,4 +1,4 @@
-package forCheck.lesson13;
+package checked.lesson13;
 
 import java.io.*;
 import java.util.ArrayList;

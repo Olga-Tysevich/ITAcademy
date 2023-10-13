@@ -1,4 +1,4 @@
-package forCheck.lesson14.task2;
+package checked.lesson14.task2;
 
 import java.io.File;
 
