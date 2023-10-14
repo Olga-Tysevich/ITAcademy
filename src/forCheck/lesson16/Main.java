@@ -17,7 +17,7 @@ public class Main {
         ExecutorService executor = Executors.newFixedThreadPool(3);
 
         Future<Integer> sumOfRow = executor.submit(new SumOfRow(matrix));
-        Future<Integer> sumOfColumn = executor.submit(new SumOfColumn(matrix, NUMBER_OF_COLUMN));
+        Future<Integer> sumOfColumn = executor.submit(new SumOfColumn(matrix));
 
         while (true) {
             try {

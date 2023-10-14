@@ -6,16 +6,14 @@ import java.util.stream.IntStream;
 
 public class SumOfColumn implements Callable<Integer> {
     private int[][] matrix;
-    private final int NUMBER_OF_COLUMN;
 
-    public SumOfColumn(int[][] matrix, int numberOfColumn) {
+    public SumOfColumn(int[][] matrix) {
         this.matrix = matrix;
-        NUMBER_OF_COLUMN = numberOfColumn;
     }
 
     @Override
     public Integer call() {
-        return IntStream.range(0, NUMBER_OF_COLUMN).map(x -> Arrays.stream(matrix)
+        return IntStream.range(0, matrix.length).map(x -> Arrays.stream(matrix)
                 .map(a -> a[x])
                 .reduce((c, d) -> c * d).get()).sum();
     }
