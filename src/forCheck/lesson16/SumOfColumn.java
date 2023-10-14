@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 import java.util.stream.IntStream;
 
 public class SumOfColumn implements Callable<Integer> {
-    private int[][] matrix;
+    private final int[][] matrix;
 
     public SumOfColumn(int[][] matrix) {
         this.matrix = matrix;
