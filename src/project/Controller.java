@@ -334,17 +334,16 @@ public class Controller {
         }
     }
 
-//    private void deleteWayBill(Bill bill) {
-//        WayBillUI wayBillUI = initialMenuUI.customer().wayBill();
-//        List<String> wayBills = bill.getWayBills();
-//        int userChoice = wayBillUI.getWayBillId(wayBills);
-//        if (userChoice != NO_DATA) {
-//            WayBill wayBill = db.select(userChoice);
-//            Map<RecyclableType, Integer> billData = bill.getBillData();
-//            wayBill.getWayBillData().forEach((key, value) -> billData.put(db.findByName(key).getType(), value));
-//            bill.addWayBill(wayBill.getBillNumber(), billData);
-//        }
-//    }
+    private void deleteWayBill(Bill bill) {
+        WayBillUI wayBillUI = initialMenuUI.customer().wayBill();
+        List<String> wayBills = bill.getWayBills();
+        int userChoice = wayBillUI.getWayBillId(wayBills);
+        if (userChoice != NO_DATA) {
+            WayBill wayBill = db.select(userChoice);
+            db.delete(userChoice);
+            wayBill.getWayBillData().remove(wayBill.getBillNumber());
+        }
+    }
 
     private void manageRecyclableUnits() {
         RecyclableUnitUI recyclableUnitUI = initialMenuUI.recyclableUnit();
