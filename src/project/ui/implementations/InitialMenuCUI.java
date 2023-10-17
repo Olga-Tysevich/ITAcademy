@@ -1,16 +1,22 @@
-package project.ui.uicontroller;
+package project.ui.implementations;
 
 import project.ui.*;
+
 import java.util.InputMismatchException;
+import java.util.Objects;
 import java.util.Scanner;
+import static project.ui.Constants.*;
 
 public class InitialMenuCUI implements InitialMenuUI {
     RequisitesUI requisitesUI = new RequisitesCUI();
     BankAccountUI bankAccountUI = new BankAccountCUI();
+    CustomerUI customerUI;
+    WayBillUI wayBillUI;
+    RecyclableUnitUI recyclableUnitUI;
 
     @Override
     public void displayInitialMenu(String ownerName) {
-        System.out.println(ownerName);
+        System.out.println(Objects.requireNonNullElse(ownerName, "Заполните реквизиты!"));
         System.out.println("1) Реквизиты");
         System.out.println("2) Банковские аккаунты");
         System.out.println("3) Заказчики");
@@ -28,7 +34,15 @@ public class InitialMenuCUI implements InitialMenuUI {
         return bankAccountUI;
     }
 
+    @Override
+    public CustomerUI customer() {
+        return customerUI;
+    }
 
+    @Override
+    public RecyclableUnitUI recyclableUnit() {
+        return recyclableUnitUI;
+    }
 
 
     @Override

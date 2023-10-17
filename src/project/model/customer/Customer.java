@@ -1,18 +1,23 @@
 package project.model.customer;
 
 import project.model.recyclableUnits.RecyclableType;
+
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class Customer {
     private int id;
     private String name;
-    private SortedMap<RecyclableType, Double> price = new TreeMap<>();
+    private Map<RecyclableType, Double> price = new TreeMap<>();
 
     public Customer(String name) {
         this.name = name;
-        for (int i = 0; i < RecyclableType.values().length; i++) {
-            price.put(RecyclableType.values()[i], 0.00);
-        }
+        IntStream.range(0, RecyclableType.values().length).forEach(i -> price.put(RecyclableType.values()[i], 0.00));
+    }
+
+    public Customer(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public int getId() {
@@ -31,11 +36,11 @@ public class Customer {
         this.name = name;
     }
 
-    public SortedMap<RecyclableType, Double> getPrice() {
+    public Map<RecyclableType, Double> getPrice() {
         return price;
     }
 
-    public void setPrice(SortedMap<RecyclableType, Double> price) {
+    public void setPrice(Map<RecyclableType, Double> price) {
         this.price = price;
     }
 

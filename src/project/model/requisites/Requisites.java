@@ -38,6 +38,10 @@ public class Requisites {
                 '}';
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setTaxpayerID(int taxpayerID) {
         this.taxpayerID = taxpayerID;
     }

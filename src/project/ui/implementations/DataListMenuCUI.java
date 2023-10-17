@@ -1,11 +1,11 @@
-package project.ui.uicontroller;
+package project.ui.implementations;
 
 import project.ui.DataListMenuUI;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import static project.ui.Constants.*;
 
-public class DataListCUI implements DataListMenuUI {
+public class DataListMenuCUI implements DataListMenuUI {
     @Override
     public void displayListMenu() {
         System.out.println(": new - добавить новый");
@@ -31,13 +31,13 @@ public class DataListCUI implements DataListMenuUI {
         }
         switch (userChoice) {
             case "new" -> {
-                return DataListMenuUI.CREATE_NEW_OBJECT_CHOICE;
+                return CREATE_NEW_OBJECT_CHOICE;
             }
             case "select" -> {
-                return DataListMenuUI.SELECT_OBJECT_CHOICE;
+                return SELECT_OBJECT_CHOICE;
             }
             case "cancel" -> {
-                return DataListMenuUI.CANCEL_CHOICE;
+                return LIST_MENU_CANCEL_CHOICE;
             }
         }
         return null;

@@ -1,30 +1,26 @@
 package project.model.customer;
 
-import project.model.recyclableUnits.RecyclableType;
 import java.util.Date;
 import java.util.SortedMap;
 import java.util.TreeMap;
+
 public class WayBill {
     private int id;
     private final int CUSTOMER_ID;
     private String number;
     private Date date;
-    private SortedMap<RecyclableType, Double> price = new TreeMap<>();
-    private SortedMap<Integer, Integer> wayBillData = new TreeMap<>();
+    private SortedMap<String, Integer> wayBillData = new TreeMap<>();
     private int totalPositions = 0;
-    private double sum;
     private String note;
+    private String billNumber;
 
-    public WayBill(int id, int CUSTOMER_ID, String number, Date date, SortedMap<RecyclableType, Double> price, SortedMap<Integer,
-            Integer> wayBillData, int totalPositions, double sum, String note) {
+    public WayBill(int id, int CUSTOMER_ID, String number, Date date, SortedMap<String, Integer> wayBillData, int totalPositions, String note) {
         this.id = id;
         this.CUSTOMER_ID = CUSTOMER_ID;
         this.number = number;
         this.date = date;
-        this.price = price;
         this.wayBillData = wayBillData;
         this.totalPositions = totalPositions;
-        this.sum = sum;
         this.note = note;
     }
 
@@ -32,9 +28,14 @@ public class WayBill {
         this.CUSTOMER_ID = CUSTOMER_ID;
         this.number = number;
     }
-    public void addRecyclableUnit(int recyclableUnitID, int amountInWB) {
-        wayBillData.put(recyclableUnitID, amountInWB);
+
+    public void addRecyclableUnit(String recyclableUnitName, int amountInWB) {
+        wayBillData.put(recyclableUnitName, amountInWB);
         totalPositions += amountInWB;
+    }
+
+    public void deleteRecyclableUnit(String recyclableUnitName) {
+        wayBillData.remove(recyclableUnitName);
     }
 
     public void setNumber(String number) {
@@ -48,10 +49,6 @@ public class WayBill {
 
     public void setNote(String note) {
         this.note = note;
-    }
-
-    public void setPrice(RecyclableType recyclableType, double unitPrice) {
-        price.put(recyclableType, unitPrice);
     }
 
     public int getId() {
@@ -74,20 +71,32 @@ public class WayBill {
         return totalPositions;
     }
 
-    public double getSum() {
-        return sum;
-    }
-
     public String getNote() {
         return note;
     }
 
-    public SortedMap<RecyclableType, Double> getPrice() {
-        return price;
+    public SortedMap<String, Integer> getWayBillData() {
+        return wayBillData;
     }
 
-    public SortedMap<Integer, Integer> getWayBillData() {
-        return wayBillData;
+    public void setWayBillData(SortedMap<String, Integer> wayBillData) {
+        this.wayBillData = wayBillData;
+    }
+
+    public void setTotalPositions(int totalPositions) {
+        this.totalPositions = totalPositions;
+    }
+
+    public String getBillNumber() {
+        return billNumber;
+    }
+
+    public void setBillNumber(String billNumber) {
+        this.billNumber = billNumber;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
