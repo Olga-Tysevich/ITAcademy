@@ -12,5 +12,6 @@ public interface BillUI {
     Bill changeBill(Bill bill);
     void displayBillData(Map<RecyclableType, Integer> billData);
     void displayPrice(Map<RecyclableType, Double> price);
+    int getWayBillId(List<String> wayBills);
     int getBillId(List<Bill> bills);
 }

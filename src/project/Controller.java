@@ -335,9 +335,9 @@ public class Controller {
     }
 
     private void deleteWayBill(Bill bill) {
-        WayBillUI wayBillUI = initialMenuUI.customer().wayBill();
+        BillUI billUI = initialMenuUI.customer().bill();
         List<String> wayBills = bill.getWayBills();
-        int userChoice = wayBillUI.getWayBillId(wayBills);
+        int userChoice = billUI.getWayBillId(wayBills);
         if (userChoice != NO_DATA) {
             WayBill wayBill = db.select(userChoice);
             db.delete(userChoice);

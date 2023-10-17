@@ -13,5 +13,5 @@ public interface DB<E> {
     List<WayBill> findWayBillsWithoutBill(int customerID);
     List<E> selectAll();
     List<E> selectAll(int customerID);
-    void delete(E entry);
+    void delete(int id);
 }
