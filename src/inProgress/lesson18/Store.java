@@ -8,7 +8,6 @@ import java.util.concurrent.Semaphore;
 public class Store {
     private final List<Integer> products = new ArrayList<>();
     private static final Semaphore semaphore = new Semaphore(3);
-    private static final Semaphore semaphoreGet = new Semaphore(0);
 
 
     public void put(int productNumber) {
@@ -20,12 +19,12 @@ public class Store {
         }
         products.add(productNumber);
         System.out.printf("\nProducer added product, number of products %d", productNumber);
-        semaphoreGet.release();
+        semaphore.release();
     }
 
     public void get() {
         try {
-            semaphoreGet.acquire();
+            semaphore.acquire();
             Thread.sleep(new Random().nextInt(1000));
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
