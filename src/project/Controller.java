@@ -1,5 +1,6 @@
 package project;
 
+import project.database.implementations.RequisitesSQLDB;
 import project.model.Owner;
 import project.model.customer.Bill;
 import project.model.customer.Contract;
@@ -23,7 +24,13 @@ public class Controller {
     Owner owner = new Owner();
     private final InitialMenuUI initialMenuUI;
     private final DataListMenuUI dataListMenuUi;
-    private DB db;
+    private DB<Requisites> requisitesDB = new RequisitesSQLDB();
+    private DB<BankAccount> bankAccountDB;
+    private DB<Contract> contractDB;
+    private DB<Customer> customerDB;
+    private DB<WayBill> wayBillDB;
+    private DB<Bill> billDB;
+    private DB<RecyclableUnit> recyclableUnitDB;
 
     public Controller() {
         initialMenuUI = new InitialMenuCUI();
@@ -58,9 +65,9 @@ public class Controller {
             switch (dataListMenuUi.getUserChoice()) {
                 case CREATE_NEW_OBJECT_CHOICE -> changeRequisites(new Requisites(ownerId));
                 case SELECT_OBJECT_CHOICE -> {
-                    int userChoice = requisitesUI.getRequisitesId(db.selectAll(ownerId));
+                    int userChoice = requisitesUI.getRequisitesId(requisitesDB.selectAll(ownerId));
                     if (userChoice != NO_DATA) {
-                        changeRequisites(db.select(userChoice));
+                        changeRequisites(requisitesDB.select(userChoice));
                     }
                 }
                 case LIST_MENU_CANCEL_CHOICE -> {
@@ -73,10 +80,10 @@ public class Controller {
     private void changeRequisites(Requisites requisites) {
         RequisitesUI requisitesUI = initialMenuUI.requisites();
         Requisites temp = requisitesUI.changeRequisites(requisites);
-        if (requisites != temp && db.select(requisites.getId()) != null) {
-            db.update(temp);
+        if (requisites != temp && requisitesDB.select(requisites.getId()) != null) {
+            requisitesDB.update(temp);
         } else if (requisites != temp) {
-            db.insert(temp);
+            requisitesDB.insert(temp);
         }
     }
 
@@ -87,9 +94,9 @@ public class Controller {
             switch (dataListMenuUi.getUserChoice()) {
                 case CREATE_NEW_OBJECT_CHOICE -> changeBankAccount(new BankAccount(companyId));
                 case SELECT_OBJECT_CHOICE -> {
-                    int userChoice = bankAccountUI.getBankAccountId(db.selectAll(companyId));
+                    int userChoice = bankAccountUI.getBankAccountId(bankAccountDB.selectAll(companyId));
                     if (userChoice != NO_DATA) {
-                        changeBankAccount(db.select(userChoice));
+                        changeBankAccount(bankAccountDB.select(userChoice));
                     }
                 }
                 case LIST_MENU_CANCEL_CHOICE -> {
@@ -102,10 +109,10 @@ public class Controller {
     private void changeBankAccount(BankAccount bankAccount) {
         BankAccountUI bankAccountUI = initialMenuUI.bankAccount();
         BankAccount temp = bankAccountUI.changeBankAccount(bankAccount);
-        if (bankAccount != temp && db.select(bankAccount.getId()) != null) {
-            db.update(temp);
+        if (bankAccount != temp && bankAccountDB.select(bankAccount.getId()) != null) {
+            bankAccountDB.update(temp);
         } else if (bankAccount != temp) {
-            db.insert(temp);
+            bankAccountDB.insert(temp);
         }
     }
 
@@ -116,13 +123,13 @@ public class Controller {
             switch (dataListMenuUi.getUserChoice()) {
                 case CREATE_NEW_OBJECT_CHOICE -> {
                     Customer customer = new Customer(customerUI.getCustomerNameFromUser());
-                    db.insert(customer);
+                    customerDB.insert(customer);
                     changeCustomer(customer);
                 }
                 case SELECT_OBJECT_CHOICE -> {
-                    int userChoice = customerUI.getCustomerId(db.selectAll());
+                    int userChoice = customerUI.getCustomerId(customerDB.selectAll());
                     if (userChoice != NO_DATA) {
-                        changeCustomer(db.select(userChoice));
+                        changeCustomer(customerDB.select(userChoice));
                     }
                 }
                 case LIST_MENU_CANCEL_CHOICE -> {
@@ -160,9 +167,9 @@ public class Controller {
                 case CREATE_NEW_OBJECT_CHOICE ->
                         changeContract(new Contract(customerId, contractUI.getContractNumberFromUser()));
                 case SELECT_OBJECT_CHOICE -> {
-                    int userChoice = contractUI.getContractId(db.selectAll(customerId));
+                    int userChoice = contractUI.getContractId(contractDB.selectAll(customerId));
                     if (userChoice != NO_DATA) {
-                        changeContract(db.select(userChoice));
+                        changeContract(contractDB.select(userChoice));
                     }
                 }
                 case LIST_MENU_CANCEL_CHOICE -> {
@@ -175,10 +182,10 @@ public class Controller {
     private void changeContract(Contract contract) {
         ContractUI contractUI = initialMenuUI.customer().contract();
         Contract temp = contractUI.changeContract(contract);
-        if (contract != temp && db.select(contract.getId()) != null) {
-            db.update(temp);
+        if (contract != temp && requisitesDB.select(contract.getId()) != null) {
+            contractDB.update(temp);
         } else if (contract != temp) {
-            db.insert(temp);
+            contractDB.insert(temp);
         }
     }
 
@@ -193,9 +200,9 @@ public class Controller {
                 }
                 case SELECT_OBJECT_CHOICE -> {
 
-                    int userChoice = wayBillUI.getWayBillId(db.selectAll(customerId));
+                    int userChoice = wayBillUI.getWayBillId(wayBillDB.selectAll(customerId));
                     if (userChoice != NO_DATA) {
-                        changeWayBill(db.select(userChoice));
+                        changeWayBill(wayBillDB.select(userChoice));
                     }
                 }
                 case LIST_MENU_CANCEL_CHOICE -> {
@@ -211,10 +218,10 @@ public class Controller {
             switch (wayBillUI.getAction(wayBill)) {
                 case CHANGE_WAYBILL_DATA_CHOICE -> {
                     WayBill temp = wayBillUI.changeWayBill(wayBill);
-                    if (wayBill != temp && db.select(wayBill.getId()) != null) {
-                        db.update(temp);
+                    if (wayBill != temp && wayBillDB.select(wayBill.getId()) != null) {
+                        wayBillDB.update(temp);
                     } else if (wayBill != temp) {
-                        db.insert(temp);
+                        wayBillDB.insert(temp);
                     }
                 }
                 case DISPLAY_RECYCLABLE_UNITS_CHOICE -> wayBillUI.displayRecyclableUnits(wayBill.getWayBillData());
@@ -235,11 +242,11 @@ public class Controller {
         String recyclableUnitName;
         while (true) {
             recyclableUnitName = wayBillUI.getRecyclableUnitName();
-            recyclableUnit = db.findByName(recyclableUnitName);
+            recyclableUnit = recyclableUnitDB.findByName(recyclableUnitName);
             if (recyclableUnit != null) {
                 recyclableUnitAmount = wayBillUI.getRecyclableUnitAmount();
                 wayBill.addRecyclableUnit(recyclableUnitName, recyclableUnitAmount);
-                db.update(wayBill);
+                recyclableUnitDB.update(recyclableUnit);
 
             } else {
                 switch (wayBillUI.getActionWithRecyclableUnit()) {
@@ -263,7 +270,7 @@ public class Controller {
             switch (wayBillUI.getActionWithRecyclableUnit()) {
                 case DELETE_RECYCLABLE_UNIT_CHOICE -> {
                     wayBill.deleteRecyclableUnit(wayBillUI.getRecyclableUnitName());
-                    db.update(wayBill);
+                    wayBillDB.update(wayBill);
                     return;
                 }
                 case EXIT_CHOICE -> {
@@ -279,13 +286,13 @@ public class Controller {
             dataListMenuUi.displayListMenu();
             switch (dataListMenuUi.getUserChoice()) {
                 case CREATE_NEW_OBJECT_CHOICE -> {
-                    Bill bill = new Bill(customerId, billUI.getBillNumberFromUser(), db.select(customerId).getPrice());
+                    Bill bill = new Bill(customerId, billUI.getBillNumberFromUser(), billDB.select(customerId).getPrice());
                     changeBill(bill);
                 }
                 case SELECT_OBJECT_CHOICE -> {
-                    int userChoice = billUI.getBillId(db.selectAll(customerId));
+                    int userChoice = billUI.getBillId(billDB.selectAll(customerId));
                     if (userChoice != NO_DATA) {
-                        changeBill(db.select(userChoice));
+                        changeBill(billDB.select(userChoice));
                     }
                 }
                 case LIST_MENU_CANCEL_CHOICE -> {
@@ -301,16 +308,16 @@ public class Controller {
             switch (billUI.getAction(bill)) {
                 case CHANGE_BILL_DATA_CHOICE -> {
                     Bill temp = billUI.changeBill(bill);
-                    if (bill != temp && db.select(bill.getId()) != null) {
-                        db.update(temp);
+                    if (bill != temp && billDB.select(bill.getId()) != null) {
+                        billDB.update(temp);
                     } else if (bill != temp) {
-                        db.insert(temp);
+                        billDB.insert(temp);
                     }
                 }
                 case DISPLAY_BILL_DATA_CHOICE -> billUI.displayBillData(bill.getBillData());
                 case ADD_WAYBILL_CHOICE -> {
                     addWayBill(bill);
-                    db.update(bill);
+                    billDB.update(bill);
                 }
                 case DELETE_WAYBILL_CHOICE -> deleteWayBill(bill);
                 case DISPLAY_PRICE_CHOICE -> billUI.displayPrice(bill.getPrice());
@@ -323,13 +330,13 @@ public class Controller {
 
     private void addWayBill(Bill bill) {
         WayBillUI wayBillUI = initialMenuUI.customer().wayBill();
-        List<WayBill> wayBills = db.findWayBillsWithoutBill(bill.getCUSTOMER_ID());
+        List<WayBill> wayBills = requisitesDB.findWayBillsWithoutBill(bill.getCUSTOMER_ID());
         int userChoice = wayBillUI.getWayBillId(wayBills);
         if (userChoice != NO_DATA) {
-            WayBill wayBill = db.select(userChoice);
+            WayBill wayBill = wayBillDB.select(userChoice);
             wayBill.setBillNumber(bill.getNumber());
             Map<RecyclableType, Integer> billData = bill.getBillData();
-            wayBill.getWayBillData().forEach((key, value) -> billData.put(db.findByName(key).getType(), value));
+            wayBill.getWayBillData().forEach((key, value) -> billData.put(recyclableUnitDB.findByName(key).getType(), value));
             bill.addWayBill(wayBill.getBillNumber(), billData);
         }
     }
@@ -339,8 +346,8 @@ public class Controller {
         List<String> wayBills = bill.getWayBills();
         int userChoice = billUI.getWayBillId(wayBills);
         if (userChoice != NO_DATA) {
-            WayBill wayBill = db.select(userChoice);
-            db.delete(userChoice);
+            WayBill wayBill = wayBillDB.select(userChoice);
+            wayBillDB.delete(userChoice);
             wayBill.getWayBillData().remove(wayBill.getBillNumber());
         }
     }
@@ -355,9 +362,9 @@ public class Controller {
                     changeRecyclableUnit(new RecyclableUnit(recyclableUnitUI.getUnitNameNameFromUser(), type));
                 }
                 case SELECT_OBJECT_CHOICE -> {
-                    int userChoice = recyclableUnitUI.getRecyclableUnitId(db.selectAll());
+                    int userChoice = recyclableUnitUI.getRecyclableUnitId(recyclableUnitDB.selectAll());
                     if (userChoice != NO_DATA) {
-                        changeRecyclableUnit(db.select(userChoice));
+                        changeRecyclableUnit(recyclableUnitDB.select(userChoice));
                     }
                 }
                 case LIST_MENU_CANCEL_CHOICE -> {
@@ -373,15 +380,15 @@ public class Controller {
         switch (recyclableUnitUI.getAction(recyclableUnit)) {
             case CHANGE_RECYCLABLE_UNIT_DATA -> {
                 temp = recyclableUnitUI.changeRecyclableUnit(recyclableUnit);
-                if (recyclableUnit != temp && db.select(recyclableUnit.getId()) != null) {
-                    db.update(temp);
+                if (recyclableUnit != temp && requisitesDB.select(recyclableUnit.getId()) != null) {
+                    recyclableUnitDB.update(temp);
                 } else if (recyclableUnit != temp) {
-                    db.insert(temp);
+                    recyclableUnitDB.insert(temp);
                 }
             }
             case CHANGE_MATERIALS_AMOUNT -> {
                 MaterialsUI materialsUI = recyclableUnitUI.materials();
-                materialsUI.changeMaterialsList(db.select(recyclableUnit.getId()).getMaterials());
+                materialsUI.changeMaterialsList(recyclableUnitDB.select(recyclableUnit.getId()).getMaterials());
             }
             case EXIT_CHOICE -> {
 
@@ -391,8 +398,8 @@ public class Controller {
     }
 
     private void updateOwnerData() {
-        if (db.selectAll(owner.getID()).size() != 0) {
-            owner.setRequisites(db.selectAll(owner.getID()).get(0));
+        if (requisitesDB.selectAll(owner.getID()).size() != 0) {
+            owner.setRequisites(requisitesDB.selectAll(owner.getID()).get(0));
         }
     }
 }
