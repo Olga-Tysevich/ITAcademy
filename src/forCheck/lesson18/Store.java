@@ -29,7 +29,7 @@ public class Store {
             System.out.println(e.getMessage());
         }
         if (products.size() != 0) {
-            System.out.printf("\nConsumer consume the goods %d", products.get(0));
+            System.out.printf("\nConsumer consume the product %d", products.get(0));
             products.remove(0);
         }
         semaphore.release();
