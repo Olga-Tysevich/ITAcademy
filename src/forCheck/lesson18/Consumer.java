@@ -1,17 +1,16 @@
-package inProgress.lesson18;
+package forCheck.lesson18;
 
-public class Producer implements Runnable {
+public class Consumer implements Runnable {
     Store store;
 
-    public Producer(Store store) {
+    public Consumer(Store store) {
         this.store = store;
     }
-
 
     @Override
     public void run() {
         for (int i = 1; i < 11; i++) {
-            store.put(i);
+            store.get();
         }
     }
 }

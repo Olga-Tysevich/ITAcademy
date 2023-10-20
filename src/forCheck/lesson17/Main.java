@@ -1,4 +1,4 @@
-package forCheck.Lesson17;
+package forCheck.lesson17;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

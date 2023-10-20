@@ -1,4 +1,4 @@
-package inProgress.lesson18;
+package forCheck.lesson18;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,6 @@ import java.util.concurrent.Semaphore;
 public class Store {
     private final List<Integer> products = new ArrayList<>();
     private static final Semaphore semaphore = new Semaphore(3);
-
 
     public void put(int productNumber) {
         try {

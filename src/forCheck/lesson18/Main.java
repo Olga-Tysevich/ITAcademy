@@ -1,4 +1,4 @@
-package inProgress.lesson18;
+package forCheck.lesson18;
 
 public class Main {
     public static void main(String[] args) {
