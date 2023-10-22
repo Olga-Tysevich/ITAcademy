@@ -22,6 +22,6 @@ public class IteratorTwoDArray<T> {
     }
 
     public boolean hasNext() {
-        return rowIndex < array.length && columnIndex < array[array.length-1].length;
+        return rowIndex < array.length-1 || columnIndex < array[array.length-1].length;
     }
 }
