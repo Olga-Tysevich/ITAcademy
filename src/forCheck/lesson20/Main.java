@@ -1,4 +1,4 @@
-package inProgress.lesson20;
+package forCheck.lesson20;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +18,6 @@ public class Main extends Application {
         try {
             FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/MainScene.fxml"));
             Scene mainScene = new Scene(mainLoader.load());
-            MainController mainController = mainLoader.getController();
             primaryStage.setScene(mainScene);
             primaryStage.setTitle("Calculator");
             primaryStage.setMaxWidth(280);

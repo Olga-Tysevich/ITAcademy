@@ -1,4 +1,4 @@
-package inProgress.lesson20;
+package forCheck.lesson20;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
