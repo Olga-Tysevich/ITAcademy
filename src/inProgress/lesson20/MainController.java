@@ -35,11 +35,14 @@ public class MainController {
         }
         if (!"=".equals(value)) {
             if (!operator.isEmpty()) {
-                return;
+//                return;
+                inputField.setText(String.valueOf(calculator.calculate(item, Double.parseDouble(inputField.getText()), operator)));
+                operator = "";
+                start = true;
             }
             operator = value;
             item = Double.parseDouble(inputField.getText());
-            inputField.setText("");
+//            inputField.setText("");
         } else {
             if (operator.isEmpty()) {
                 return;

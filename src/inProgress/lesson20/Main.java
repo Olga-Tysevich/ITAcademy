@@ -21,8 +21,8 @@ public class Main extends Application {
             MainController mainController = mainLoader.getController();
             primaryStage.setScene(mainScene);
             primaryStage.setTitle("Calculator");
-            primaryStage.setMaxWidth(300);
-            primaryStage.setMinWidth(300);
+            primaryStage.setMaxWidth(280);
+            primaryStage.setMinWidth(280);
             primaryStage.setMaxHeight(420);
             primaryStage.setMinHeight(420);
             primaryStage.show();
