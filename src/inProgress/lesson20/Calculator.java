@@ -9,7 +9,7 @@ public class Calculator {
             case "-" -> {
                 return subtraction(item1, item2);
             }
-            case "*" -> {
+            case "x" -> {
                 return multiplication(item1, item2);
             }
             case "/" -> {
@@ -32,6 +32,9 @@ public class Calculator {
     }
 
     private double division(double item1, double item2) {
+        if (item2 == 0) {
+            return item1/0;
+        }
         return item1 / item2;
     }
 }
