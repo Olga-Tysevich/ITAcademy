@@ -1,40 +1,21 @@
 package inProgress.lesson20;
 
 public class Calculator {
-    public double calculate(double item1, double item2, String operator) {
+    public double calculate(double firstNumber, double secondNumber, String operator) {
         switch (operator) {
             case "+" -> {
-                return sum(item1, item2);
+                return firstNumber + secondNumber;
             }
             case "-" -> {
-                return subtraction(item1, item2);
+                return firstNumber - secondNumber;
             }
             case "x" -> {
-                return multiplication(item1, item2);
+                return firstNumber * secondNumber;
             }
             case "/" -> {
-                return division(item1, item2);
+                return firstNumber / secondNumber;
             }
         }
-        return -1;
-    }
-
-    private double sum(double item1, double item2) {
-        return item1 + item2;
-    }
-
-    private double subtraction(double item1, double item2) {
-        return item1 - item2;
-    }
-
-    private double multiplication(double item1, double item2) {
-        return item1 * item2;
-    }
-
-    private double division(double item1, double item2) {
-        if (item2 == 0) {
-            return item1/0;
-        }
-        return item1 / item2;
+        return 0;
     }
 }

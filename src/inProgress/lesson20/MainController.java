@@ -9,7 +9,7 @@ public class MainController {
     @FXML
     TextField inputField;
 
-    private double item = 0;
+    private Double number;
     private boolean start = true;
     private String operator = "";
     private final Calculator calculator = new Calculator();
@@ -27,29 +27,32 @@ public class MainController {
 
     @FXML
     private void getOperator(ActionEvent event) {
-        String value = ((Button) event.getSource()).getText();
-        if (".".equals(value) && !inputField.getText().contains(".")) {
-            inputField.setText(inputField.getText() + value);
-        } else if (".".equals(value) && inputField.getText().contains(".")) {
-            return;
-        }
-        if (!"=".equals(value)) {
-            if (!operator.isEmpty()) {
-//                return;
-                inputField.setText(String.valueOf(calculator.calculate(item, Double.parseDouble(inputField.getText()), operator)));
+        try {
+            String value = ((Button) event.getSource()).getText();
+            if (value.equals(".") && !inputField.getText().contains(".")) {
+                inputField.setText(inputField.getText() + value);
+            } else if (value.equals("C") || number == null && value.equals("=")) {
+                number = null;
                 operator = "";
+                inputField.setText("");
+            } else if (number != null && !inputField.getText().equals("") && !operator.isEmpty() && value.equals("=")) {
+                Double result = calculator.calculate(number, Double.parseDouble(inputField.getText()), operator);
+                inputField.setText(String.valueOf(result));
+                number = null;
+                operator = "";
+            } else if (operator.isEmpty() && number == null && !value.equals(".")) {
+                number = Double.parseDouble(inputField.getText());
+                inputField.setText("");
+                operator = value;
+            } else if (number != null && !value.equals(".")) {
+                Double result = calculator.calculate(number, Double.parseDouble(inputField.getText()), operator);
+                inputField.setText(String.valueOf(result));
+                operator = value;
+                number = result;
                 start = true;
             }
-            operator = value;
-            item = Double.parseDouble(inputField.getText());
-//            inputField.setText("");
-        } else {
-            if (operator.isEmpty()) {
-                return;
-            }
-            inputField.setText(String.valueOf(calculator.calculate(item, Double.parseDouble(inputField.getText()), operator)));
-            operator = "";
-            start = true;
+        } catch (RuntimeException e) {
+            System.out.println("The user did not enter a number");
         }
     }
 }
