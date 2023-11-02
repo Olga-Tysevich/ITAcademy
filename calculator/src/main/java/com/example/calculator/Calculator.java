@@ -1,4 +1,4 @@
-package forCheck.lesson20;
+package com.example.calculator;
 
 public class Calculator {
     public double calculate(double firstNumber, double secondNumber, String operator) {

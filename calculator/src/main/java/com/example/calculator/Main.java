@@ -1,4 +1,4 @@
-package forCheck.lesson20;
+package com.example.calculator;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +16,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/MainScene.fxml"));
+            FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("MainScene.fxml"));
             Scene mainScene = new Scene(mainLoader.load());
             primaryStage.setScene(mainScene);
             primaryStage.setTitle("Calculator");

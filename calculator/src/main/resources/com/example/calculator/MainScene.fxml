@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" maxHeight="400.0" maxWidth="280.0" minHeight="400.0" minWidth="280.0" prefHeight="400.0"
+      prefWidth="280.0" snapToPixel="false" style="-fx-background-color: #808080;" translateX="1.0" translateY="1.0"
+      translateZ="1.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.calculator.MainController">
+    <children>
+        <TextField fx:id="inputField" alignment="CENTER_RIGHT" layoutX="22.0" layoutY="35.0" maxHeight="50.0"
+                   maxWidth="220.0" minHeight="50.0" minWidth="220.0" prefHeight="50.0" prefWidth="220.0"
+                   style="-fx-border-color: #2F4F4F; -fx-border-radius: 5;">
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+        </TextField>
+        <GridPane maxHeight="240.0" maxWidth="230.0" minHeight="168.0" minWidth="230.0" prefHeight="240.0"
+                  prefWidth="230.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="80.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="80.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="80.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="80.0"/>
+
+
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false"
+                        onAction="#getNum" prefHeight="25.0" prefWidth="25.0"
+                        style="-fx-border-color: #2F4F4F; -fx-border-radius: 5;" text="1" textFill="DARKSLATEGRAY"
+                        GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER"/>
+                <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false"
+                        onAction="#getNum" prefHeight="25.0" prefWidth="25.0"
+                        style="-fx-border-color: #2F4F4F; -fx-border-radius: 5;" text="2" textFill="DARKSLATEGRAY"
+                        GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false"
+                        onAction="#getNum" prefHeight="25.0" prefWidth="25.0"
+                        style="-fx-border-color: #2F4F4F; -fx-border-radius: 5;" text="3" textFill="DARKSLATEGRAY"
+                        GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false"
+                        onAction="#getNum" prefHeight="25.0" prefWidth="25.0"
+                        style="-fx-border-color: #2F4F4F; -fx-border-radius: 5;" text="4" textFill="DARKSLATEGRAY"
+                        GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER"/>
+                <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false"
+                        onAction="#getNum" prefHeight="25.0" prefWidth="25.0"
+                        style="-fx-border-color: #2F4F4F; -fx-border-radius: 5;" text="5" textFill="DARKSLATEGRAY"
+                        GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false"
+                        onAction="#getNum" prefHeight="25.0" prefWidth="25.0"
+                        style="-fx-border-color: #2F4F4F; -fx-border-radius: 5;" text="6" textFill="DARKSLATEGRAY"
+                        GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false"
+                        onAction="#getNum" prefHeight="25.0" prefWidth="25.0"
+                        style="-fx-border-color: #2F4F4F; -fx-border-radius: 5;" text="7" textFill="DARKSLATEGRAY"
+                        GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER"/>
+                <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false"
+                        onAction="#getNum" prefHeight="25.0" prefWidth="25.0"
+                        style="-fx-border-color: #2F4F4F; -fx-border-radius: 5;" text="8" textFill="DARKSLATEGRAY"
+                        GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false"
+                        onAction="#getNum" prefHeight="25.0" prefWidth="25.0"
+                        style="-fx-border-color: #2F4F4F; -fx-border-radius: 5;" text="9" textFill="DARKSLATEGRAY"
+                        GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false"
+                        onAction="#getNum" prefHeight="25.0" prefWidth="25.0"
+                        style="-fx-border-color: #2F4F4F; -fx-border-radius: 5;" text="0" textFill="DARKSLATEGRAY"
+                        GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false"
+                        onAction="#getOperator" prefHeight="25.0" prefWidth="25.0"
+                        style="-fx-border-color: #2F4F4F; -fx-border-radius: 5;" text="." textFill="DARKSLATEGRAY"
+                        GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
+                <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false"
+                        onAction="#getOperator" prefHeight="25.0" prefWidth="25.0"
+                        style="-fx-border-color: #2F4F4F; -fx-border-radius: 5;" text="+" textFill="DARKSLATEGRAY"
+                        wrapText="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false"
+                        onAction="#getOperator" prefHeight="25.0" prefWidth="25.0"
+                        style="-fx-border-color: #2F4F4F; -fx-border-radius: 5;" text="-" textFill="DARKSLATEGRAY"
+                        GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false"
+                        onAction="#getOperator" prefHeight="25.0" prefWidth="25.0"
+                        style="-fx-border-color: #2F4F4F; -fx-border-radius: 5;" text="x" textFill="DARKSLATEGRAY"
+                        GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false"
+                        onAction="#getOperator" prefHeight="25.0" prefWidth="25.0"
+                        style="-fx-border-color: #2F4F4F; -fx-border-radius: 5;" text="/" textFill="DARKSLATEGRAY"
+                        GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false"
+                        onAction="#getOperator" prefHeight="25.0" prefWidth="25.0"
+                        style="-fx-border-color: #2F4F4F; -fx-border-radius: 5;" text="=" textFill="DARKSLATEGRAY"
+                        wrapText="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4"
+                        GridPane.valignment="CENTER"/>
+                <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false"
+                        onAction="#getOperator" prefHeight="25.0" prefWidth="25.0"
+                        style="-fx-border-color: #2F4F4F; -fx-border-radius: 5;" text="C" textFill="DARKSLATEGRAY"
+                        wrapText="true" GridPane.columnIndex="3" GridPane.halignment="CENTER"
+                        GridPane.valignment="CENTER"/>
+            </children>
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+            <padding>
+                <Insets top="30.0"/>
+            </padding>
+        </GridPane>
+    </children>
+    <rotationAxis>
+        <Point3D/>
+    </rotationAxis>
+</VBox>

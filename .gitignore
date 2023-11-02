@@ -1,0 +1,10 @@
+/src/Test.java
+/src/**/*.txt
+/out/
+/src/classWork/
+/src/utils/
+/src/testCode/
+/src/project/
+/src/sqlite/table/sqlQueries.properties
+/src/sqlite/table/
+/src/sqlite/

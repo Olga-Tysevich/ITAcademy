@@ -1,4 +1,4 @@
-package forCheck.lesson20;
+package com.example.calculator;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
