@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Final_Project_Java" />
         <module name="calculator" />
         <module name="demo1" />
       </profile>
@@ -13,7 +14,9 @@
     <bytecodeTargetLevel>
       <module name="calculator" target="19" />
       <module name="calculator (1)" target="19" />
+      <module name="demo" target="19" />
       <module name="demo1" target="19" />
+      <module name="Final_Project_Java" target="19" />
       <module name="ITAcademy" target="19" />
       <module name="lesson20" target="19" />
     </bytecodeTargetLevel>

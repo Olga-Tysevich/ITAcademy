@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace='com.example.final_project_java.model.customer.Customer'>
+
+    <resultMap type='Customer' id='CustomerResult'>
+        <id property='id' column='id'/>
+        <result property='id' column='id'/>
+        <result property='name' column='name'/>
+        <result property='priceNumber' column='price_number'/>
+        <collection property="price" resultMap="priceEntry"/>
+    </resultMap>
+
+    <resultMap id="priceEntry" type="java.util.AbstractMap$SimpleImmutableEntry">
+        <constructor>
+            <idArg javaType="java.lang.Object" column="key"/>
+            <arg javaType="java.lang.Object" column="value"/>
+        </constructor>
+    </resultMap>
+
+    <insert id="insert">
+        INSERT INTO customers (name, price_number) VALUES (#{name}, #{priceNumber})
+    </insert>
+
+    <insert id="insertPrice" keyProperty="TreeMap">
+
+        INSERT INTO prices(customer_id, price_number, key, value)
+        VALUES
+        <foreach collection="price" index="key" item="val" separator=",">
+            ((SELECT id FROM customers WHERE name = '${name}'), (SELECT price_number FROM customers WHERE name =
+            '${name}'),
+            '<trim>${key}</trim>'
+            ,
+            <trim>${val}</trim>
+            )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="Customer">
+        UPDATE customers SET name = #{name}, price_number = #{priceNumber} WHERE id = #{id}
+    </update>
+
+
+    <select id='selectById' parameterType='int' resultMap='CustomerResult'>
+        SELECT
+        C.ID AS id, C.name, C.price_number, P.key, P.value
+        FROM customers C LEFT OUTER JOIN prices P ON C.id=P.customer_id AND C.price_number = P.price_number
+        WHERE C.id = #{id}
+    </select>
+
+    <select id='selectByName' parameterType='String' resultMap='CustomerResult'>
+        SELECT
+        C.ID AS id, C.name, C.price_number, P.key, P.value
+        FROM customers C LEFT OUTER JOIN prices P ON C.id=P.customer_id AND C.price_number = P.price_number
+        WHERE C.name = #{name}
+    </select>
+
+    <select id='selectAll' resultMap='CustomerResult'>
+        SELECT
+        C.ID AS id, C.name, C.price_number, P.key, P.value
+        FROM customers C LEFT OUTER JOIN prices P ON C.id=P.customer_id AND C.price_number = P.price_number
+    </select>
+
+</mapper>

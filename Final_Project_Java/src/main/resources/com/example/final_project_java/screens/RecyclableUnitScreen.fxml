@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="TOP_CENTER" maxHeight="700.0" maxWidth="800.0" minHeight="700.0" minWidth="800.0" prefHeight="700.0" prefWidth="800.0" style="-fx-background-color: #C0C0C0; -fx-border-color: #808080; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_project_java.controllers.RecyclableUnitController">
+    <padding>
+        <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+    </padding>
+    <children>
+        <Label fx:id="sceneName" alignment="CENTER" contentDisplay="TOP" maxHeight="35.0" maxWidth="750.0" minHeight="35.0" minWidth="750.0" prefHeight="35.0" prefWidth="750.0" style="-fx-background-color: #494949; -fx-background-radius: 15; -fx-border-color: #808080; -fx-border-radius: 15;" text="RecyclableUnit" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="Times New Roman Bold Italic" size="18.0" />
+            </font>
+            <opaqueInsets>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </opaqueInsets>
+            <VBox.margin>
+                <Insets bottom="30.0" top="30.0" />
+            </VBox.margin>
+        </Label>
+        <VBox maxHeight="220.0" minHeight="130.0" minWidth="220.0" prefHeight="220.0" prefWidth="100.0">
+            <children>
+                <Label fx:id="unitNameError" maxWidth="500.0" minWidth="500.0" prefWidth="500.0" textFill="#8a0707">
+                    <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </Label>
+                <HBox maxHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="200.0">
+                    <children>
+                        <TextField fx:id="unitName" maxWidth="500.0" minWidth="500.0" prefWidth="500.0" promptText="Name">
+                            <HBox.margin>
+                                <Insets bottom="30.0" right="50.0" />
+                            </HBox.margin>
+                        </TextField>
+                        <Button maxWidth="200.0" minWidth="200.0" mnemonicParsing="false" onAction="#saveNameBtnClick" prefWidth="200.0" style="-fx-background-radius: 15;" text="ChangeName">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="10.0" maxHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="200.0">
+                    <children>
+                        <ChoiceBox fx:id="types" maxWidth="500.0" minWidth="500.0" prefWidth="500.0">
+                            <HBox.margin>
+                                <Insets right="50.0" />
+                            </HBox.margin>
+                        </ChoiceBox>
+                        <Button maxWidth="200.0" minWidth="200.0" mnemonicParsing="false" onAction="#changeType" prefWidth="200.0" style="-fx-background-radius: 15;" text="ChangeType" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="15.0" />
+                    </VBox.margin>
+                </HBox>
+                <Label fx:id="diagonalError" maxWidth="500.0" minWidth="500.0" prefWidth="500.0" textFill="#900707">
+                    <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                    </font>
+                </Label>
+                <HBox layoutX="10.0" layoutY="50.0" maxHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="200.0">
+                    <children>
+                        <TextField fx:id="diagonal" maxWidth="500.0" minWidth="500.0" prefWidth="500.0" promptText="Diagonal">
+                            <HBox.margin>
+                                <Insets right="50.0" />
+                            </HBox.margin>
+                        </TextField>
+                        <Button maxWidth="200.0" minWidth="200.0" mnemonicParsing="false" onAction="#changeDiagonal" prefWidth="200.0" style="-fx-background-radius: 15;" text="ChangeDiagonal" />
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="130.0" maxHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="200.0">
+                    <children>
+                        <Button maxWidth="200.0" minWidth="200.0" mnemonicParsing="false" onAction="#changeAmountOfMaterial" prefWidth="200.0" style="-fx-background-radius: 15;" text="ChangeMaterial" textAlignment="RIGHT">
+                            <HBox.margin>
+                                <Insets left="550.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="30.0" />
+                    </VBox.margin>
+                </HBox>
+            </children>
+        </VBox>
+        <HBox maxHeight="220.0" minWidth="220.0" prefHeight="300.0" prefWidth="220.0">
+            <children>
+                <ListView fx:id="materials" maxWidth="500.0" minWidth="500.0" onMouseReleased="#displayMaterialData" prefHeight="200.0" prefWidth="500.0">
+                    <HBox.margin>
+                        <Insets right="50.0" />
+                    </HBox.margin>
+                </ListView>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <Label fx:id="materialName" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 2;">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                        </Label>
+                        <Label fx:id="amountError" layoutX="10.0" layoutY="10.0" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" textFill="#b21212">
+                            <font>
+                                <Font name="System Bold Italic" size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="materialAmount" maxWidth="200.0" minWidth="200.0" onKeyReleased="#changeAmountOfMaterial" prefWidth="200.0" />
+                    </children>
+                </VBox>
+            </children>
+            <VBox.margin>
+                <Insets top="15.0" />
+            </VBox.margin>
+        </HBox>
+        <HBox alignment="CENTER" maxHeight="50.0" maxWidth="400.0" minWidth="400.0" prefHeight="100.0" prefWidth="400.0">
+            <children>
+                <Button fx:id="save" maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#saveBtnClick" prefWidth="150.0" style="-fx-background-color: #2f4f4f; -fx-background-radius: 15;" text="Save" textFill="WHITE">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets right="60.0" />
+                    </HBox.margin>
+                </Button>
+                <Button fx:id="cancel1" layoutX="135.0" layoutY="26.0" maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#cancelBtnClick" prefWidth="150.0" style="-fx-background-color: #493536; -fx-background-radius: 15;" text="Cancel" textFill="WHITE">
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+            </children>
+            <VBox.margin>
+                <Insets top="30.0" />
+            </VBox.margin>
+        </HBox>
+    </children>
+</VBox>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="TOP_CENTER" maxHeight="700.0" maxWidth="800.0" minHeight="700.0" minWidth="800.0" prefHeight="700.0" prefWidth="800.0" style="-fx-border-color: #808080; -fx-background-color: #C0C0C0; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.final_project_java.controllers.ObjectListMenuController">
+    <padding>
+        <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+    </padding>
+    <Label fx:id="name" alignment="CENTER" contentDisplay="TOP" maxHeight="35.0" maxWidth="750.0" minHeight="35.0" minWidth="750.0" prefHeight="35.0" prefWidth="750.0" style="-fx-background-color: #494949; -fx-border-color: #808080; -fx-background-radius: 15; -fx-border-radius: 15;" text="ListName" textAlignment="CENTER" textFill="WHITE">
+        <font>
+            <Font name="Times New Roman Bold Italic" size="18.0" />
+        </font>
+        <opaqueInsets>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        </opaqueInsets>
+        <VBox.margin>
+            <Insets bottom="50.0" top="30.0" />
+        </VBox.margin>
+    </Label>
+    <HBox alignment="CENTER" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 15; -fx-border-color: #000000; -fx-border-radius: 15;">
+        <VBox.margin>
+            <Insets bottom="30.0" />
+        </VBox.margin>
+        <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#createNewBtnClick" prefWidth="150.0" style="-fx-background-radius: 15;" text="CrateNew">
+            <HBox.margin>
+                <Insets right="20.0" />
+            </HBox.margin>
+        </Button>
+        <Button layoutX="395.0" layoutY="13.0" maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#editBtnClick" prefWidth="150.0" style="-fx-background-radius: 15;" text="Edit">
+            <HBox.margin>
+                <Insets left="20.0" right="50.0" />
+            </HBox.margin>
+        </Button>
+        <TextField maxWidth="350.0" minWidth="350.0" prefWidth="350.0" promptText="Find" />
+    </HBox>
+    <ListView fx:id="listView" maxHeight="300.0" minHeight="400.0" prefHeight="400.0" prefWidth="200.0" />
+    <HBox alignment="CENTER" maxWidth="400.0" minWidth="400.0" prefHeight="100.0" prefWidth="400.0">
+        <Button maxWidth="150.0" minWidth="150.0" mnemonicParsing="false" onAction="#cancelBtnClick" prefWidth="150.0" style="-fx-background-color: #493536; -fx-background-radius: 15;" text="Cancel" textFill="WHITE">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Button>
+    </HBox>
+</VBox>

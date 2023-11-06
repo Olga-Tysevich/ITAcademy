@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type='com.example.final_project_java.model.requisites.Requisites' alias='Requisites'/>
+        <typeAlias type='com.example.final_project_java.model.requisites.BankAccount' alias='BankAccount'/>
+        <typeAlias type='com.example.final_project_java.model.customer.Customer' alias='Customer'/>
+        <typeAlias type='com.example.final_project_java.utils.AddEntrySet' alias='AddEntrySet'/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="org.sqlite.JDBC"/>
+                <property name="url" value="jdbc:sqlite:Final_Project_Java/src/main/java/com/example/final_project_java/databasefile/company.db"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="RequisitesMapper.xml"/>
+        <mapper resource="BankAccountMapper.xml"/>
+        <mapper resource="CustomerMapper.xml"/>
+    </mappers>
+</configuration>

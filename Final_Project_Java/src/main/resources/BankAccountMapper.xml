@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace='com.example.final_project_java.model.requisites.BankAccount'>
+
+    <resultMap type='BankAccount' id='BankAccountResult'>
+        <id property='id' column='id'/>
+        <result property='id' column='id'/>
+        <result property='OWNER_ID' column='owner_id'/>
+        <result property='bankName' column='bank_name'/>
+        <result property='accountNumber' column='account_number'/>
+        <result property='BIC' column='BIC'/>
+        <result property='bankAddress' column='bank_address'/>
+    </resultMap>
+
+    <insert id="insert" parameterType="BankAccount">
+        INSERT INTO bankAccounts
+        (OWNER_ID, BANK_NAME, ACCOUNT_NUMBER, BIC, BANK_ADDRESS)
+        VALUES (#{OWNER_ID}, #{bankName}, #{accountNumber}, #{BIC}, #{bankAddress})
+    </insert>
+
+
+    <update id="update" parameterType="BankAccount">
+        UPDATE bankAccounts SET
+        OWNER_ID = #{OWNER_ID}, BANK_NAME = #{bankName}, ACCOUNT_NUMBER = #{accountNumber},
+        BIC = #{BIC}, BANK_ADDRESS = #{bankAddress}
+        WHERE ID = #{id}
+    </update>
+
+
+    <select id='selectById' parameterType='int' resultMap='BankAccountResult'>
+        SELECT
+        ID, OWNER_ID, BANK_NAME, ACCOUNT_NUMBER, BIC, BANK_ADDRESS
+        FROM bankAccounts
+        WHERE ID = #{id}
+    </select>
+
+    <select id='selectAllByOwnerID' resultMap='BankAccountResult'>
+        SELECT
+        ID, OWNER_ID, BANK_NAME, ACCOUNT_NUMBER, BIC, BANK_ADDRESS
+        FROM bankAccounts WHERE OWNER_ID = #{id}
+    </select>
+
+</mapper>

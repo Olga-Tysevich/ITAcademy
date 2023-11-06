@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace='com.example.final_project_java.model.requisites.Requisites'>
+
+    <resultMap type='Requisites' id='RequisitesResult'>
+        <id property='id' column='id'/>
+        <result property='id' column='id'/>
+        <result property='OWNER_ID' column='owner_id'/>
+        <result property='taxpayerID' column='taxpayer_id'/>
+        <result property='classifierCode' column='classifier_code'/>
+        <result property='nameForPrint' column='owner_name'/>
+        <result property='legalAddress' column='legal_address'/>
+        <result property='mailingAddress' column='mailing_address'/>
+        <result property='phone' column='phone'/>
+    </resultMap>
+
+    <insert id="insert" parameterType="Requisites">
+        INSERT INTO REQUISITES
+        (OWNER_ID, OWNER_NAME, TAXPAYER_ID, CLASSIFIER_CODE, LEGAL_ADDRESS,
+        MAILING_ADDRESS, PHONE)
+        VALUES (#{OWNER_ID}, #{nameForPrint}, #{taxpayerID}, #{classifierCode}, #{legalAddress}, #{mailingAddress},
+        #{phone})
+    </insert>
+
+    <update id="update" parameterType="Requisites">
+        UPDATE REQUISITES SET
+        OWNER_ID = #{OWNER_ID}, OWNER_NAME = #{nameForPrint}, TAXPAYER_ID = #{taxpayerID},
+        CLASSIFIER_CODE = #{classifierCode}, LEGAL_ADDRESS = #{legalAddress},
+        MAILING_ADDRESS = #{mailingAddress}, PHONE = #{phone}
+        WHERE ID = #{id}
+    </update>
+
+    <select id='selectById' parameterType='int' resultMap='RequisitesResult'>
+        SELECT
+        ID, OWNER_ID, TAXPAYER_ID, CLASSIFIER_CODE, OWNER_NAME, LEGAL_ADDRESS,
+        MAILING_ADDRESS, PHONE
+        FROM REQUISITES
+        WHERE ID = #{id}
+    </select>
+
+    <select id='selectByOwnerName' parameterType='int' resultMap='RequisitesResult'>
+        SELECT
+        ID, OWNER_ID, TAXPAYER_ID, CLASSIFIER_CODE, OWNER_NAME, LEGAL_ADDRESS,
+        MAILING_ADDRESS, PHONE
+        FROM REQUISITES
+        WHERE OWNER_NAME = #{nameForPrint}
+    </select>
+
+    <select id='selectAllByOwnerID' resultMap='RequisitesResult'>
+        SELECT
+        ID, OWNER_ID, TAXPAYER_ID, CLASSIFIER_CODE, OWNER_NAME, LEGAL_ADDRESS,
+        MAILING_ADDRESS, PHONE
+        FROM REQUISITES WHERE OWNER_ID = #{id}
+    </select>
+
+</mapper>
